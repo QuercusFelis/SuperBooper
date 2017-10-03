@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
 
 public class SuperBoopers extends Game {
+	public static final int V_WIDTH = 480;
+	public static final int V_HEIGHT = 600;
 	public SpriteBatch batch;
 
 	@Override

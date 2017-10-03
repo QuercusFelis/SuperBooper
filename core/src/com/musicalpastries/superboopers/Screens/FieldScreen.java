@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.musicalpastries.superboopers.Scenes.Hud;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 import javax.swing.text.View;
@@ -22,12 +23,14 @@ public class FieldScreen implements Screen {
     Texture texture;
     private OrthographicCamera gamecam;
     private Viewport viewport;
+    private Hud hud;
 
     public FieldScreen(SuperBoopers game){
         this.game = game;
         texture = new Texture("hall.jpg");
         gamecam = new OrthographicCamera();
-        viewport = new FitViewport(720f, 1280f, gamecam);
+        viewport = new FitViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam);
+        hud = new Hud(game.batch);
     }
 
     @Override
@@ -41,12 +44,15 @@ public class FieldScreen implements Screen {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
+        hud.stage.draw();
 
         //render batch
+        /*
         game.batch.begin();
         game.batch.draw(texture, 0, 0);
-        game.batch.end();
+        game.batch.end(); */
     }
 
     @Override
