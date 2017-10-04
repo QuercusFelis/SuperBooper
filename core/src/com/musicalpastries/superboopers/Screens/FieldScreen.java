@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.Scenes.Hud;
@@ -20,22 +21,38 @@ import javax.swing.text.View;
 public class FieldScreen implements Screen {
 
     private SuperBoopers game;
-    Texture texture;
+    private Texture slimeTexture;
+    private Sprite slimeSprite;
     private OrthographicCamera gamecam;
     private Viewport viewport;
     private Hud hud;
+//    Private Renderer
 
     public FieldScreen(SuperBoopers game){
         this.game = game;
-        texture = new Texture("hall.jpg");
+        slimeTexture = new Texture("slime.png");
+        slimeSprite = new Sprite(slimeTexture);
         gamecam = new OrthographicCamera();
         viewport = new FitViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam);
         hud = new Hud(game.batch);
+//        renderer =
     }
 
     @Override
     public void show() {
 
+    }
+
+    public void handleInput(float dt){
+        if (Gdx.input.isTouched()){
+            gamecam.position.x += 100*dt;
+        }
+    }
+
+    public void update(float dt){
+        handleInput(dt);
+        gamecam.update();
+//        renderer.setView(gamecam);
     }
 
     @Override
@@ -49,10 +66,9 @@ public class FieldScreen implements Screen {
         hud.stage.draw();
 
         //render batch
-        /*
         game.batch.begin();
-        game.batch.draw(texture, 0, 0);
-        game.batch.end(); */
+   //     game.batch.draw(game.batch);
+        game.batch.end();
     }
 
     @Override
@@ -77,6 +93,6 @@ public class FieldScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        slimeTexture.dispose();
     }
 }

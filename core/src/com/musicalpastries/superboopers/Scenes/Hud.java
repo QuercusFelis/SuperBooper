@@ -33,6 +33,7 @@ public class Hud {
         table.setFillParent(true);
 
         xpLabel = new Label("XP: " + String.format("%03d", xp), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        xpLabel.setFontScale(1.3f);
         table.add(xpLabel).expandX().padTop(10);
 
         stage.addActor(table);
