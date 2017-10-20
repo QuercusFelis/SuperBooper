@@ -20,10 +20,13 @@ public class Hud {
     private Viewport viewport;
 
     private Integer xp;
+    private Integer lvl;
 
     Label xpLabel;
+    Label lvlLabel;
     public Hud(SpriteBatch sb){
         xp = 0;
+        lvl = 1;
 
         viewport = new FitViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, new OrthographicCamera());
         stage =  new Stage(viewport, sb);
@@ -33,7 +36,12 @@ public class Hud {
         table.setFillParent(true);
 
         xpLabel = new Label("XP: " + String.format("%03d", xp), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        lvlLabel = new Label("Level: " + String.format("%01d", lvl), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
         xpLabel.setFontScale(1.3f);
+        lvlLabel.setFontScale(1.3f);
+
+        table.add(lvlLabel).expandX().padTop(10);
         table.add(xpLabel).expandX().padTop(10);
 
         stage.addActor(table);
