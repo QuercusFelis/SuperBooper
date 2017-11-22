@@ -44,9 +44,6 @@ public class FieldScreen implements Screen {
 
 
     public void update(){
-        for (int i = 0; i < actors.size(); i++) {
-            actors.get(i).update();
-        }
         gamecam.update();
     }
 

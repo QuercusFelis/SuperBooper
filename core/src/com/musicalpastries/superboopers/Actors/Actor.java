@@ -13,14 +13,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Actor {
     private static Texture atlas = new Texture("Atlas.png");
 
-    private Sprite sprite;
     private int frames;
     private int frameNumber;
     private int xi;
     private int yi;
     private int frameSize;
     private TextureRegion region;
-
 
     public Actor(int frames, int xi, int yi){
         this.frames = frames;
@@ -29,7 +27,6 @@ public class Actor {
         frameNumber = 0;
         frameSize = 64;
         region = new TextureRegion(atlas, xi, yi, frameSize, frameSize);
-        sprite = new Sprite(region);
     }
 
     public Actor(int frames, int xi, int yi, int frameSize){
@@ -39,20 +36,9 @@ public class Actor {
         frameNumber = 0;
         this.frameSize = frameSize;
         region = new TextureRegion(atlas, xi, yi, frameSize, frameSize);
-        sprite = new Sprite(region);
-    }
-
-    public void update(){
-        //checks what frame it's on, if was last frame, makes next the first
-        if(frameNumber == frames-1){
-            frameNumber = 0;
-        } else {frameNumber++;}
-        //scoots the TextureRegion forward the distance of one frameSize
-        sprite.setRegionX(xi+(frameSize*frameNumber));
     }
 
     public Animation<TextureRegion> draw(/*SpriteBatch batch*/){
-       // sprite.draw(batch);
         TextureRegion[] keyFrames = new TextureRegion[frames];
         for (int i = 0; i < frames; i++) {
             keyFrames[i] = new TextureRegion(region,frameSize*i,0,frameSize,frameSize);

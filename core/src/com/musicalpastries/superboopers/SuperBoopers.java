@@ -3,6 +3,7 @@ package com.musicalpastries.superboopers;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.PauseableThread;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
@@ -21,35 +22,12 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		screen = new FieldScreen(this);
 		setScreen(screen);
 		running = true;
-		//running();
-	}
-
-	private void running(){
-		long timeLast = System.nanoTime();
-		final double ticks = 60D;
-		double ns = 1000000000 / ticks;
-		float dt = 0;
-
-		while (running) {
-			long timeNow = System.nanoTime();
-			dt += (timeNow - timeLast) / ns;
-			timeLast = timeNow;
-
-			if (dt >= 1) {
-				update();
-				render(dt);
-				dt--;
-			}
-		}
 	}
 
 	private void update(){
-		screen.update();
 	}
 
 	public void render (float dt) {
-		super.render();
-		screen.render(dt);
 	}
 	
 	@Override
