@@ -48,6 +48,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	}
 
 	public void render (float dt) {
+		super.render();
 		screen.render(dt);
 	}
 	
