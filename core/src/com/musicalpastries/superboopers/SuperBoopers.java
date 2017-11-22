@@ -9,8 +9,8 @@ import com.badlogic.gdx.utils.PauseableThread;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
 
 public class SuperBoopers extends Game implements ApplicationListener {
-	public static final int V_WIDTH = 540;
-	public static final int V_HEIGHT = 960;
+	public static final int V_WIDTH = 480;
+	public static final int V_HEIGHT = 640;
 	public SpriteBatch batch;
 	FieldScreen screen;
 
