@@ -4,15 +4,15 @@ package com.musicalpastries.superboopers;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.PauseableThread;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
 
 public class SuperBoopers extends Game implements ApplicationListener {
-	public static final int V_WIDTH = 480;
-	public static final int V_HEIGHT = 600;
+	public static final int V_WIDTH = 540;
+	public static final int V_HEIGHT = 960;
 	public SpriteBatch batch;
 	FieldScreen screen;
 
-	private Thread thread;
 	private boolean running = false;
 
 	@Override
@@ -20,27 +20,36 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		batch = new SpriteBatch();
 		screen = new FieldScreen(this);
 		setScreen(screen);
+		running = true;
+		//running();
+	}
+
+	private void running(){
+		long timeLast = System.nanoTime();
+		final double ticks = 60D;
+		double ns = 1000000000 / ticks;
+		float dt = 0;
+
+		while (running) {
+			long timeNow = System.nanoTime();
+			dt += (timeNow - timeLast) / ns;
+			timeLast = timeNow;
+
+			if (dt >= 1) {
+				update();
+				render(dt);
+				dt--;
+			}
+		}
 	}
 
 	private void update(){
-
+		screen.update();
 	}
 
-	/*@Override
-	public void render () {
-		//clear screen
-		Gdx.gl.glClearColor(1,0,0,1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		this.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-
-		hud.stage.draw();
-
-		//render batch
-		batch.begin();
-		slimeSprite.draw(batch);
-		batch.end();
-	}*/
+	public void render (float dt) {
+		screen.render(dt);
+	}
 	
 	@Override
 	public void dispose () {

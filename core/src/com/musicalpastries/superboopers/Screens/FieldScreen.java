@@ -2,6 +2,7 @@ package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -10,6 +11,8 @@ import com.musicalpastries.superboopers.Actors.Actor;
 import com.musicalpastries.superboopers.Scenes.Hud;
 import com.musicalpastries.superboopers.SuperBoopers;
 
+import java.util.ArrayList;
+
 /**
  * Created by Andrew Groeling on 9/29/2017.
  */
@@ -17,17 +20,18 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class FieldScreen implements Screen {
 
     private SuperBoopers game;
-    private Actor slimeActor;
-    private OrthographicCamera gamecam;
+    private ArrayList<Actor> actors;
+    private Camera gamecam;
     private Viewport viewport;
     private Hud hud;
 
     public FieldScreen(SuperBoopers game){
         this.game = game;
-        slimeActor = new Actor(4, 0, 0);
+        actors = new ArrayList<Actor>();
         gamecam = new OrthographicCamera();
         viewport = new FitViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam);
         hud = new Hud(game.batch);
+        actors.add(new Actor(4, 0, 0));
     }
 
     @Override
@@ -35,15 +39,11 @@ public class FieldScreen implements Screen {
 
     }
 
-    public void handleInput(float dt){
-        if (Gdx.input.isTouched()){
-            gamecam.position.x += 100*dt;
-        }
-    }
 
-    public void update(float dt){
-        handleInput(dt);
-        slimeActor.update();
+    public void update(){
+        for (int i = 0; i < actors.size(); i++) {
+            actors.get(i).update();
+        }
         gamecam.update();
     }
 
@@ -57,7 +57,9 @@ public class FieldScreen implements Screen {
         hud.stage.draw();
 
         game.batch.begin();
-        slimeActor.draw(game.batch);
+        for (int i = 0; i < actors.size(); i++) {
+            actors.get(i).draw(game.batch);
+        }
         game.batch.end();
     }
 
