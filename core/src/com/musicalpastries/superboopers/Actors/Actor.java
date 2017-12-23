@@ -43,7 +43,6 @@ public class Actor {
         for (int i = 0; i < frames; i++) {
             keyFrames[i] = new TextureRegion(region,frameSize*i,0,frameSize,frameSize);
         }
-        Animation animation = new Animation(1f/4f, keyFrames);
         return new Animation(1f/4f, keyFrames);
     }
 }

@@ -3,24 +3,25 @@ package com.musicalpastries.superboopers;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.PauseableThread;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
+import com.musicalpastries.superboopers.Screens.MenuScreen;
 
 public class SuperBoopers extends Game implements ApplicationListener {
 	public static final int V_WIDTH = 480;
 	public static final int V_HEIGHT = 640;
 	public SpriteBatch batch;
-	FieldScreen screen;
+	private FieldScreen gameScreen;
+	private MenuScreen menuScreen;
 
 	private boolean running = false;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		screen = new FieldScreen(this);
-		setScreen(screen);
+		gameScreen = new FieldScreen(this);
+		menuScreen = new MenuScreen(this);
+		setScreen(gameScreen);
 		running = true;
 	}
 
