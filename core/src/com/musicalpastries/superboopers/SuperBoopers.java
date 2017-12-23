@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
 
-public class SuperBoopers extends Game implements ApplicationListener {
+public class SuperBoopers extends Game {
 	public static final int V_WIDTH = 480;
 	public static final int V_HEIGHT = 640;
 	public SpriteBatch batch;
@@ -25,24 +25,28 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		running = true;
 	}
 
-	private void update(){
+	@Override
+	public void render(){
+		super.render();
 	}
 
-	public void render (float dt) {
-	}
-	
 	@Override
 	public void dispose () {
+		super.dispose();
 	}
 
 	@Override
-	public void resume(){}
+	public void resume(){
+		super.resume();
+	}
 
 	@Override
-	public void pause(){}
+	public void pause(){
+		super.pause();
+	}
 
 	@Override
 	public void resize(int width, int height) {
-		//viewport.update(width, height);
+		super.resize(width, height);
 	}
 }

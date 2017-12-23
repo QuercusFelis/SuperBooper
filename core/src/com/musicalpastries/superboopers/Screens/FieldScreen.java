@@ -2,8 +2,11 @@ package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.Actors.Actor;
@@ -30,7 +33,7 @@ public class FieldScreen implements Screen {
         actors = new ArrayList<Actor>();
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
-        viewport = new ScreenViewport(gamecam);
+        viewport = new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam);
         hud = new Hud(game.batch);
         actors.add(new Actor(4, 0, 0));
     }
@@ -42,7 +45,7 @@ public class FieldScreen implements Screen {
 
 
     public void update(){
-        gamecam.update();
+       gamecam.update();
     }
 
     @Override
@@ -52,13 +55,12 @@ public class FieldScreen implements Screen {
         Gdx.gl.glClearColor(0,.5f,0.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //some stuff that I don't understand but needs to be here
-        gamecam.update();
-        game.batch.setProjectionMatrix(gamecam.combined);
+        update();
+
         //drawing
         hud.stage.draw();
-
         game.batch.begin();
+        game.batch.setProjectionMatrix(gamecam.combined);
         for (int i = 0; i < actors.size(); i++) {
             game.batch.draw(actors.get(i).draw().getKeyFrame(dt, true),0,0);
         }
@@ -68,7 +70,6 @@ public class FieldScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
-        gamecam.update();
     }
 
     @Override
