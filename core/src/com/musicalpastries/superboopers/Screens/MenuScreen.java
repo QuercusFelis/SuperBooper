@@ -13,12 +13,8 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
-import java.util.ArrayList;
-
-import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.exit;
-
 /**
- * Created by loads on 12/23/2017.
+ * Andrew Groeling - 12/23/2017.
  */
 
 public class MenuScreen implements Screen {

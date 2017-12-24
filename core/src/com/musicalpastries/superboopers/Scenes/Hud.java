@@ -11,8 +11,8 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
-/*
- * Created by Andrew Groeling on 10/2/2017.
+/**
+ * Andrew Groeling - 10/2/2017.
  */
 
 public class Hud {

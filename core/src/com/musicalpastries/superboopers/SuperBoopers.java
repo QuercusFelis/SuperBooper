@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Screens.FieldScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
 
+/**
+ * Andrew Groeling - 9/29/2017.
+ */
+
 public class SuperBoopers extends Game {
 	public static final int V_WIDTH = 450;
 	public static final int V_HEIGHT = 800;

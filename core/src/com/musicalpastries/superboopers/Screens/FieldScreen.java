@@ -16,7 +16,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
 import java.util.ArrayList;
 
 /**
- * Created by Andrew Groeling on 9/29/2017.
+ * Andrew Groeling - 9/29/2017.
  */
 
 public class FieldScreen implements Screen {

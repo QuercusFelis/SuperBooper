@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Created by Andrew Groeling on 10/19/2017.
+ * Andrew Groeling - 10/19/2017.
  */
 
 public class Actor {
