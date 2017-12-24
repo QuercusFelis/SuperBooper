@@ -21,7 +21,7 @@ public class SuperBoopers extends Game {
 		batch = new SpriteBatch();
 		gameScreen = new FieldScreen(this);
 		menuScreen = new MenuScreen(this);
-		setScreen(gameScreen);
+		setScreen(menuScreen);
 		running = true;
 	}
 

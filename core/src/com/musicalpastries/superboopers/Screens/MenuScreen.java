@@ -2,13 +2,19 @@ package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.SuperBoopers;
+
+import java.util.ArrayList;
+
+import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.exit;
 
 /**
  * Created by loads on 12/23/2017.
@@ -18,26 +24,49 @@ public class MenuScreen implements Screen {
 
     private SuperBoopers game;
  //   private ArrayList<Actor> actors;
-    private OrthographicCamera gamecam;
     private Viewport viewport;
     private float dt;
+    private Stage stage;
+    private ArrayList<com.musicalpastries.superboopers.Actors.Actor> actors;
 
     public MenuScreen(SuperBoopers game){
         this.game = game;
-//        actors = new ArrayList<Actor>();
-        gamecam = new OrthographicCamera();
-        gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
-        viewport = new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam);
+        //input processing for UI
+        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
+        Gdx.input.setInputProcessor(stage);
+        actors = new ArrayList<com.musicalpastries.superboopers.Actors.Actor>();
+        viewport = new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
+        actors.add(new com.musicalpastries.superboopers.Actors.Actor(4, 0, 0));
+
     }
 
     @Override
     public void show() {
+        Table table = new Table();
+        table.setFillParent(true);
+        table.setDebug(true);
+        stage.addActor(table);
 
+        //temporary
+        Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+
+        //buttons
+        TextButton back = new TextButton("Return", skin);
+        TextButton settings = new TextButton("Settings", skin);
+        TextButton credits = new TextButton("Credits", skin);
+
+        table.add(back).fillX().uniformX();
+        table.row().pad(15,0,15,0);
+        table.add(settings).fillX().uniformX();
+        table.row();
+        table.add(credits).fillX().uniformX();
+
+        //listeners
+        //exit
     }
 
 
     public void update(){
-        gamecam.update();
     }
 
     @Override
@@ -52,10 +81,9 @@ public class MenuScreen implements Screen {
         //drawing
        // hud.stage.draw();
         game.batch.begin();
-        game.batch.setProjectionMatrix(gamecam.combined);
-       /* for (int i = 0; i < actors.size(); i++) {
+        for (int i = 0; i < actors.size(); i++) {
             game.batch.draw(actors.get(i).draw().getKeyFrame(dt, true),0,0);
-        }*/
+        }
         game.batch.end();
     }
 

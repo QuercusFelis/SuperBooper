@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
@@ -28,7 +28,7 @@ public class Hud {
         xp = 0;
         lvl = 1;
 
-        viewport = new FitViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, new OrthographicCamera());
+        viewport = new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, new OrthographicCamera());
         stage =  new Stage(viewport, sb);
 
         Table table = new Table();
@@ -46,4 +46,5 @@ public class Hud {
 
         stage.addActor(table);
     }
+
 }
