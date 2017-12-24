@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
-/**
+/*
  * Created by Andrew Groeling on 10/2/2017.
  */
 
@@ -22,8 +22,8 @@ public class Hud {
     private Integer xp;
     private Integer lvl;
 
-    Label xpLabel;
-    Label lvlLabel;
+    private Label xpLabel;
+    private Label lvlLabel;
     public Hud(SpriteBatch sb){
         xp = 0;
         lvl = 1;

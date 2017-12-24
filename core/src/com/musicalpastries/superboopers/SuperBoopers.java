@@ -8,8 +8,8 @@ import com.musicalpastries.superboopers.Screens.FieldScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
 
 public class SuperBoopers extends Game {
-	public static final int V_WIDTH = 480;
-	public static final int V_HEIGHT = 640;
+	public static final int V_WIDTH = 450;
+	public static final int V_HEIGHT = 800;
 	public SpriteBatch batch;
 
 	private FieldScreen gameScreen;
