@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.musicalpastries.superboopers.SuperBoopers;
@@ -27,16 +28,13 @@ public class MenuScreen implements Screen {
     private Viewport viewport;
     private float dt;
     private Stage stage;
-    private ArrayList<com.musicalpastries.superboopers.Actors.Actor> actors;
 
     public MenuScreen(SuperBoopers game){
         this.game = game;
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
         Gdx.input.setInputProcessor(stage);
-        actors = new ArrayList<com.musicalpastries.superboopers.Actors.Actor>();
-        viewport = new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
-        actors.add(new com.musicalpastries.superboopers.Actors.Actor(4, 0, 0));
+        //viewport = new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
 
     }
 
@@ -62,7 +60,26 @@ public class MenuScreen implements Screen {
         table.add(credits).fillX().uniformX();
 
         //listeners
-        //exit
+        back.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.changeScreen(SuperBoopers.MAIN);
+            }
+        });
+
+        settings.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.changeScreen(SuperBoopers.SETTINGS);
+            }
+        });
+
+        credits.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                game.changeScreen(SuperBoopers.CREDITS);
+            }
+        });
     }
 
 
@@ -71,26 +88,25 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        dt += Gdx.graphics.getDeltaTime();
+    //    dt += Gdx.graphics.getDeltaTime();
         //clear screen
         Gdx.gl.glClearColor(0,.5f,0.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        update();
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
+        stage.draw();
 
         //drawing
        // hud.stage.draw();
-        game.batch.begin();
-        for (int i = 0; i < actors.size(); i++) {
-            game.batch.draw(actors.get(i).draw().getKeyFrame(dt, true),0,0);
-        }
-        game.batch.end();
+        /*game.batch.begin();
+
+        game.batch.end();*/
     }
 
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, false);
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -110,6 +126,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
+        stage.dispose();
         game.batch.dispose();
     }
 }
