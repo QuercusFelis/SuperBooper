@@ -29,20 +29,19 @@ public class SuperBoopers extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		menuScreen = new MenuScreen(this);
-		setScreen(menuScreen);
+		setScreen(new MenuScreen(this));
 		running = true;
 	}
 
 	public void changeScreen(int screen){
 		switch(screen){
 			case MENU:
-				if(menuScreen == null) menuScreen = new MenuScreen(this); // added (this)
-				this.setScreen(menuScreen);
+				//if(menuScreen == null) menuScreen = new MenuScreen(this); // added (this)
+				this.setScreen(new MenuScreen(this));
 				break;
 			case MAIN:
-				if(gameScreen == null) gameScreen = new FieldScreen(this); // added (this)
-				this.setScreen(gameScreen);
+				//if(gameScreen == null) gameScreen = new FieldScreen(this); // added (this)
+				this.setScreen(new FieldScreen(this));
 				break;
 			/*case SETTINGS:
 				if(mainScreen == null) mainScreen = new MainScreen(this); //added (this)
