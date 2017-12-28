@@ -1,10 +1,9 @@
 package com.musicalpastries.superboopers;
 
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.musicalpastries.superboopers.Screens.FieldScreen;
+import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
 
 /**
@@ -16,7 +15,7 @@ public class SuperBoopers extends Game {
 	public static final int V_HEIGHT = 800;
 	public SpriteBatch batch;
 
-	private FieldScreen gameScreen;
+	private GameScreen gameScreen;
 	private MenuScreen menuScreen;
 
 	public final static int MENU = 0;
@@ -40,8 +39,8 @@ public class SuperBoopers extends Game {
 				this.setScreen(new MenuScreen(this));
 				break;
 			case MAIN:
-				//if(gameScreen == null) gameScreen = new FieldScreen(this); // added (this)
-				this.setScreen(new FieldScreen(this));
+				//if(gameScreen == null) gameScreen = new GameScreen(this); // added (this)
+				this.setScreen(new GameScreen(this));
 				break;
 			/*case SETTINGS:
 				if(mainScreen == null) mainScreen = new MainScreen(this); //added (this)

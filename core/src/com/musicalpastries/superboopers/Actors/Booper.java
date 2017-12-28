@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * Andrew Groeling - 10/19/2017.
  */
 
-public class Actor {
+public class Booper {
     private static Texture atlas = new Texture("Atlas.png");
 
     private int frames;
@@ -20,7 +20,7 @@ public class Actor {
     private int frameSize;
     private TextureRegion region;
 
-    public Actor(int frames, int xi, int yi){
+    public Booper(int frames, int xi, int yi){
         this.frames = frames;
         this.xi = xi;
         this.yi = yi;
@@ -29,7 +29,7 @@ public class Actor {
         region = new TextureRegion(atlas, xi, yi, frameSize, frameSize);
     }
 
-    public Actor(int frames, int xi, int yi, int frameSize){
+    public Booper(int frames, int xi, int yi, int frameSize){
         this.frames = frames;
         this.xi = xi;
         this.yi = yi;
