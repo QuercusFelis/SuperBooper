@@ -3,8 +3,10 @@ package com.musicalpastries.superboopers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
+
 
 /**
  * Andrew Groeling - 9/29/2017.
@@ -13,21 +15,29 @@ import com.musicalpastries.superboopers.Screens.MenuScreen;
 public class SuperBoopers extends Game {
 	public static final int V_WIDTH = 450;
 	public static final int V_HEIGHT = 800;
+
 	public SpriteBatch batch;
 
-	private GameScreen gameScreen;
-	private MenuScreen menuScreen;
+/*	private GameScreen gameScreen;
+	private MenuScreen menuScreen;*/
 
 	public final static int MENU = 0;
 	public final static int MAIN = 1;
-	public final static int SETTINGS = 2;
-	public final static int CREDITS = 3;
+	public final static int INVENTORY = 2;
+	public final static int GOALS = 3;
+	public final static int STORE = 4;
+	public final static int COMMUNITY = 5;
+	public final static int GOOGLE = 6;
+	public final static int SETTINGS = 7;
+	public final static int DONATE = 8;
+	public final static int CREDITS = 9;
 
 	private boolean running = false;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
 		setScreen(new MenuScreen(this));
 		running = true;
 	}
@@ -42,13 +52,33 @@ public class SuperBoopers extends Game {
 				//if(gameScreen == null) gameScreen = new GameScreen(this); // added (this)
 				this.setScreen(new GameScreen(this));
 				break;
-			/*case SETTINGS:
-				if(mainScreen == null) mainScreen = new MainScreen(this); //added (this)
-				this.setScreen(mainScreen);
+			/*case INVENTORY:
+				//if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this); //added (this)
+				this.setScreen(new InventoryScreen(this));
 				break;
+			case GOALS:
+				//if(goalsScreen == null) goalsScreen = new GoalsScreen(this); //added (this)
+				this.setScreen(new GoalsScreen(this));
+				break;
+			case STORE:
+				//if(storeScreen == null) storeScreen = new StoreScreen(this); //added (this)
+				this.setScreen(new StoreScreen(this));
+				break;
+			case COMMUNITY:
+				//if(communityScreen == null) communityScreen = new CommunityScreen(this); //added (this)
+				this.setScreen(new CommunityScreen(this));
+				break;
+			case GOOGLE:
+				//if(googleScreen == null) googleScreen = new GoogleScreen(this); //added (this)
+				this.setScreen(new GoogleScreen(this));
+				break;*/
 			case CREDITS:
-				if(endScreen == null) endScreen = new EndScreen(this);  // added (this)
-				this.setScreen(endScreen);
+				//if(creditsScreen == null) creditsScreen = new CreditsScreen(this); //added (this)
+				this.setScreen(new CreditsScreen(this));
+				break;
+			/*case DONATE:
+				//if(donateScreen == null) donateScreen = new DonateScreen(this); //added (this)
+				this.setScreen(new DonateScreen(this));
 				break;*/
 		}
 	}

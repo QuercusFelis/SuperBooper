@@ -94,33 +94,33 @@ public class MenuScreen implements Screen {
         inventory.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.INVENTORY);
+                game.changeScreen(SuperBoopers.INVENTORY);
             }
         });
 //
         goals.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.GOALS);
+                game.changeScreen(SuperBoopers.GOALS);
             }
         });
         store.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.STORE);
+                game.changeScreen(SuperBoopers.STORE);
             }
         });
 //
         community.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.COMMUNITY);
+                game.changeScreen(SuperBoopers.COMMUNITY);
             }
         });
         google.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.GOOGLE);
+                game.changeScreen(SuperBoopers.GOOGLE);
             }
         });
 //
@@ -134,7 +134,7 @@ public class MenuScreen implements Screen {
         donate.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.DONATE);
+                game.changeScreen(SuperBoopers.DONATE);
             }
         });
         credits.addListener(new ChangeListener() {

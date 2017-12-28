@@ -2,8 +2,6 @@ package com.musicalpastries.superboopers.Actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
@@ -13,34 +11,38 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Booper {
     private static Texture atlas = new Texture("Atlas.png");
 
-    private int frames;
-    private int frameNumber;
-    private int xi;
-    private int yi;
+    private int numframes;
+    private int currentFrame;
+    private int atlasX;
+    private int atlasY;
+
+    private int xPos;
+    private int yPos;
+
     private int frameSize;
     private TextureRegion region;
 
-    public Booper(int frames, int xi, int yi){
-        this.frames = frames;
-        this.xi = xi;
-        this.yi = yi;
-        frameNumber = 0;
+    public Booper(int numframes, int atlasX, int atlasY){
+        this.numframes = numframes;
+        this.atlasX = atlasX;
+        this.atlasY = atlasY;
+        currentFrame = 0;
         frameSize = 64;
-        region = new TextureRegion(atlas, xi, yi, frameSize, frameSize);
+        region = new TextureRegion(atlas, atlasX, atlasY, frameSize, frameSize);
     }
 
-    public Booper(int frames, int xi, int yi, int frameSize){
-        this.frames = frames;
-        this.xi = xi;
-        this.yi = yi;
-        frameNumber = 0;
+    public Booper(int numframes, int atlasX, int atlasY, int frameSize){
+        this.numframes = numframes;
+        this.atlasX = atlasX;
+        this.atlasY = atlasY;
+        currentFrame = 0;
         this.frameSize = frameSize;
-        region = new TextureRegion(atlas, xi, yi, frameSize, frameSize);
+        region = new TextureRegion(atlas, atlasX, atlasY, frameSize, frameSize);
     }
 
     public Animation<TextureRegion> draw(/*SpriteBatch batch*/){
-        TextureRegion[] keyFrames = new TextureRegion[frames];
-        for (int i = 0; i < frames; i++) {
+        TextureRegion[] keyFrames = new TextureRegion[numframes];
+        for (int i = 0; i < numframes; i++) {
             keyFrames[i] = new TextureRegion(region,frameSize*i,0,frameSize,frameSize);
         }
         return new Animation(1f/4f, keyFrames);
