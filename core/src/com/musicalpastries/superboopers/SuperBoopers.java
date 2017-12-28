@@ -13,8 +13,8 @@ import com.musicalpastries.superboopers.Screens.MenuScreen;
  */
 
 public class SuperBoopers extends Game {
-	public static final int V_WIDTH = 450;
-	public static final int V_HEIGHT = 800;
+	public static final int V_WIDTH = 504;
+	public static final int V_HEIGHT = 896;
 
 	public SpriteBatch batch;
 

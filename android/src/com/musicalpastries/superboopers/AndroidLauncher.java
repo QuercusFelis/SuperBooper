@@ -81,7 +81,7 @@ public class AndroidLauncher extends AndroidApplication {
 			getWindow().getDecorView().setSystemUiVisibility(flagsK);
 		}
 		else if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN && hasFocus) {
-			getWindow().getDecorView().setSystemUiVisibility(flagsK);
+			getWindow().getDecorView().setSystemUiVisibility(flagsJ);
 		}
 	}
 

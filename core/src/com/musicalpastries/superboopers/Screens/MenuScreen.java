@@ -22,9 +22,11 @@ public class MenuScreen implements Screen {
 
     private SuperBoopers game;
     private Stage stage;
+    private Table table;
 
     public MenuScreen(SuperBoopers game){
         this.game = game;
+        table = new Table();
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
         Gdx.input.setInputProcessor(stage);
@@ -32,9 +34,8 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-        Table table = new Table();
         table.setFillParent(true);
-        table.setDebug(true);
+        table.setDebug(false);
         stage.addActor(table);
 
         //temporary
@@ -44,7 +45,7 @@ public class MenuScreen implements Screen {
         //Image backImage = new Image("back.png");
         //ImageButton back = new ImageButton(skin);
         Table tableTop = new Table();
-        tableTop.setDebug(true);
+        tableTop.setDebug(false);
         TextButton back = new TextButton("<", skin);
         TextButton inventory = new TextButton("Inventory", skin);
 
@@ -52,7 +53,7 @@ public class MenuScreen implements Screen {
         TextButton store = new TextButton("Store", skin);
 
         Table tableCommunity = new Table();
-        tableCommunity.setDebug(true);
+        tableCommunity.setDebug(false);
         TextButton community = new TextButton("Community", skin);
         TextButton google = new TextButton("G", skin);
 
@@ -61,7 +62,9 @@ public class MenuScreen implements Screen {
         TextButton donate = new TextButton("Donate", skin);
         TextButton credits = new TextButton("Credits", skin);
 
-        table.add(settings).fillX().colspan(2);
+        table.top();
+
+        table.add(settings).fillX().colspan(2).padTop(15);
 
         table.row().padTop(10);
         table.add(tableTop).colspan(2).fillX();
@@ -147,7 +150,7 @@ public class MenuScreen implements Screen {
 
 
     public void update(){
-
+        table.setFillParent(true);
     }
 
     @Override
@@ -156,9 +159,9 @@ public class MenuScreen implements Screen {
         //clear screen
         Gdx.gl.glClearColor(0,.5f,0.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
 
+        update();
         //drawing
         stage.draw();
         /*game.batch.begin();
