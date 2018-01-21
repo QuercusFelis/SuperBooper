@@ -7,6 +7,6 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new SuperBoopers(),"*Super Boopers*", 480, 640);
+		new LwjglApplication(new SuperBoopers(),"*Super Boopers*", SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
 	}
 }

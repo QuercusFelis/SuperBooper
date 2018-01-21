@@ -3,9 +3,13 @@ package com.musicalpastries.superboopers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
+import com.musicalpastries.superboopers.Screens.DonateScreen;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,9 +21,7 @@ public class SuperBoopers extends Game {
 	public static final int V_HEIGHT = 896;
 
 	public SpriteBatch batch;
-
-/*	private GameScreen gameScreen;
-	private MenuScreen menuScreen;*/
+	private ArrayList<Booper> boopers;
 
 	public final static int MENU = 0;
 	public final static int MAIN = 1;
@@ -38,8 +40,20 @@ public class SuperBoopers extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
+		boopers = new ArrayList<Booper>();
+		boopers.add(new Booper(4, 0, 0));
+
 		setScreen(new MenuScreen(this));
 		running = true;
+	}
+
+	public ArrayList<Booper> getBoopers(){
+		ArrayList<Booper> boopers = this.boopers;
+		return boopers;
+	}
+
+	public void addBoopers(Booper booper){
+		boopers.add(booper);
 	}
 
 	public void changeScreen(int screen){
@@ -71,15 +85,20 @@ public class SuperBoopers extends Game {
 			case GOOGLE:
 				//if(googleScreen == null) googleScreen = new GoogleScreen(this); //added (this)
 				this.setScreen(new GoogleScreen(this));
+				break;
+			case SETTINGS:
+				//if(settingsScreen == null) settingsScreen = new SettingsScreen(this); //added (this)
+				this.setScreen(new SettingsScreen(this));
 				break;*/
+			case DONATE:
+				//if(donateScreen == null) donateScreen = new DonateScreen(this); //added (this)
+				this.setScreen(new DonateScreen(this));
+				break;
 			case CREDITS:
 				//if(creditsScreen == null) creditsScreen = new CreditsScreen(this); //added (this)
 				this.setScreen(new CreditsScreen(this));
 				break;
-			/*case DONATE:
-				//if(donateScreen == null) donateScreen = new DonateScreen(this); //added (this)
-				this.setScreen(new DonateScreen(this));
-				break;*/
+
 		}
 	}
 
