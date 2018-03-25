@@ -22,6 +22,10 @@ public class SuperBoopers extends Game {
 
 	public SpriteBatch batch;
 	private ArrayList<Booper> boopers;
+	private Integer xp;
+	private Integer lvl;
+
+	private GameScreen gS;
 
 	public final static int MENU = 0;
 	public final static int MAIN = 1;
@@ -40,8 +44,9 @@ public class SuperBoopers extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 
+		gS = new GameScreen(this);
 		boopers = new ArrayList<Booper>();
-		boopers.add(new Booper(4, 0, 0));
+		boopers.add(new Booper(gS, 4, 0, 0));
 
 		setScreen(new MenuScreen(this));
 		running = true;
@@ -100,6 +105,26 @@ public class SuperBoopers extends Game {
 				break;
 
 		}
+	}
+
+	public void testXP(){
+		xp++;
+	}
+
+	public void setXp(Integer xp) {
+		this.xp = xp;
+	}
+
+	public void setLvl(Integer lvl) {
+		this.lvl = lvl;
+	}
+
+	public Integer getXp() {
+		return xp;
+	}
+
+	public Integer getLvl() {
+		return lvl;
 	}
 
 	@Override

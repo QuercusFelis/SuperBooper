@@ -29,8 +29,6 @@ public class GameScreen implements Screen {
     private float dt;
 
     public Table table;
-    private Integer xp;
-    private Integer lvl;
 
     private float fScale;
 
@@ -41,14 +39,13 @@ public class GameScreen implements Screen {
         this.game = game;
         table = new Table();
         fScale = 1.4f;
-        xp = 0;
-        lvl = 1;
+        game.setXp(0);
+        game.setLvl(1);
 
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
         Gdx.input.setInputProcessor(stage);
-
     }
 
     @Override
@@ -60,10 +57,10 @@ public class GameScreen implements Screen {
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
 
         //setting up objects in table
-        xpLabel = new Label("XP: " + String.format("%03d", xp), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        xpLabel = new Label("XP: " + String.format("%03d", game.getXp()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         xpLabel.setFontScale(fScale);
 
-        lvlLabel = new Label("Level: " + String.format("%01d", lvl), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        lvlLabel = new Label("Level: " + String.format("%01d", game.getLvl()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         lvlLabel.setFontScale(fScale);
 
         TextButton back = new TextButton("<", skin);
@@ -87,11 +84,27 @@ public class GameScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 //game.changeScreen(SuperBoopers.INVENTORY);
-                game.addBoopers(new Booper(4, 0, 0));
+                game.addBoopers(new Booper(getContext() , 4, 0, 0));
+                game.testXP();
             }
         });
     }
 
+    public GameScreen getContext(){
+        return this;
+    }
+
+    public void setXp(Integer xp) {
+        game.setXp(xp);
+    }
+
+    public void setLvl(Integer lvl) {
+        game.setLvl(lvl);
+    }
+
+    public void testXP(){
+        game.testXP();
+    }
 
     public void update(){
         gamecam.update();
@@ -112,7 +125,7 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         for (int i = 0; i < game.getBoopers().size(); i++) {
             game.batch.setColor(game.getBoopers().get(i).getColor());
-            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getXPos(), game.getBoopers().get(i).getYPos());
+            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
         }
         game.batch.end();
         stage.draw();

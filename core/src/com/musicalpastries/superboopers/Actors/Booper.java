@@ -1,10 +1,16 @@
 package com.musicalpastries.superboopers.Actors;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 import java.util.logging.Logger;
@@ -13,37 +19,48 @@ import java.util.logging.Logger;
  * Andrew Groeling - 10/19/2017.
  */
 
-public class Booper {
+public class Booper extends Actor {
     private static Texture atlas = new Texture("Atlas.png");
 
+    final private GameScreen game;
     private TextureRegion region;
     private int numframes;
     private int frameSize;
 
-    private int xPos;
-    private int yPos;
 
-    private Color color;
-
-    public Booper(int numframes, int atlasX, int atlasY){
+    public Booper(GameScreen game, int numframes, int atlasX, int atlasY){
+        this.game = game;
         frameSize = 64;
         this.numframes = numframes;
         region = new TextureRegion(atlas, atlasX, atlasY, frameSize, frameSize);
 
-        xPos = (int)(Math.random()*SuperBoopers.V_WIDTH);
-        yPos = (int)(Math.random()*SuperBoopers.V_HEIGHT);
+        setX((float)(Math.random()*SuperBoopers.V_WIDTH));
+        setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
+        addListener(new ClickListener(){
 
-        color = new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1);
+        });
+
+        setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
     }
 
-    public Booper(int numframes, int atlasX, int atlasY, int frameSize){
-        this.numframes = numframes;
+    public Booper(final GameScreen game, int numframes, int atlasX, int atlasY, int frameSize){
+        this.game = game;
+
         this.frameSize = frameSize;
+        this.numframes = numframes;
         region = new TextureRegion(atlas, atlasX, atlasY, frameSize, frameSize);
 
-        xPos = (int)(Math.random()*Gdx.app.getGraphics().getWidth());
-        yPos = (int)(Math.random()*Gdx.app.getGraphics().getHeight());
+        setX((float)(Math.random()*SuperBoopers.V_WIDTH));
+        setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
+        addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                game.testXP();
+                return true;
+            }
+        });
 
+        setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
     }
 
     public Animation<TextureRegion> draw(){
@@ -56,15 +73,4 @@ public class Booper {
         return animation;
     }
 
-    public Color getColor(){
-        return color;
-    }
-
-    public float getXPos() {
-        return xPos;
-    }
-
-    public float getYPos(){
-        return yPos;
-    }
 }
