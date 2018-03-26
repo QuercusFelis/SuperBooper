@@ -20,10 +20,6 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 public class DonateScreen extends SuperScreen implements Screen {
 
-    private float r;
-    private float g;
-    private float b;
-
     public DonateScreen(SuperBoopers game) {
         this.game = game;
 
@@ -69,22 +65,11 @@ public class DonateScreen extends SuperScreen implements Screen {
         });
     }
 
-    public void update() {
-    }
+    @Override
+    public void renderBatch() {}
 
     @Override
-    public void render(float delta) {
-        //    dt += Gdx.graphics.getDeltaTime();
-        //clear screen
-        Gdx.gl.glClearColor(r, g, b, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-
-        //drawing
-        stage.draw();
-        /*game.batch.begin();
-        game.batch.end();*/
-    }
+    public void update() {}
 
 }
 

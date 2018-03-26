@@ -24,6 +24,11 @@ public class CreditsScreen extends SuperScreen implements Screen {
 
     public CreditsScreen(SuperBoopers game) {
         this.game = game;
+
+        r= .3f;
+        g= .6f;
+        b= .9f;
+
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
         Gdx.input.setInputProcessor(stage);
@@ -62,21 +67,10 @@ public class CreditsScreen extends SuperScreen implements Screen {
         });
     }
 
-    public void update() {
-        }
+    @Override
+    void renderBatch() {}
 
     @Override
-    public void render(float delta) {
-        //    dt += Gdx.graphics.getDeltaTime();
-        //clear screen
-        Gdx.gl.glClearColor(.3f, .6f, .9f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-
-        //drawing
-        stage.draw();
-        /*game.batch.begin();
-        game.batch.end();*/
-    }
+    public void update() {}
 }
 

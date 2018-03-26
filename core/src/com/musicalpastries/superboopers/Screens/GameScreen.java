@@ -24,7 +24,6 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class GameScreen extends SuperScreen implements Screen {
 
     private OrthographicCamera gamecam;
-    private float dt;
 
     public Table table;
 
@@ -37,6 +36,11 @@ public class GameScreen extends SuperScreen implements Screen {
         this.game = game;
         table = new Table();
         fScale = 1.4f;
+
+        r= .7f;
+        g= .5f;
+        b= .2f;
+
         game.setXp(0);
         game.setLvl(1);
 
@@ -105,21 +109,14 @@ public class GameScreen extends SuperScreen implements Screen {
         xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
     }
 
+    @Override
     public void update(){
         gamecam.update();
         table.setFillParent(true);
     }
 
     @Override
-    public void render(float delta) {
-        dt += Gdx.graphics.getDeltaTime();
-        //clear screen
-        Gdx.gl.glClearColor(.7f,0,.3f,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        update();
-
-        //drawing
+    public void renderBatch() {
         game.batch.begin();
         game.batch.setProjectionMatrix(gamecam.combined);
         for (int i = 0; i < game.getBoopers().size(); i++) {
@@ -127,6 +124,5 @@ public class GameScreen extends SuperScreen implements Screen {
             game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
         }
         game.batch.end();
-        stage.draw();
     }
 }

@@ -25,6 +25,11 @@ public class MenuScreen extends SuperScreen implements Screen {
     public MenuScreen(SuperBoopers game){
         this.game = game;
         table = new Table();
+
+        r= 0;
+        g= .5f;
+        b= .2f;
+
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
         Gdx.input.setInputProcessor(stage);
@@ -146,24 +151,12 @@ public class MenuScreen extends SuperScreen implements Screen {
         });
     }
 
-
-    public void update(){
-        table.setFillParent(true);
+    @Override
+    void renderBatch() {
     }
 
     @Override
-    public void render(float delta) {
-    //    dt += Gdx.graphics.getDeltaTime();
-        //clear screen
-        Gdx.gl.glClearColor(0,.5f,0.2f,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
-
-        update();
-        //drawing
-        stage.draw();
-        /*game.batch.begin();
-
-        game.batch.end();*/
+    public void update(){
+        table.setFillParent(true);
     }
 }
