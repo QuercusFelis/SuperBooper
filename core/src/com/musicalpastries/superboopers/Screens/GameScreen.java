@@ -85,7 +85,7 @@ public class GameScreen implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 //game.changeScreen(SuperBoopers.INVENTORY);
                 game.addBoopers(new Booper(getContext() , 4, 0, 0));
-                game.testXP();
+                testXP();
             }
         });
     }
@@ -104,6 +104,7 @@ public class GameScreen implements Screen {
 
     public void testXP(){
         game.testXP();
+        xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
     }
 
     public void update(){
