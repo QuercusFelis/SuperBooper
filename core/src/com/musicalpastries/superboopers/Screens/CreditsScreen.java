@@ -20,10 +20,7 @@ import java.awt.Color;
  * Andrew Groeling - 12/27/2017.
  */
 
-public class CreditsScreen implements Screen {
-
-    private SuperBoopers game;
-    private Stage stage;
+public class CreditsScreen extends SuperScreen implements Screen {
 
     public CreditsScreen(SuperBoopers game) {
         this.game = game;
@@ -80,32 +77,6 @@ public class CreditsScreen implements Screen {
         stage.draw();
         /*game.batch.begin();
         game.batch.end();*/
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
-        game.batch.dispose();
     }
 }
 

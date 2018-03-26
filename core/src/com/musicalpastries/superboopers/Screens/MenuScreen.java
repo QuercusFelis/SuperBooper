@@ -18,10 +18,8 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * Andrew Groeling - 12/23/2017.
  */
 
-public class MenuScreen implements Screen {
+public class MenuScreen extends SuperScreen implements Screen {
 
-    private SuperBoopers game;
-    private Stage stage;
     private Table table;
 
     public MenuScreen(SuperBoopers game){
@@ -167,32 +165,5 @@ public class MenuScreen implements Screen {
         /*game.batch.begin();
 
         game.batch.end();*/
-    }
-
-
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
-        game.batch.dispose();
     }
 }

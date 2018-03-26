@@ -21,11 +21,9 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * Andrew Groeling - 9/29/2017.
  */
 
-public class GameScreen implements Screen {
+public class GameScreen extends SuperScreen implements Screen {
 
-    private SuperBoopers game;
     private OrthographicCamera gamecam;
-    private Stage stage;
     private float dt;
 
     public Table table;
@@ -130,33 +128,5 @@ public class GameScreen implements Screen {
         }
         game.batch.end();
         stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        /*System.out.println("Width: "+Gdx.graphics.getWidth());
-        System.out.println("Height: "+Gdx.graphics.getHeight());*/
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
-        game.batch.dispose();
     }
 }

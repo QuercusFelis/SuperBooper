@@ -18,10 +18,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * Andrew Groeling - 1/20/2018.
  */
 
-public class DonateScreen implements Screen {
-
-    private SuperBoopers game;
-    private Stage stage;
+public class DonateScreen extends SuperScreen implements Screen {
 
     private float r;
     private float g;
@@ -89,30 +86,5 @@ public class DonateScreen implements Screen {
         game.batch.end();*/
     }
 
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        stage.dispose();
-        game.batch.dispose();
-    }
 }
 
