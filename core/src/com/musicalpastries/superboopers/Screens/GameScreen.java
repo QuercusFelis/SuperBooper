@@ -26,6 +26,7 @@ public class GameScreen extends SuperScreen implements Screen {
     private OrthographicCamera gamecam;
 
     private Table table;
+    private Table tableTop;
 
     private float fScale;
 
@@ -35,7 +36,8 @@ public class GameScreen extends SuperScreen implements Screen {
     public GameScreen(SuperBoopers game){
         this.game = game;
         table = new Table();
-        fScale = 1.4f;
+        tableTop = new Table();
+        fScale = 1f;
 
         r= .7f;
         g= .5f;
@@ -57,23 +59,33 @@ public class GameScreen extends SuperScreen implements Screen {
         table.top();
         stage.addActor(table);
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(skin.getDrawable("slider-vertical"), skin.getDrawable("scrollbar-horizontal"), skin.getDrawable("scrollbar-horizontal"), skin.getFont("subtitle"));
 
         //setting up objects in table
-        xpLabel = new Label("XP: " + String.format("%03d", game.getXp()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        xpLabel = new Label("XP: " + String.format("%03d", game.getXp()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         xpLabel.setFontScale(fScale);
 
-        lvlLabel = new Label("Level: " + String.format("%01d", game.getLvl()), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        lvlLabel = new Label("Level: " + String.format("%01d", game.getLvl()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         lvlLabel.setFontScale(fScale);
+
+        TextButton inventory = new TextButton("inventory", style);
+        inventory.setName("inventory");
 
         TextButton back = new TextButton("<", skin);
         back.setName("back");
         TextButton scan = new TextButton("SCAN", skin);
         scan.setName("scan");
 
+
+
         //table
         table.add(back).pad(10);
-        table.add(lvlLabel).expandX().padTop(10).top();
-        table.add(xpLabel).expandX().padTop(10).top();
+        table.add(tableTop).fillX().padTop(10).top();
+
+        tableTop.add(lvlLabel).expandX().top();
+        tableTop.add(xpLabel).expandX().top();
+        tableTop.row();
+        tableTop.add(inventory).colspan(2).fill().padTop(10).top();
 
         table.row();
         table.add(scan).expand().fillX().bottom().colspan(3);
@@ -87,7 +99,7 @@ public class GameScreen extends SuperScreen implements Screen {
         scan.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.addBoopers(new Booper(getContext() , "duck"));
+                game.addBoopers(new Booper(getContext(), "duck"));
                 testXP();
             }
         });
@@ -97,14 +109,6 @@ public class GameScreen extends SuperScreen implements Screen {
 
     public GameScreen getContext(){
         return this;
-    }
-
-    public void setXp(Integer xp) {
-        game.setXp(xp);
-    }
-
-    public void setLvl(Integer lvl) {
-        game.setLvl(lvl);
     }
 
     public Table getTable(){

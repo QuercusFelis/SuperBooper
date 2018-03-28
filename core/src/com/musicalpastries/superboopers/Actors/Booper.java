@@ -52,7 +52,7 @@ public class Booper extends Actor {
 
         do{
             setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
-        }while(getY()+frameSize > SuperBoopers.V_HEIGHT||getY() < game.getTable().getChildren().get(3).getHeight());
+        }while(getY()+frameSize > SuperBoopers.V_HEIGHT - game.getTable().findActor("back").getHeight()||getY() < game.getTable().findActor("scan").getHeight());
 
         addListener(new ClickListener(){
 

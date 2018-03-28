@@ -3,7 +3,6 @@ package com.musicalpastries.superboopers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
@@ -26,7 +25,8 @@ public class SuperBoopers extends Game {
 	private Integer xp;
 	private Integer lvl;
 
-	private GameScreen gS;
+	private GameScreen gameScreen;
+	private MenuScreen menuScreen;
 
 	public final static int MENU = 0;
 	public final static int MAIN = 1;
@@ -44,11 +44,9 @@ public class SuperBoopers extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
-		gS = new GameScreen(this);
 		boopers = new ArrayList<Booper>();
 
-		setScreen(new MenuScreen(this));
+		changeScreen(MAIN);
 		running = true;
 	}
 
@@ -64,12 +62,13 @@ public class SuperBoopers extends Game {
 	public void changeScreen(int screen){
 		switch(screen){
 			case MENU:
-				//if(menuScreen == null) menuScreen = new MenuScreen(this); // added (this)
-				this.setScreen(new MenuScreen(this));
+
+				if(menuScreen == null) menuScreen = new MenuScreen(this); // added (this)
+				this.setScreen(menuScreen);
 				break;
 			case MAIN:
-				//if(gameScreen == null) gameScreen = new GameScreen(this); // added (this)
-				this.setScreen(new GameScreen(this));
+				if(gameScreen == null) gameScreen = new GameScreen(this); // added (this)
+				this.setScreen(gameScreen);
 				break;
 			/*case INVENTORY:
 				//if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this); //added (this)
