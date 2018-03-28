@@ -7,6 +7,10 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new SuperBoopers(),"*Super Boopers*", SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
+		config.title = "*Super Boopers*";
+		config.width = SuperBoopers.V_WIDTH;
+		config.height = SuperBoopers.V_HEIGHT;
+		
+		new LwjglApplication(new SuperBoopers(), config);
 	}
 }
