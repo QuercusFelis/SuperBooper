@@ -3,6 +3,7 @@ package com.musicalpastries.superboopers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
@@ -46,7 +47,6 @@ public class SuperBoopers extends Game {
 
 		gS = new GameScreen(this);
 		boopers = new ArrayList<Booper>();
-		boopers.add(new Booper(gS, 4, 0, 0));
 
 		setScreen(new MenuScreen(this));
 		running = true;

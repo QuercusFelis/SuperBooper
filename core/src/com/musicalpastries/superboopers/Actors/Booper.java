@@ -1,10 +1,9 @@
 package com.musicalpastries.superboopers.Actors;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -20,35 +19,60 @@ import java.util.logging.Logger;
  */
 
 public class Booper extends Actor {
-    private static Texture atlas = new Texture("Atlas.png");
 
-    final private GameScreen game;
+    public static final TextureAtlas atlas = new TextureAtlas("sprites.txt");
+
+    private GameScreen game;
     private TextureRegion region;
+    private TextureRegion[] keyFrames;
+    private Animation animation;
+
     private int numframes;
     private int frameSize;
 
 
-    public Booper(GameScreen game, int numframes, int atlasX, int atlasY){
+    public Booper(GameScreen game, String name){
         this.game = game;
         frameSize = 64;
-        this.numframes = numframes;
-        region = new TextureRegion(atlas, atlasX, atlasY, frameSize, frameSize);
+        region = atlas.findRegion(name);
+        this.numframes = region.getRegionWidth()/frameSize;
+        keyFrames = new TextureRegion[numframes];
 
-        setX((float)(Math.random()*SuperBoopers.V_WIDTH));
-        setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
+        int c=0;
+        for (int i = (int)(Math.random()*numframes); c < numframes; i++) {
+            if(i == numframes)i=0;
+            keyFrames[c] = new TextureRegion(region,frameSize*i,0, frameSize, frameSize);
+            c++;
+        }
+        animation = new Animation(1f/numframes, keyFrames);
+
+        do{
+            setX((float)(Math.random()*SuperBoopers.V_WIDTH));
+        }while(getX()+frameSize> SuperBoopers.V_WIDTH);
+
+        do{
+            setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
+        }while(getY()+frameSize > SuperBoopers.V_HEIGHT||getY() < game.getTable().getChildren().get(3).getHeight());
+
         addListener(new ClickListener(){
 
         });
 
-        setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
+        setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
     }
 
-    public Booper(final GameScreen game, int numframes, int atlasX, int atlasY, int frameSize){
+    public Booper(final GameScreen game, String name, int frameSize){
         this.game = game;
-
         this.frameSize = frameSize;
-        this.numframes = numframes;
-        region = new TextureRegion(atlas, atlasX, atlasY, frameSize, frameSize);
+        region = atlas.findRegion(name);
+        this.numframes = region.getRegionWidth()/frameSize;
+        keyFrames = new TextureRegion[numframes];
+
+        for (int i = 0; i < numframes; i++) {
+            keyFrames[i] = new TextureRegion(region,frameSize*i,0, frameSize, frameSize);
+        }
+        animation = new Animation(1f/numframes, keyFrames);
+
 
         setX((float)(Math.random()*SuperBoopers.V_WIDTH));
         setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
@@ -64,12 +88,6 @@ public class Booper extends Actor {
     }
 
     public Animation<TextureRegion> draw(){
-        Animation animation;
-        TextureRegion[] keyFrames = new TextureRegion[numframes];
-        for (int i = 0; i < numframes; i++) {
-            keyFrames[i] = new TextureRegion(region,frameSize*i,0,frameSize,frameSize);
-        }
-        animation = new Animation(1f/4f, keyFrames);
         return animation;
     }
 

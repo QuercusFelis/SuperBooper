@@ -25,7 +25,7 @@ public class GameScreen extends SuperScreen implements Screen {
 
     private OrthographicCamera gamecam;
 
-    public Table table;
+    private Table table;
 
     private float fScale;
 
@@ -66,7 +66,9 @@ public class GameScreen extends SuperScreen implements Screen {
         lvlLabel.setFontScale(fScale);
 
         TextButton back = new TextButton("<", skin);
+        back.setName("back");
         TextButton scan = new TextButton("SCAN", skin);
+        scan.setName("scan");
 
         //table
         table.add(back).pad(10);
@@ -85,11 +87,12 @@ public class GameScreen extends SuperScreen implements Screen {
         scan.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                //game.changeScreen(SuperBoopers.INVENTORY);
-                game.addBoopers(new Booper(getContext() , 4, 0, 0));
+                game.addBoopers(new Booper(getContext() , "duck"));
                 testXP();
             }
         });
+
+        game.addBoopers(new Booper(this, "slime"));
     }
 
     public GameScreen getContext(){
@@ -102,6 +105,11 @@ public class GameScreen extends SuperScreen implements Screen {
 
     public void setLvl(Integer lvl) {
         game.setLvl(lvl);
+    }
+
+    public Table getTable(){
+        table.validate();
+        return table;
     }
 
     public void testXP(){

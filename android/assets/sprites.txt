@@ -1,0 +1,19 @@
+sprites.png
+size: 451, 66
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+duck
+  rotate: false
+  xy: 258, 1
+  size: 192, 64
+  orig: 192, 64
+  offset: 0, 0
+  index: -1
+slime
+  rotate: false
+  xy: 1, 1
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1

@@ -10,11 +10,11 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 public class AndroidLauncher extends AndroidApplication {
 	private int currentApiVersion;
 	//TODO:
-	int flagsJ /*= View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+	int flagsJ = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 			| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 			| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 			| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-			| View.SYSTEM_UI_FLAG_FULLSCREEN*/;
+			| View.SYSTEM_UI_FLAG_FULLSCREEN;
 
 	final int flagsK = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 			| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
