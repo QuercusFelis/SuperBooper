@@ -94,7 +94,7 @@ public class Booper extends Actor {
 
         setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
     }
-
+//TODO: make specific color profiles
     public void selectBooper(int id){
         switch(id){
             case DUCK:

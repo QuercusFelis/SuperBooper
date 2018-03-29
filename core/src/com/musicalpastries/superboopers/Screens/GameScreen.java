@@ -37,9 +37,9 @@ public class GameScreen extends SuperScreen implements Screen {
         this.game = game;
         fScale = 1f;
 
-        r= .7f;
-        g= .5f;
-        b= .2f;
+        r= .45f;
+        g= .1f;
+        b= .5f;
 
         game.setXp(0);
         game.setLvl(1);
