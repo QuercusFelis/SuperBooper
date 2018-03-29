@@ -65,6 +65,7 @@ public class SuperBoopers extends Game {
 
 				if(menuScreen == null) menuScreen = new MenuScreen(this); // added (this)
 				this.setScreen(menuScreen);
+				menuScreen.resume();
 				break;
 			case MAIN:
 				if(gameScreen == null) gameScreen = new GameScreen(this); // added (this)

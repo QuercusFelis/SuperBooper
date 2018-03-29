@@ -27,14 +27,22 @@ public class Booper extends Actor {
     private TextureRegion[] keyFrames;
     private Animation animation;
 
+    private String species;
+
+    public static final int DUCK = 0;
+    public static final int SLIME = 1;
+    public static final int PILZ = 2;
+    public static final int SWITCH = 3;
+
     private int numframes;
     private int frameSize;
 
 
-    public Booper(GameScreen game, String name){
+    public Booper(GameScreen game, int id){
         this.game = game;
         frameSize = 64;
-        region = atlas.findRegion(name);
+        selectBooper(id);
+        region = atlas.findRegion(species);
         this.numframes = region.getRegionWidth()/frameSize;
         keyFrames = new TextureRegion[numframes];
 
@@ -85,6 +93,23 @@ public class Booper extends Actor {
         });
 
         setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
+    }
+
+    public void selectBooper(int id){
+        switch(id){
+            case DUCK:
+                species = "duck";
+                break;
+            case SLIME:
+                species = "slime";
+                break;
+            case PILZ:
+                species = "pilz";
+                break;
+            case SWITCH:
+                species = "switch";
+                break;
+        }
     }
 
     public Animation<TextureRegion> draw(){

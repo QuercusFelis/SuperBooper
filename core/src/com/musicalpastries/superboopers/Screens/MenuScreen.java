@@ -3,6 +3,7 @@ package com.musicalpastries.superboopers.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -20,26 +21,32 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 public class MenuScreen extends SuperScreen implements Screen {
 
+    private OrthographicCamera gamecam;
     private Table table;
 
     public MenuScreen(SuperBoopers game){
         this.game = game;
-        table = new Table();
+
 
         r= 0;
         g= .5f;
         b= .2f;
 
-        //input processing for UI
-        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
-        Gdx.input.setInputProcessor(stage);
+        //camera
+        gamecam = new OrthographicCamera();
+        gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
+        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
     }
 
     @Override
     public void show() {
+        table = new Table();
+        Gdx.input.setInputProcessor(stage);
         table.setFillParent(true);
         table.setDebug(false);
-        stage.addActor(table);
+        if(stage.getActors().size ==0){
+            stage.addActor(table);
+        }
 
         //temporary
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
@@ -157,6 +164,7 @@ public class MenuScreen extends SuperScreen implements Screen {
 
     @Override
     public void update(){
+        gamecam.update();
         table.setFillParent(true);
     }
 }

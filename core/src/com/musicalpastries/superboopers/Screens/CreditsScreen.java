@@ -31,15 +31,18 @@ public class CreditsScreen extends SuperScreen implements Screen {
 
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
-        Gdx.input.setInputProcessor(stage);
+
     }
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
         Table table = new Table();
         table.setFillParent(true);
         table.top();
-        stage.addActor(table);
+        if(stage.getActors().size ==0){
+            stage.addActor(table);
+        }
 
         //temporary
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));

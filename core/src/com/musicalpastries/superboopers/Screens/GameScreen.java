@@ -35,8 +35,6 @@ public class GameScreen extends SuperScreen implements Screen {
 
     public GameScreen(SuperBoopers game){
         this.game = game;
-        table = new Table();
-        tableTop = new Table();
         fScale = 1f;
 
         r= .7f;
@@ -49,15 +47,20 @@ public class GameScreen extends SuperScreen implements Screen {
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
-        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
+        table=new Table();
+        tableTop=new Table();
 //set up table
         table.setFillParent(true);
         table.top();
-        stage.addActor(table);
+        if(stage.getActors().size ==0){
+            stage.addActor(table);
+        }
+
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(skin.getDrawable("slider-vertical"), skin.getDrawable("scrollbar-horizontal"), skin.getDrawable("scrollbar-horizontal"), skin.getFont("subtitle"));
 
@@ -76,10 +79,8 @@ public class GameScreen extends SuperScreen implements Screen {
         TextButton scan = new TextButton("SCAN", skin);
         scan.setName("scan");
 
-
-
         //table
-        table.add(back).pad(10);
+        table.add(back).pad(10).top().left();
         table.add(tableTop).fillX().padTop(10).top();
 
         tableTop.add(lvlLabel).expandX().top();
@@ -99,12 +100,10 @@ public class GameScreen extends SuperScreen implements Screen {
         scan.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.addBoopers(new Booper(getContext(), "duck"));
+                game.addBoopers(new Booper(getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
                 testXP();
             }
         });
-
-        game.addBoopers(new Booper(this, "slime"));
     }
 
     public GameScreen getContext(){
