@@ -100,6 +100,7 @@ public class GameScreen extends SuperScreen implements Screen {
         scan.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+
                 game.addBoopers(new Booper(getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
                 testXP();
             }

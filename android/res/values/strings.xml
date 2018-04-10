@@ -3,4 +3,8 @@
 
     <string name="app_name">Super Boopers</string>
 
+    <string name="title_activity_scanning">ScanningActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

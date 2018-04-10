@@ -29,10 +29,10 @@ public class Booper extends Actor {
 
     private String species;
 
-    public static final int DUCK = 0;
-    public static final int SLIME = 1;
-    public static final int PILZ = 2;
-    public static final int SWITCH = 3;
+    public static final int DUCK = 00;
+    public static final int SLIME = 01;
+    public static final int PILZ = 02;
+    public static final int SWITCH = 03;
 
     private int numframes;
     private int frameSize;
@@ -94,6 +94,7 @@ public class Booper extends Actor {
 
         setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
     }
+
 //TODO: make specific color profiles
     public void selectBooper(int id){
         switch(id){
