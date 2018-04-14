@@ -11,6 +11,6 @@ public class DesktopLauncher {
 		config.width = SuperBoopers.V_WIDTH;
 		config.height = SuperBoopers.V_HEIGHT;
 		
-		new LwjglApplication(new SuperBoopers(), config);
+		new LwjglApplication(new SuperBoopers(new Scan()), config);
 	}
 }

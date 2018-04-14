@@ -1,6 +1,7 @@
 package com.musicalpastries.superboopers;
 
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Actors.Booper;
@@ -16,7 +17,10 @@ import java.util.ArrayList;
  * Andrew Groeling - 9/29/2017.
  */
 
-public class SuperBoopers extends Game {
+public class SuperBoopers extends Game implements ApplicationListener {
+
+	private final BScanner scanner;
+
 	public static final int V_WIDTH = 504;
 	public static final int V_HEIGHT = 896;
 
@@ -40,6 +44,10 @@ public class SuperBoopers extends Game {
 	public final static int CREDITS = 9;
 
 	private boolean running = false;
+
+	public SuperBoopers(BScanner scanner) {
+		this.scanner = scanner;
+	}
 
 	@Override
 	public void create () {
@@ -117,6 +125,10 @@ public class SuperBoopers extends Game {
 
 	public void setLvl(Integer lvl) {
 		this.lvl = lvl;
+	}
+
+	public BScanner getScanner(){
+		return scanner;
 	}
 
 	public Integer getXp() {

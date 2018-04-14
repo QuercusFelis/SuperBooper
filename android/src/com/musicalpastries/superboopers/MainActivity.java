@@ -5,13 +5,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.badlogic.gdx.Gdx;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -20,11 +18,9 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 
-public class MainActivity extends Activity implements Scanning {
+public class MainActivity extends Activity implements BScanner {
     SurfaceView cameraPreview;
 
     @Override
@@ -32,12 +28,20 @@ public class MainActivity extends Activity implements Scanning {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cameraPreview = findViewById(R.id.camera_preview);
+        cameraPreview.setZOrderMediaOverlay(true);
         createCameraSource();
     }
 
     public void createCameraSource() {
         BarcodeDetector detector = new BarcodeDetector.Builder(this).build();
+
+        if(!detector.isOperational()){
+            Toast.makeText(getApplicationContext(), "couldn't setup detector", Toast.LENGTH_LONG).show();
+            this.finish();
+        }
+
         final CameraSource cameraSource = new CameraSource.Builder(this, detector)
+                .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setAutoFocusEnabled(true)
                 .setRequestedPreviewSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())
                 .build();

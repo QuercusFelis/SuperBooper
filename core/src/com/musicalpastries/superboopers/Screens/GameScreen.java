@@ -13,10 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.Actors.Booper;
-import com.musicalpastries.superboopers.Scanning;
 import com.musicalpastries.superboopers.SuperBoopers;
-
-import java.net.InterfaceAddress;
 
 
 /**
@@ -70,7 +67,7 @@ public class GameScreen extends SuperScreen implements Screen {
         xpLabel = new Label("XP: " + String.format("%03d", game.getXp()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         xpLabel.setFontScale(fScale);
 
-        lvlLabel = new Label("Level: " + String.format("%01d", game.getLvl()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        lvlLabel = new Label("Lvl: " + String.format("%01d", game.getLvl()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         lvlLabel.setFontScale(fScale);
 
         TextButton inventory = new TextButton("inventory", style);
@@ -102,7 +99,7 @@ public class GameScreen extends SuperScreen implements Screen {
         scan.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                game.getScanner().scan();
                 game.addBoopers(new Booper(getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
                 testXP();
             }

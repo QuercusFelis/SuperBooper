@@ -1,23 +1,24 @@
 package com.musicalpastries.superboopers;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-
-import com.google.android.gms.vision.barcode.Barcode;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.google.android.gms.vision.barcode.Barcode;
 
 public class AndroidLauncher extends AndroidApplication {
 	private int currentApiVersion;
+
+	private Barcode lastScan;
+
 	public static final int REQUEST_CODE = 100;
 	public static final int PERMISSION_REQUEST = 200;
 	//TODO:
@@ -86,7 +87,7 @@ public class AndroidLauncher extends AndroidApplication {
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
 		}
 
-		initialize(new SuperBoopers(), config);
+		initialize(new SuperBoopers(new MainActivity()), config);
 	}
 
 	@Override
@@ -144,5 +145,15 @@ public class AndroidLauncher extends AndroidApplication {
 					});
 		}
 
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+			if(data != null){
+				Barcode barcode = data.getParcelableExtra("barcode");
+
+			}
+		}
 	}
 }
