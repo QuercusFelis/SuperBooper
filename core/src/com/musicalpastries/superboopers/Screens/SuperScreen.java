@@ -41,8 +41,6 @@ public abstract class SuperScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        /*System.out.println("Width: "+Gdx.graphics.getWidth());
-        System.out.println("Height: "+Gdx.graphics.getHeight());*/
         stage.getViewport().update(width, height, true);
     }
 

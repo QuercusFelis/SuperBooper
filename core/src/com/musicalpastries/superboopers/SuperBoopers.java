@@ -59,6 +59,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 
 		changeScreen(MAIN);
 		running = true;
+		System.out.println("SuperBoopers create");
 	}
 
 	public ArrayList<Booper> getBoopers(){
@@ -79,7 +80,9 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				menuScreen.resume();
 				break;
 			case MAIN:
-				if(gameScreen == null) gameScreen = new GameScreen(this); // added (this)
+				if(gameScreen == null){
+					gameScreen = new GameScreen(this);
+				}// added (this)
 				this.setScreen(gameScreen);
 				break;
 			/*case INVENTORY:
@@ -159,6 +162,10 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	@Override
 	public void resume(){
 		super.resume();
+		if(boopers.size() > 0){
+			System.out.println(boopers.get(0).getSpecies());
+			System.out.println(boopers.get(0).draw().getKeyFrames().length+"");
+		}
 	}
 
 	@Override

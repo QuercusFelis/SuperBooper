@@ -103,6 +103,7 @@ public class GameScreen extends SuperScreen implements Screen {
                 testXP();
             }
         });
+        game.addBoopers(new Booper(getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
     }
 
     public GameScreen getContext(){
@@ -136,7 +137,13 @@ public class GameScreen extends SuperScreen implements Screen {
         for (int i = 0; i < game.getBoopers().size(); i++) {
             game.batch.setColor(game.getBoopers().get(i).getColor());
             game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
+            System.out.print(game.getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
         }
         game.batch.end();
+    }
+
+    @Override
+    public void dispose(){
+        game.batch.dispose();
     }
 }

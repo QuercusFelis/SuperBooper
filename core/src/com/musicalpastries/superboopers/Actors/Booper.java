@@ -1,7 +1,6 @@
 package com.musicalpastries.superboopers.Actors;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
-import java.util.logging.Logger;
 
 /**
  * Andrew Groeling - 10/19/2017.
@@ -22,7 +20,6 @@ public class Booper extends Actor {
 
     public static final TextureAtlas atlas = new TextureAtlas("sprites.txt");
 
-    private GameScreen game;
     private TextureRegion region;
     private TextureRegion[] keyFrames;
     private Animation animation;
@@ -39,7 +36,6 @@ public class Booper extends Actor {
 
 
     public Booper(GameScreen game, int id){
-        this.game = game;
         frameSize = 64;
         selectBooper(id);
         region = atlas.findRegion(species);
@@ -70,7 +66,6 @@ public class Booper extends Actor {
     }
 
     public Booper(final GameScreen game, String name, int frameSize){
-        this.game = game;
         this.frameSize = frameSize;
         region = atlas.findRegion(name);
         this.numframes = region.getRegionWidth()/frameSize;
@@ -84,6 +79,8 @@ public class Booper extends Actor {
 
         setX((float)(Math.random()*SuperBoopers.V_WIDTH));
         setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
+
+        //TODO: make this onclick listener do stuff
         addListener(new EventListener() {
             @Override
             public boolean handle(Event event) {
@@ -111,6 +108,10 @@ public class Booper extends Actor {
                 species = "switch";
                 break;
         }
+    }
+
+    public String getSpecies(){
+        return species;
     }
 
     public Animation<TextureRegion> draw(){
