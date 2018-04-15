@@ -75,8 +75,8 @@ public class GameScreen extends SuperScreen implements Screen {
 
         TextButton back = new TextButton("<", skin);
         back.setName("back");
-        TextButton scan = new TextButton("SCAN", skin);
-        scan.setName("scan");
+        TextButton scanButton = new TextButton("SCAN", skin);
+        scanButton.setName("scan");
 
         //table
         table.add(back).pad(10).top().left();
@@ -88,7 +88,7 @@ public class GameScreen extends SuperScreen implements Screen {
         tableTop.add(inventory).colspan(2).fill().padTop(10).top();
 
         table.row();
-        table.add(scan).expand().fillX().bottom().colspan(3);
+        table.add(scanButton).expand().fillX().bottom().colspan(3);
 
         back.addListener(new ChangeListener() {
             @Override
@@ -96,11 +96,10 @@ public class GameScreen extends SuperScreen implements Screen {
                 game.changeScreen(SuperBoopers.MENU);
             }
         });
-        scan.addListener(new ChangeListener() {
+        scanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.getScanner().scan();
-                game.addBoopers(new Booper(getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
+                game.scan();
                 testXP();
             }
         });
@@ -108,6 +107,10 @@ public class GameScreen extends SuperScreen implements Screen {
 
     public GameScreen getContext(){
         return this;
+    }
+
+    public Label getLvlLabel(){
+        return lvlLabel;
     }
 
     public Table getTable(){

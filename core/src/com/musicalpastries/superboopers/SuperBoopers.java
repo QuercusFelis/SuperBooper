@@ -21,6 +21,8 @@ public class SuperBoopers extends Game implements ApplicationListener {
 
 	private final BScanner scanner;
 
+	private String lastScanned;
+
 	public static final int V_WIDTH = 504;
 	public static final int V_HEIGHT = 896;
 
@@ -44,6 +46,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	public final static int CREDITS = 9;
 
 	private boolean running = false;
+
 
 	public SuperBoopers(BScanner scanner) {
 		this.scanner = scanner;
@@ -127,8 +130,12 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		this.lvl = lvl;
 	}
 
-	public BScanner getScanner(){
-		return scanner;
+	public void scan(){
+		scanner.scan();
+	}
+
+	public void setLastScanned(String format){
+		lastScanned = format;
 	}
 
 	public Integer getXp() {
@@ -162,5 +169,11 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
+	}
+
+	public void addBooperFromScan() {
+		gameScreen.getLvlLabel().setText(lastScanned);
+		addBoopers(new Booper(gameScreen.getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
+		System.out.println(lastScanned);
 	}
 }

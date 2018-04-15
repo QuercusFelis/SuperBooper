@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.View;
 
 import android.content.pm.PackageManager;
@@ -14,10 +15,9 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.vision.barcode.Barcode;
 
-public class AndroidLauncher extends AndroidApplication {
+public class AndroidLauncher extends AndroidApplication implements BScanner {
 	private int currentApiVersion;
 
-	private Barcode lastScan;
 
 	public static final int REQUEST_CODE = 100;
 	public static final int PERMISSION_REQUEST = 200;
@@ -34,6 +34,8 @@ public class AndroidLauncher extends AndroidApplication {
 			| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 			| View.SYSTEM_UI_FLAG_FULLSCREEN
 			| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+	private SuperBoopers game;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -87,7 +89,7 @@ public class AndroidLauncher extends AndroidApplication {
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
 		}
 
-		initialize(new SuperBoopers(new MainActivity()), config);
+		initialize(game = new SuperBoopers(this), config);
 	}
 
 	@Override
@@ -99,6 +101,12 @@ public class AndroidLauncher extends AndroidApplication {
 		else if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN && hasFocus) {
 			getWindow().getDecorView().setSystemUiVisibility(flagsJ);
 		}
+	}
+
+	@Override
+	protected void onPause(){
+		super.onPause();
+		//TODO:
 	}
 
 	@Override
@@ -145,15 +153,26 @@ public class AndroidLauncher extends AndroidApplication {
 					});
 		}
 
+
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+			Log.i("CODE", "onActivityResult");
 			if(data != null){
-				Barcode barcode = data.getParcelableExtra("barcode");
-
+				final Barcode barcode = data.getParcelableExtra("barcode");
+				Log.i("CODE", barcode.displayValue);
+				game.setLastScanned(barcode.displayValue);
+				game.addBooperFromScan();
 			}
 		}
+
+	}
+
+	@Override
+	public void scan() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivityForResult(intent, REQUEST_CODE);
 	}
 }

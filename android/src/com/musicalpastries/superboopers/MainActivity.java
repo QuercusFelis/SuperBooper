@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -20,7 +21,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-public class MainActivity extends Activity implements BScanner {
+public class MainActivity extends Activity {
     SurfaceView cameraPreview;
 
     @Override
@@ -89,15 +90,11 @@ public class MainActivity extends Activity implements BScanner {
                 if(barcodes.size()>0){
                     Intent intent = new Intent();
                     intent.putExtra("barcode", barcodes.valueAt(0));//get latest barcode from array
-                    setResult(CommonStatusCodes.SUCCESS, intent);
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             }
         });
     }
-//TODO:
-    @Override
-    public void scan() {
 
-    }
 }
