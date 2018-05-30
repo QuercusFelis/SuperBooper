@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -18,6 +19,8 @@ public abstract class SuperScreen implements Screen {
     public float r;
     public float g;
     public float b;
+
+    public Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
 
     abstract void renderBatch();
 

@@ -3,8 +3,6 @@ package com.musicalpastries.superboopers.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -16,17 +14,17 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * Andrew Groeling - 1/20/2018.
+ * Andrew Groeling - 12/27/2017.
  */
 
-public class DonateScreen extends SuperScreen implements Screen {
+public class CommunityScreen extends SuperScreen implements Screen {
 
-    public DonateScreen(SuperBoopers game) {
+    public CommunityScreen(SuperBoopers game) {
         this.game = game;
 
-        r= (float)(Math.random());
-        g= (float)(Math.random());
-        b= (float)(Math.random());
+        r= .7f;
+        g= .0f;
+        b= .3f;
 
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
@@ -50,16 +48,16 @@ public class DonateScreen extends SuperScreen implements Screen {
         //Image backImage = new Image("back.png");
         //ImageButton back = new ImageButton(skin);
         TextButton back = new TextButton("<", skin);
-        Label title = new Label("Donate", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
-        title.setFontScale(4f);
-        Label credits = new Label("Pls donate thx bye", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
-        credits.setFontScale(1.4f);
+        Label title = new Label("Community", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        title.setFontScale(2.25f);
+        //Label credits = new Label("Everything: Andrew Groeling", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        //credits.setFontScale(1.4f);
 
         table.add(back).pad(10);
         table.add(title).expandX().fillX();
 
         table.row();
-        table.add(credits).colspan(2).expand().fillX().pad(10,20,20,20).top();
+        //table.add(credits).colspan(2).expand().fillX().pad(10,20,20,20).top();
 
         //listeners
         back.addListener(new ChangeListener() {
@@ -70,10 +68,9 @@ public class DonateScreen extends SuperScreen implements Screen {
     }
 
     @Override
-    public void renderBatch() {}
+    void renderBatch() {}
 
     @Override
     public void update() {}
-
 }
 

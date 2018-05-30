@@ -60,7 +60,6 @@ public class GameScreen extends SuperScreen implements Screen {
             stage.addActor(table);
         }
 
-        Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(skin.getDrawable("slider-vertical"), skin.getDrawable("scrollbar-horizontal"), skin.getDrawable("scrollbar-horizontal"), skin.getFont("subtitle"));
 
         //setting up objects in table

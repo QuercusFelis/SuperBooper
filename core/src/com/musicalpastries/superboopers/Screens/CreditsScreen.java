@@ -51,10 +51,10 @@ public class CreditsScreen extends SuperScreen implements Screen {
         //Image backImage = new Image("back.png");
         //ImageButton back = new ImageButton(skin);
         TextButton back = new TextButton("<", skin);
-        Label title = new Label("Credits", new Label.LabelStyle(new BitmapFont(), com.badlogic.gdx.graphics.Color.WHITE));
-        title.setFontScale(5f);
-        Label credits = new Label("Everything: Andrew Groeling", new Label.LabelStyle(new BitmapFont(), com.badlogic.gdx.graphics.Color.WHITE));
-        credits.setFontScale(1.4f);
+        Label title = new Label("Credits", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+        title.setFontScale(4f);
+        Label credits = new Label("Everything: Andrew Groeling \nButton & Font Art: Raymond Buckley \n(CC BY 4.0, \nhttps://tinyurl.com/pixthulu )", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+        credits.setFontScale(1f);
 
         table.add(back).pad(10);
         table.add(title).expandX().fillX();

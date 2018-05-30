@@ -5,10 +5,15 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Actors.Booper;
+import com.musicalpastries.superboopers.Screens.CommunityScreen;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
 import com.musicalpastries.superboopers.Screens.GameScreen;
+import com.musicalpastries.superboopers.Screens.GoalScreen;
+import com.musicalpastries.superboopers.Screens.InventoryScreen;
 import com.musicalpastries.superboopers.Screens.MenuScreen;
+import com.musicalpastries.superboopers.Screens.SettingScreen;
+import com.musicalpastries.superboopers.Screens.StoreScreen;
 
 import java.util.ArrayList;
 
@@ -85,13 +90,13 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				}// added (this)
 				this.setScreen(gameScreen);
 				break;
-			/*case INVENTORY:
+			case INVENTORY:
 				//if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this); //added (this)
 				this.setScreen(new InventoryScreen(this));
 				break;
 			case GOALS:
 				//if(goalsScreen == null) goalsScreen = new GoalsScreen(this); //added (this)
-				this.setScreen(new GoalsScreen(this));
+				this.setScreen(new GoalScreen(this));
 				break;
 			case STORE:
 				//if(storeScreen == null) storeScreen = new StoreScreen(this); //added (this)
@@ -101,14 +106,14 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				//if(communityScreen == null) communityScreen = new CommunityScreen(this); //added (this)
 				this.setScreen(new CommunityScreen(this));
 				break;
-			case GOOGLE:
+			/*case GOOGLE:
 				//if(googleScreen == null) googleScreen = new GoogleScreen(this); //added (this)
 				this.setScreen(new GoogleScreen(this));
-				break;
+				break;*/
 			case SETTINGS:
 				//if(settingsScreen == null) settingsScreen = new SettingsScreen(this); //added (this)
-				this.setScreen(new SettingsScreen(this));
-				break;*/
+				this.setScreen(new SettingScreen(this));
+				break;
 			case DONATE:
 				//if(donateScreen == null) donateScreen = new DonateScreen(this); //added (this)
 				this.setScreen(new DonateScreen(this));
@@ -147,6 +152,10 @@ public class SuperBoopers extends Game implements ApplicationListener {
 
 	public Integer getLvl() {
 		return lvl;
+	}
+
+	public GameScreen getGameScreen(){
+		return gameScreen;
 	}
 
 	@Override
