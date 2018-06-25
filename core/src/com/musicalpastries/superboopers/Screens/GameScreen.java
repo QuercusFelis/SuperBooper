@@ -36,9 +36,9 @@ public class GameScreen extends SuperScreen implements Screen {
         this.game = game;
         fScale = 1f;
 
-        r= .45f;
-        g= .1f;
-        b= .5f;
+        r= .3f;
+        g= .7f;
+        b= .1f;
 
         game.setXp(0);
         game.setLvl(1);
@@ -46,11 +46,56 @@ public class GameScreen extends SuperScreen implements Screen {
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
+        prepTable();
     }
 
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
+    }
+
+    public GameScreen getContext(){
+        return this;
+    }
+
+    public Label getLvlLabel(){
+        return lvlLabel;
+    }
+
+    public Table getTable(){
+        table.validate();
+        return table;
+    }
+
+    public void testXP(){
+        game.testXP();
+        xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
+    }
+
+    @Override
+    public void update(){
+        gamecam.update();
+        table.setFillParent(true);
+    }
+
+    @Override
+    public void renderBatch() {
+        game.batch.begin();
+        game.batch.setProjectionMatrix(gamecam.combined);
+        for (int i = 0; i < game.getBoopers().size(); i++) {
+            game.batch.setColor(game.getBoopers().get(i).getColor());
+            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
+            System.out.print(game.getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
+        }
+        game.batch.end();
+    }
+
+    @Override
+    public void dispose(){
+        game.batch.dispose();
+    }
+
+    private void prepTable(){
         table=new Table();
         tableTop=new Table();
 //set up table
@@ -102,47 +147,5 @@ public class GameScreen extends SuperScreen implements Screen {
                 testXP();
             }
         });
-        game.addBoopers(new Booper(getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
-    }
-
-    public GameScreen getContext(){
-        return this;
-    }
-
-    public Label getLvlLabel(){
-        return lvlLabel;
-    }
-
-    public Table getTable(){
-        table.validate();
-        return table;
-    }
-
-    public void testXP(){
-        game.testXP();
-        xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
-    }
-
-    @Override
-    public void update(){
-        gamecam.update();
-        table.setFillParent(true);
-    }
-
-    @Override
-    public void renderBatch() {
-        game.batch.begin();
-        game.batch.setProjectionMatrix(gamecam.combined);
-        for (int i = 0; i < game.getBoopers().size(); i++) {
-            game.batch.setColor(game.getBoopers().get(i).getColor());
-            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
-            System.out.print(game.getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
-        }
-        game.batch.end();
-    }
-
-    @Override
-    public void dispose(){
-        game.batch.dispose();
     }
 }

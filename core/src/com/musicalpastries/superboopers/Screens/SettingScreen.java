@@ -51,8 +51,8 @@ public class SettingScreen extends SuperScreen implements Screen {
         title.setFontScale(3f);
         TextButton boop = new TextButton("+10 Boopers", skin);
 
-        table.add(back).pad(10);
-        table.add(title).expandX().fillX();
+        table.add(back).pad(10).left();
+        table.add(title).expandX().fillX().left();
 
         table.row();
         table.add(boop).pad(10);
@@ -69,7 +69,7 @@ public class SettingScreen extends SuperScreen implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 int c = 10;
                 while (c > 0) {
-                    game.addBoopers(new Booper(game.getGameScreen(), (int) (Math.random() * 4)));
+                    game.addBoopers(new Booper(game.getGameScreen(), (int) (Math.random() * Booper.atlas.getRegions().size)));
                     c--;
                 }
             }

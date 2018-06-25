@@ -26,10 +26,16 @@ public class Booper extends Actor {
 
     private String species;
 
-    public static final int DUCK = 00;
-    public static final int SLIME = 01;
-    public static final int PILZ = 02;
-    public static final int SWITCH = 03;
+    public static final int DUCK = 0;
+    public static final int SLIME = 1;
+    public static final int PILZ = 2;
+    public static final int SWITCH = 3;
+    public static final int BONSAI = 4;
+    public static final int SPINPHONE = 5;
+    public static final int PINECONE = 6;
+    public static final int BOX = 7;
+    public static final int STEAK = 8;
+    public static final int TENNIS = 9;
 
     private int numframes;
     private int frameSize;
@@ -40,6 +46,7 @@ public class Booper extends Actor {
         selectBooper(id);
         region = atlas.findRegion(species);
         this.numframes = region.getRegionWidth()/frameSize;
+        System.out.println(""+numframes);
         keyFrames = new TextureRegion[numframes];
 
         int c=0;
@@ -89,7 +96,7 @@ public class Booper extends Actor {
             }
         });
 
-        setColor(new Color((float)(Math.random()-.5), (float)(Math.random()), (float)(Math.random()), 1));
+        setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
     }
 
 //TODO: make specific color profiles
@@ -106,6 +113,24 @@ public class Booper extends Actor {
                 break;
             case SWITCH:
                 species = "switch";
+                break;
+            case BONSAI:
+                species = "bonsai";
+                break;
+            case SPINPHONE:
+                species = "spinPhone";
+                break;
+            case PINECONE:
+                species = "pinecone";
+                break;
+            case BOX:
+                species = "box";
+                break;
+            case STEAK:
+                species = "steak";
+                break;
+            case TENNIS:
+                species = "tennis";
                 break;
         }
     }

@@ -1,33 +1,75 @@
 sprites.png
-size: 836, 131
+size: 1861, 198
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-duck
+tennis
   rotate: false
-  xy: 1, 1
-  size: 192, 64
-  orig: 192, 64
-  offset: 0, 0
-  index: -1
-pilz
-  rotate: false
-  xy: 194, 1
-  size: 384, 64
-  orig: 384, 64
-  offset: 0, 0
-  index: -1
-slime
-  rotate: false
-  xy: 579, 1
-  size: 256, 64
-  orig: 256, 64
+  xy: 2, 2
+  size: 448, 64
+  orig: 448, 64
   offset: 0, 0
   index: -1
 switch
   rotate: false
-  xy: 1, 66
+  xy: 451, 2
   size: 704, 64
   orig: 704, 64
+  offset: 0, 0
+  index: -1
+steak
+  rotate: false
+  xy: 1156, 2
+  size: 384, 64
+  orig: 384, 64
+  offset: 0, 0
+  index: -1
+spinPhone
+  rotate: false
+  xy: 2, 67
+  size: 1600, 64
+  orig: 1600, 64
+  offset: 0, 0
+  index: -1
+slime
+  rotate: false
+  xy: 1603, 67
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+pinecone
+  rotate: false
+  xy: 2, 132
+  size: 384, 64
+  orig: 384, 64
+  offset: 0, 0
+  index: -1
+pilz
+  rotate: false
+  xy: 387, 132
+  size: 384, 64
+  orig: 384, 64
+  offset: 0, 0
+  index: -1
+duck
+  rotate: false
+  xy: 772, 132
+  size: 192, 64
+  orig: 192, 64
+  offset: 0, 0
+  index: -1
+box
+  rotate: false
+  xy: 965, 132
+  size: 320, 64
+  orig: 320, 64
+  offset: 0, 0
+  index: -1
+bonsai
+  rotate: false
+  xy: 1286, 132
+  size: 320, 64
+  orig: 320, 64
   offset: 0, 0
   index: -1

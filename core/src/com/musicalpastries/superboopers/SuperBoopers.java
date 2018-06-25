@@ -87,6 +87,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 			case MAIN:
 				if(gameScreen == null){
 					gameScreen = new GameScreen(this);
+					addBoopers(new Booper(gameScreen.getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
 				}// added (this)
 				this.setScreen(gameScreen);
 				break;
@@ -189,7 +190,8 @@ public class SuperBoopers extends Game implements ApplicationListener {
 
 	public void addBooperFromScan() {
 		gameScreen.getLvlLabel().setText(lastScanned);
-		addBoopers(new Booper(gameScreen.getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
+		int id = Integer.parseInt(lastScanned.substring(2,3));
+		addBoopers(new Booper(gameScreen.getContext(), id));
 		System.out.println(lastScanned);
 	}
 }
