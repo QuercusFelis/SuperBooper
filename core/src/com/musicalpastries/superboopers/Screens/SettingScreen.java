@@ -34,28 +34,30 @@ public class SettingScreen extends SuperScreen implements Screen {
 
     @Override
     public void show() {
+        //table initialization
         Gdx.input.setInputProcessor(stage);
         Table table = new Table();
+        if (stage.getActors().size == 0) {
+            stage.addActor(table);}
         table.setFillParent(true);
         table.top();
-        if (stage.getActors().size == 0) {
-            stage.addActor(table);
-        }
 
-        //temporary
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
 
-        //buttons
+        //table contents
         TextButton back = new TextButton("<", skin);
-        Label title = new Label("Settings", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
-        title.setFontScale(3f);
-        TextButton boop = new TextButton("+10 Boopers", skin);
 
+        Label title = new Label("Settings", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+        title.setFontScale(3f);
+
+        TextButton boop10 = new TextButton("+10 Boopers", skin);
+
+        //populating table
         table.add(back).pad(10).left();
         table.add(title).expandX().fillX().left();
 
         table.row();
-        table.add(boop).pad(10);
+        table.add(boop10).colspan(2).expand().pad(10).left().top();
 
         //listeners
         back.addListener(new ChangeListener() {
@@ -64,7 +66,7 @@ public class SettingScreen extends SuperScreen implements Screen {
                 game.changeScreen(SuperBoopers.MENU);
             }
         });
-        boop.addListener(new ChangeListener() {
+        boop10.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 int c = 10;

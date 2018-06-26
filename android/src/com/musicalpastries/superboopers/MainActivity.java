@@ -44,8 +44,10 @@ public class MainActivity extends Activity {
         final CameraSource cameraSource = new CameraSource.Builder(this, detector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setAutoFocusEnabled(true)
-                .setRequestedPreviewSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight())
+                .setRequestedPreviewSize(Gdx.graphics.getHeight(), Gdx.graphics.getWidth())
                 .build();
+
+        Log.i("dim" ,""+Gdx.graphics.getWidth()+", "+Gdx.graphics.getHeight());
 
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override

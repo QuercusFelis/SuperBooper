@@ -38,25 +38,23 @@ public class CreditsScreen extends SuperScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
         Table table = new Table();
+        if (stage.getActors().size == 0) {
+            stage.addActor(table);}
         table.setFillParent(true);
         table.top();
-        if(stage.getActors().size ==0){
-            stage.addActor(table);
-        }
 
-        //temporary
         Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
 
-        //buttons
-        //Image backImage = new Image("back.png");
-        //ImageButton back = new ImageButton(skin);
+        //table contents
         TextButton back = new TextButton("<", skin);
+
         Label title = new Label("Credits", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
         title.setFontScale(4f);
-        Label credits = new Label("Everything: Andrew Groeling \nButton & Font Art: Raymond Buckley \n(CC BY 4.0, \nhttps://tinyurl.com/pixthulu )", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+
+        Label credits = new Label("Everything: Andrew Groeling\n\nButton & Font Art: Raymond Buckley\n(CC BY 4.0,\nhttps://tinyurl.com/pixthulu)", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
         credits.setFontScale(1f);
 
-        table.add(back).pad(10);
+        table.add(back).pad(10).left();
         table.add(title).expandX().fillX();
 
         table.row();
