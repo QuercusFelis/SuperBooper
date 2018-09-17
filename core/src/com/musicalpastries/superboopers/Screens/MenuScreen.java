@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -43,7 +44,7 @@ public class MenuScreen extends SuperScreen implements Screen {
         table = new Table();
         Gdx.input.setInputProcessor(stage);
         table.setFillParent(true);
-        table.setDebug(false);
+        table.setDebug(true);
         if(stage.getActors().size ==0){
             stage.addActor(table);
         }
@@ -72,6 +73,8 @@ public class MenuScreen extends SuperScreen implements Screen {
         TextButton donate = new TextButton("Donate", skin);
         TextButton credits = new TextButton("Credits", skin);
 
+        Label copyright = new Label("(C) 2018", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+
         table.top();
 
         table.add(settings).fillX().colspan(2).padTop(15);
@@ -96,6 +99,9 @@ public class MenuScreen extends SuperScreen implements Screen {
         table.row().padTop(10);
         table.add(donate).fillX().uniformX();
         table.add(credits).fillX().padLeft(10).uniformX();
+
+        table.row().padTop(10);
+        table.add(copyright).colspan(2).bottom();
 
         //listeners
         back.addListener(new ChangeListener() {
