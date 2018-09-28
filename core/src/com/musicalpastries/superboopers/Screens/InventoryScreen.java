@@ -2,6 +2,7 @@ package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -9,6 +10,8 @@ import com.musicalpastries.superboopers.SuperBoopers;
  */
 
 public class InventoryScreen extends SuperScreen {
+
+    private Table items;
 
     public InventoryScreen(SuperBoopers game) {
         super(game);
@@ -21,6 +24,7 @@ public class InventoryScreen extends SuperScreen {
     @Override
     public void show() {
         super.show();
+        items = new Table();
 
         //buttons
         Label title = new Label("Inventory", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
@@ -29,15 +33,15 @@ public class InventoryScreen extends SuperScreen {
         table.add(title).expandX().fillX();
 
         table.row();
+        table.add(items).expand().fill();
 
         //listeners
 
     }
 
     @Override
-    void renderBatch() {}
+    public void renderBatch() {}
 
     @Override
     public void update() {}
 }
-
