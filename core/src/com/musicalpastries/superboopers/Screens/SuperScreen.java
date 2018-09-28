@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.SerializationException;
 import com.musicalpastries.superboopers.SuperBoopers;
 
@@ -24,6 +25,7 @@ public abstract class SuperScreen implements Screen {
     public float b;
 
     public Skin skin;
+    protected Table table;
 
     public SuperScreen(){
         setSkin();
@@ -71,6 +73,20 @@ public abstract class SuperScreen implements Screen {
     @Override
     public void resume() {
 
+    }
+
+    @Override
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
+        table = new Table();
+        if(stage.getActors().size ==0){
+            stage.addActor(table);
+        }
+        table.setFillParent(true);
+        table.top();
+        System.out.println(table.toString());
+
+        setSkin();
     }
 
     @Override

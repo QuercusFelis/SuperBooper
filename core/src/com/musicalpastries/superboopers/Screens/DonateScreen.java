@@ -35,16 +35,7 @@ public class DonateScreen extends SuperScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
-        Table table = new Table();
-        table.setFillParent(true);
-        table.top();
-        if(stage.getActors().size ==0){
-            stage.addActor(table);
-        }
-
-        //temporary
-        Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+        super.show();
 
         //buttons
         //Image backImage = new Image("back.png");

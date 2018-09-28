@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
+import static com.musicalpastries.superboopers.Actors.Booper.eSpecies.*;
+
 
 /**
  * Andrew Groeling - 10/19/2017.
@@ -26,16 +28,18 @@ public class Booper extends Actor {
 
     private String species;
 
-    public static final int DUCK = 0;
-    public static final int SLIME = 1;
-    public static final int PILZ = 2;
-    public static final int SWITCH = 3;
-    public static final int BONSAI = 4;
-    public static final int SPINPHONE = 5;
-    public static final int PINECONE = 6;
-    public static final int BOX = 7;
-    public static final int STEAK = 8;
-    public static final int TENNIS = 9;
+    public enum eSpecies{
+        DUCK,
+        SLIME,
+        PILZ,
+        SWITCH,
+        BONSAI,
+        SPINPHONE,
+        PINECONE,
+        BOX,
+        STEAK,
+        TENNIS
+    }
 
     private int numframes;
     private int frameSize;
@@ -43,7 +47,7 @@ public class Booper extends Actor {
 
     public Booper(GameScreen game, int id){
         frameSize = 64;
-        selectBooper(id);
+        selectBooper(eSpecies.values()[id]);
         region = atlas.findRegion(species);
         this.numframes = region.getRegionWidth()/frameSize;
         System.out.println(""+numframes);
@@ -100,8 +104,9 @@ public class Booper extends Actor {
     }
 
 //TODO: make specific color profiles
-    public void selectBooper(int id){
-        switch(id){
+    public void selectBooper(eSpecies eSpec){
+
+        switch(eSpec){
             case DUCK:
                 species = "duck";
                 break;

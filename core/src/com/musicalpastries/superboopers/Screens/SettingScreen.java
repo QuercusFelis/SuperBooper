@@ -34,13 +34,7 @@ public class SettingScreen extends SuperScreen implements Screen {
 
     @Override
     public void show() {
-        //table initialization
-        Gdx.input.setInputProcessor(stage);
-        Table table = new Table();
-        if (stage.getActors().size == 0) {
-            stage.addActor(table);}
-        table.setFillParent(true);
-        table.top();
+        super.show();
 
         //table contents
         TextButton back = new TextButton("<", skin);

@@ -36,14 +36,7 @@ public class CreditsScreen extends SuperScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
-        Table table = new Table();
-        if (stage.getActors().size == 0) {
-            stage.addActor(table);}
-        table.setFillParent(true);
-        table.top();
-
-        Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+        super.show();
 
         //table contents
         TextButton back = new TextButton("<", skin);

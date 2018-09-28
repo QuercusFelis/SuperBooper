@@ -23,7 +23,6 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class MenuScreen extends SuperScreen implements Screen {
 
     private OrthographicCamera gamecam;
-    private Table table;
 
     public MenuScreen(SuperBoopers game){
         this.game = game;
@@ -41,15 +40,7 @@ public class MenuScreen extends SuperScreen implements Screen {
 
     @Override
     public void show() {
-        table = new Table();
-        Gdx.input.setInputProcessor(stage);
-        table.setFillParent(true);
-        table.setDebug(true);
-        if(stage.getActors().size ==0){
-            stage.addActor(table);
-        }
-
-        //temporary
+        super.show();
 
         //buttons
         //Image backImage = new Image("back.png");
