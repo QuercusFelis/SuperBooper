@@ -3,31 +3,47 @@ package com.musicalpastries.superboopers.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.SerializationException;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
-
-import java.io.FileNotFoundException;
 
 /**
  * Andrew Groeling - 3/25/2018.
  */
 
 public abstract class SuperScreen implements Screen {
-    public SuperBoopers game;
-    public Stage stage;
-    public float dt;
+    private SuperBoopers game;
 
-    public float r;
-    public float g;
-    public float b;
+    private Stage stage;
+    private OrthographicCamera gameCam;
+    protected float dt;
 
-    public Skin skin;
+    protected float r;
+    protected float g;
+    protected float b;
+
+    protected static Skin skin;
     protected Table table;
 
-    public SuperScreen(){
+    public SuperScreen(SuperBoopers game){
+        this.game = game;
+
+        //input processing for UI
+        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
+        setSkin();
+    }
+
+    public SuperScreen(SuperBoopers game, OrthographicCamera gameCam){
+        this.game = game;
+        this.gameCam = gameCam;
+
+        //input processing for UI
+        this.gameCam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
+        this.stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, this.gameCam));
         setSkin();
     }
 
@@ -59,6 +75,13 @@ public abstract class SuperScreen implements Screen {
         stage.draw();
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public SuperBoopers getGame() {
+        return game;
+    }
 
     @Override
     public void resize(int width, int height) {

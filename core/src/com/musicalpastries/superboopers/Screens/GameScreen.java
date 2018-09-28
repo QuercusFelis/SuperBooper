@@ -4,12 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 
@@ -27,7 +25,7 @@ public class GameScreen extends SuperScreen {
     private Label lvlLabel;
 
     public GameScreen(SuperBoopers game){
-        this.game = game;
+        super(game, new OrthographicCamera());
         fScale = 1f;
 
         r= .3f;
@@ -36,28 +34,24 @@ public class GameScreen extends SuperScreen {
 
         game.setXp(0);
         game.setLvl(1);
-
-        gamecam = new OrthographicCamera();
-        gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
-        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
     }
 
     @Override
     public void show() {
         super.show();
-        Gdx.input.setInputProcessor(stage);
-        if(stage.getActors().size ==0){
-            stage.addActor(table);
+        Gdx.input.setInputProcessor(getStage());
+        if(getStage().getActors().size ==0){
+            getStage().addActor(table);
         }
         tableTop = new Table();
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(skin.getDrawable("slider-vertical"), skin.getDrawable("scrollbar-horizontal"), skin.getDrawable("scrollbar-horizontal"), skin.getFont("subtitle"));
 
         //setting up objects in table
-        xpLabel = new Label("XP: " + String.format("%03d", game.getXp()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        xpLabel = new Label("XP: " + String.format("%03d", getGame().getXp()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         xpLabel.setFontScale(fScale);
 
-        lvlLabel = new Label("Lvl: " + String.format("%01d", game.getLvl()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        lvlLabel = new Label("Lvl: " + String.format("%01d", getGame().getLvl()), new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         lvlLabel.setFontScale(fScale);
 
         TextButton inventory = new TextButton("inventory", style);
@@ -83,13 +77,13 @@ public class GameScreen extends SuperScreen {
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.MENU);
+                getGame().changeScreen(SuperBoopers.MENU);
             }
         });
         scanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.scan();
+                getGame().scan();
                 testXP();
             }
         });
@@ -109,8 +103,8 @@ public class GameScreen extends SuperScreen {
     }
 
     public void testXP(){
-        game.testXP();
-        xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
+        getGame().testXP();
+        xpLabel.setText("XP: " + String.format("%03d", getGame().getXp()));
     }
 
     @Override
@@ -121,19 +115,19 @@ public class GameScreen extends SuperScreen {
 
     @Override
     public void renderBatch() {
-        game.batch.begin();
-        game.batch.setProjectionMatrix(gamecam.combined);
-        for (int i = 0; i < game.getBoopers().size(); i++) {
-            game.batch.setColor(game.getBoopers().get(i).getColor());
-            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
-            System.out.print(game.getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
+        getGame().batch.begin();
+        getGame().batch.setProjectionMatrix(gamecam.combined);
+        for (int i = 0; i < getGame().getBoopers().size(); i++) {
+            getGame().batch.setColor(getGame().getBoopers().get(i).getColor());
+            getGame().batch.draw(getGame().getBoopers().get(i).draw().getKeyFrame(dt, true), getGame().getBoopers().get(i).getX(), getGame().getBoopers().get(i).getY());
+            System.out.print(getGame().getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
         }
-        game.batch.end();
+        getGame().batch.end();
     }
 
     @Override
     public void dispose(){
-        game.batch.dispose();
+        getGame().batch.dispose();
     }
 
 }

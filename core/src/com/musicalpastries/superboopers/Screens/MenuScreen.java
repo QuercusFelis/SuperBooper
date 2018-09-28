@@ -1,14 +1,11 @@
 package com.musicalpastries.superboopers.Screens;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -20,17 +17,11 @@ public class MenuScreen extends SuperScreen {
     private OrthographicCamera gamecam;
 
     public MenuScreen(SuperBoopers game){
-        this.game = game;
-
+        super(game);
 
         r= 0;
         g= .5f;
         b= .2f;
-
-        //camera
-        gamecam = new OrthographicCamera();
-        gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
-        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
     }
 
     @Override
@@ -92,59 +83,59 @@ public class MenuScreen extends SuperScreen {
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.MAIN);
+                getGame().changeScreen(SuperBoopers.MAIN);
             }
         });
         inventory.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.INVENTORY);
+                getGame().changeScreen(SuperBoopers.INVENTORY);
             }
         });
 //
         goals.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.GOALS);
+                getGame().changeScreen(SuperBoopers.GOALS);
             }
         });
         store.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.STORE);
+                getGame().changeScreen(SuperBoopers.STORE);
             }
         });
 //
         community.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.COMMUNITY);
+                getGame().changeScreen(SuperBoopers.COMMUNITY);
             }
         });
         google.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.GOOGLE);
+                getGame().changeScreen(SuperBoopers.GOOGLE);
             }
         });
 //
         settings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.SETTINGS);
+                getGame().changeScreen(SuperBoopers.SETTINGS);
             }
         });
 //
         donate.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.DONATE);
+                getGame().changeScreen(SuperBoopers.DONATE);
             }
         });
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.CREDITS);
+                getGame().changeScreen(SuperBoopers.CREDITS);
             }
         });
     }

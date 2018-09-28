@@ -1,11 +1,9 @@
 package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -15,15 +13,10 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class CreditsScreen extends SuperScreen {
 
     public CreditsScreen(SuperBoopers game) {
-        this.game = game;
-
+        super(game);
         r= .3f;
         g= .6f;
         b= .9f;
-
-        //input processing for UI
-        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
-
     }
 
     @Override
@@ -49,7 +42,7 @@ public class CreditsScreen extends SuperScreen {
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.MENU);}
+                getGame().changeScreen(SuperBoopers.MENU);}
         });
     }
 

@@ -1,11 +1,9 @@
 package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.SuperBoopers;
 
@@ -16,15 +14,11 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class SettingScreen extends SuperScreen {
 
     public SettingScreen(SuperBoopers game) {
-        this.game = game;
+        super(game);
 
         r= .2f;
         g= .2f;
         b= .2f;
-
-        //input processing for UI
-        stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
-
     }
 
     @Override
@@ -50,7 +44,7 @@ public class SettingScreen extends SuperScreen {
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.changeScreen(SuperBoopers.MENU);
+                getGame().changeScreen(SuperBoopers.MENU);
             }
         });
         boop10.addListener(new ChangeListener() {
@@ -58,7 +52,7 @@ public class SettingScreen extends SuperScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 int c = 10;
                 while (c > 0) {
-                    game.addBoopers(new Booper(game.getGameScreen(), (int) (Math.random() * Booper.atlas.getRegions().size)));
+                    getGame().addBoopers(new Booper(getGame().getGameScreen(), (int) (Math.random() * Booper.atlas.getRegions().size)));
                     c--;
                 }
             }
