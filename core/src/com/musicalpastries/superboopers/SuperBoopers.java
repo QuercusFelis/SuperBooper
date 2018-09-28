@@ -38,20 +38,24 @@ public class SuperBoopers extends Game implements ApplicationListener {
 
 	private GameScreen gameScreen;
 	private MenuScreen menuScreen;
+	private InventoryScreen inventoryScreen;
+	private GoalScreen goalScreen;
+	private StoreScreen storeScreen;
+	private CommunityScreen communityScreen;
+	private SettingScreen settingScreen;
 
-	public final static int MENU = 0;
-	public final static int MAIN = 1;
-	public final static int INVENTORY = 2;
-	public final static int GOALS = 3;
-	public final static int STORE = 4;
-	public final static int COMMUNITY = 5;
-	public final static int GOOGLE = 6;
-	public final static int SETTINGS = 7;
-	public final static int DONATE = 8;
-	public final static int CREDITS = 9;
-
-	private boolean running = false;
-
+	public enum eScreen{
+		MENU,
+		MAIN,
+		INVENTORY,
+		GOALS,
+		STORE,
+		COMMUNITY,
+		GOOGLE,
+		SETTINGS,
+		DONATE,
+		CREDITS
+	}
 
 	public SuperBoopers(BScanner scanner) {
 		this.scanner = scanner;
@@ -62,8 +66,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<Booper>();
 
-		changeScreen(MENU);
-		running = true;
+		changeScreen(eScreen.MENU);
 		System.out.println("SuperBoopers create");
 	}
 
@@ -76,59 +79,56 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		boopers.add(booper);
 	}
 
-	public void changeScreen(int screen){
+	public void changeScreen(eScreen screen){
 		switch(screen){
 			case MENU:
-
-				if(menuScreen == null) menuScreen = new MenuScreen(this); // added (this)
+				if(menuScreen == null) menuScreen = new MenuScreen(this);
 				this.setScreen(menuScreen);
 				menuScreen.resume();
 				break;
 			case MAIN:
 				if(gameScreen == null){
 					gameScreen = new GameScreen(this);
-//					addBoopers(new Booper(gameScreen.getContext(), (int)(Math.random()*Booper.atlas.getRegions().size)));
-				}// added (this)
+				}
 				gameScreen.resume();
 				this.setScreen(gameScreen);
 				break;
 			case INVENTORY:
-				//if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this); //added (this)
-				this.setScreen(new InventoryScreen(this));
+				if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this);
+				this.setScreen(inventoryScreen);
 				break;
 			case GOALS:
-				//if(goalsScreen == null) goalsScreen = new GoalsScreen(this); //added (this)
+				if(goalScreen == null) goalScreen = new GoalScreen(this);
 				this.setScreen(new GoalScreen(this));
 				break;
 			case STORE:
-				//if(storeScreen == null) storeScreen = new StoreScreen(this); //added (this)
+				if(storeScreen == null) storeScreen = new StoreScreen(this);
 				this.setScreen(new StoreScreen(this));
 				break;
 			case COMMUNITY:
-				//if(communityScreen == null) communityScreen = new CommunityScreen(this); //added (this)
+				if(communityScreen == null) communityScreen = new CommunityScreen(this);
 				this.setScreen(new CommunityScreen(this));
 				break;
 			/*case GOOGLE:
-				//if(googleScreen == null) googleScreen = new GoogleScreen(this); //added (this)
+				//if(googleScreen == null) googleScreen = new GoogleScreen(this);
 				this.setScreen(new GoogleScreen(this));
 				break;*/
 			case SETTINGS:
-				//if(settingsScreen == null) settingsScreen = new SettingsScreen(this); //added (this)
+				if(settingScreen == null) settingScreen = new SettingScreen(this);
 				this.setScreen(new SettingScreen(this));
 				break;
+			//DonateScreen and CreditsScreen use very few resources, instance variable unnecessary
 			case DONATE:
-				//if(donateScreen == null) donateScreen = new DonateScreen(this); //added (this)
 				this.setScreen(new DonateScreen(this));
 				break;
 			case CREDITS:
-				//if(creditsScreen == null) creditsScreen = new CreditsScreen(this); //added (this)
 				this.setScreen(new CreditsScreen(this));
 				break;
 
 		}
 	}
 
-	public void testXP(){
+	public void incrementXP(){
 		xp++;
 	}
 

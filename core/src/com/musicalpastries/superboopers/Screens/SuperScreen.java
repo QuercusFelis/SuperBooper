@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.SerializationException;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
@@ -20,6 +23,8 @@ public abstract class SuperScreen implements Screen {
 
     private Stage stage;
     private OrthographicCamera gameCam;
+    protected TextButton back;
+
     protected float dt;
 
     protected float r;
@@ -83,6 +88,10 @@ public abstract class SuperScreen implements Screen {
         return game;
     }
 
+    public OrthographicCamera getGameCam(){
+        return gameCam;
+    }
+
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
@@ -106,10 +115,20 @@ public abstract class SuperScreen implements Screen {
             stage.addActor(table);
         }
         table.setFillParent(true);
+        table.setDebug(true);
         table.top();
         System.out.println(table.toString());
 
         setSkin();
+        back = new TextButton("<", skin);
+
+        if(!(this instanceof MenuScreen)) table.add(back).pad(10).left();
+
+        back.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().changeScreen(SuperBoopers.eScreen.MENU);}
+        });
     }
 
     @Override

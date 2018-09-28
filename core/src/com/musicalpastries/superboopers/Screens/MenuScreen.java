@@ -14,10 +14,8 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 public class MenuScreen extends SuperScreen {
 
-    private OrthographicCamera gamecam;
-
     public MenuScreen(SuperBoopers game){
-        super(game);
+        super(game, new OrthographicCamera());
 
         r= 0;
         g= .5f;
@@ -28,14 +26,11 @@ public class MenuScreen extends SuperScreen {
     public void show() {
         super.show();
 
-        //buttons
-        //Image backImage = new Image("back.png");
-        //ImageButton back = new ImageButton(skin);
+        //table contents
         Table tableTop = new Table();
         tableTop.setDebug(false);
-        TextButton back = new TextButton("<", skin);
-        TextButton inventory = new TextButton("Inventory", skin);
 
+        TextButton inventory = new TextButton("Inventory", skin);
         TextButton goals = new TextButton("Goals", skin);
         TextButton store = new TextButton("Store", skin);
 
@@ -45,11 +40,10 @@ public class MenuScreen extends SuperScreen {
         TextButton google = new TextButton("G", skin);
 
         TextButton settings = new TextButton("Settings", skin);
-
         TextButton donate = new TextButton("Donate", skin);
         TextButton credits = new TextButton("Credits", skin);
-
-        Label copyright = new Label("(C) 2018", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+        Label copyright = new Label("(C) 2018", new Label.LabelStyle(skin.getFont("font"),
+                com.badlogic.gdx.graphics.Color.WHITE));
 
         table.top();
 
@@ -83,59 +77,59 @@ public class MenuScreen extends SuperScreen {
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.MAIN);
+                getGame().changeScreen(SuperBoopers.eScreen.MAIN);
             }
         });
         inventory.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.INVENTORY);
+                getGame().changeScreen(SuperBoopers.eScreen.INVENTORY);
             }
         });
 //
         goals.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.GOALS);
+                getGame().changeScreen(SuperBoopers.eScreen.GOALS);
             }
         });
         store.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.STORE);
+                getGame().changeScreen(SuperBoopers.eScreen.STORE);
             }
         });
 //
         community.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.COMMUNITY);
+                getGame().changeScreen(SuperBoopers.eScreen.COMMUNITY);
             }
         });
         google.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.GOOGLE);
+                getGame().changeScreen(SuperBoopers.eScreen.GOOGLE);
             }
         });
 //
         settings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.SETTINGS);
+                getGame().changeScreen(SuperBoopers.eScreen.SETTINGS);
             }
         });
 //
         donate.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.DONATE);
+                getGame().changeScreen(SuperBoopers.eScreen.DONATE);
             }
         });
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.CREDITS);
+                getGame().changeScreen(SuperBoopers.eScreen.CREDITS);
             }
         });
     }
@@ -146,7 +140,7 @@ public class MenuScreen extends SuperScreen {
 
     @Override
     public void update(){
-        gamecam.update();
+        getGameCam().update();
         table.setFillParent(true);
     }
 }
