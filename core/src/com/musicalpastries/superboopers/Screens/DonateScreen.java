@@ -1,15 +1,10 @@
 package com.musicalpastries.superboopers.Screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -19,7 +14,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * Andrew Groeling - 1/20/2018.
  */
 
-public class DonateScreen extends SuperScreen implements Screen {
+public class DonateScreen extends SuperScreen {
 
     public DonateScreen(SuperBoopers game) {
         this.game = game;

@@ -1,18 +1,15 @@
 package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 
@@ -20,15 +17,12 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * Andrew Groeling - 9/29/2017.
  */
 
-public class GameScreen extends SuperScreen implements Screen {
+public class GameScreen extends SuperScreen {
 
     private OrthographicCamera gamecam;
-
-    private Table table;
-    private Table tableTop;
-
     private float fScale;
 
+    private Table tableTop;
     private Label xpLabel;
     private Label lvlLabel;
 
@@ -46,64 +40,16 @@ public class GameScreen extends SuperScreen implements Screen {
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT, gamecam));
-        prepTable();
     }
 
     @Override
     public void show() {
+        super.show();
         Gdx.input.setInputProcessor(stage);
-    }
-
-    public GameScreen getContext(){
-        return this;
-    }
-
-    public Label getLvlLabel(){
-        return lvlLabel;
-    }
-
-    public Table getTable(){
-        table.validate();
-        return table;
-    }
-
-    public void testXP(){
-        game.testXP();
-        xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
-    }
-
-    @Override
-    public void update(){
-        gamecam.update();
-        table.setFillParent(true);
-    }
-
-    @Override
-    public void renderBatch() {
-        game.batch.begin();
-        game.batch.setProjectionMatrix(gamecam.combined);
-        for (int i = 0; i < game.getBoopers().size(); i++) {
-            game.batch.setColor(game.getBoopers().get(i).getColor());
-            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
-            System.out.print(game.getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
-        }
-        game.batch.end();
-    }
-
-    @Override
-    public void dispose(){
-        game.batch.dispose();
-    }
-
-    private void prepTable(){
-        table=new Table();
-        tableTop=new Table();
-//set up table
-        table.setFillParent(true);
-        table.top();
         if(stage.getActors().size ==0){
             stage.addActor(table);
         }
+        tableTop = new Table();
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(skin.getDrawable("slider-vertical"), skin.getDrawable("scrollbar-horizontal"), skin.getDrawable("scrollbar-horizontal"), skin.getFont("subtitle"));
 
@@ -148,4 +94,46 @@ public class GameScreen extends SuperScreen implements Screen {
             }
         });
     }
+
+    public GameScreen getContext(){
+        return this;
+    }
+
+    public Label getLvlLabel(){
+        return lvlLabel;
+    }
+
+    public Table getTable(){
+        table.validate();
+        return table;
+    }
+
+    public void testXP(){
+        game.testXP();
+        xpLabel.setText("XP: " + String.format("%03d", game.getXp()));
+    }
+
+    @Override
+    public void update(){
+        gamecam.update();
+        table.setFillParent(true);
+    }
+
+    @Override
+    public void renderBatch() {
+        game.batch.begin();
+        game.batch.setProjectionMatrix(gamecam.combined);
+        for (int i = 0; i < game.getBoopers().size(); i++) {
+            game.batch.setColor(game.getBoopers().get(i).getColor());
+            game.batch.draw(game.getBoopers().get(i).draw().getKeyFrame(dt, true), game.getBoopers().get(i).getX(), game.getBoopers().get(i).getY());
+            System.out.print(game.getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
+        }
+        game.batch.end();
+    }
+
+    @Override
+    public void dispose(){
+        game.batch.dispose();
+    }
+
 }
