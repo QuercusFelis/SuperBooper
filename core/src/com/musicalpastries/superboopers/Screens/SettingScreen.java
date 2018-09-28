@@ -42,8 +42,6 @@ public class SettingScreen extends SuperScreen implements Screen {
         table.setFillParent(true);
         table.top();
 
-        Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
-
         //table contents
         TextButton back = new TextButton("<", skin);
 

@@ -50,7 +50,6 @@ public class MenuScreen extends SuperScreen implements Screen {
         }
 
         //temporary
-        Skin skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
 
         //buttons
         //Image backImage = new Image("back.png");

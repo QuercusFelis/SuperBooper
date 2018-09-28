@@ -10,7 +10,6 @@ public class DesktopLauncher {
 		config.title = "*Super Boopers*";
 		config.width = SuperBoopers.V_WIDTH;
 		config.height = SuperBoopers.V_HEIGHT;
-		
 		new LwjglApplication(new SuperBoopers(new Scan()), config);
 	}
 }
