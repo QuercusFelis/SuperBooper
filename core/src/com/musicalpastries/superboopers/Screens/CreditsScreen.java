@@ -29,7 +29,12 @@ public class CreditsScreen extends SuperScreen {
         Label title = new Label("Credits", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
         title.setFontScale(4f);
 
-        Label credits = new Label("Everything: Andrew Groeling\n\nButton & Font Art: Raymond Buckley\n(CC BY 4.0,\nhttps://tinyurl.com/pixthulu)", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
+        Label credits = new Label("Everything: Andrew Groeling\n\n" +
+                "Button & Font Art: Raymond Buckley" +
+                "\n(CC BY 4.0," +
+                "\nhttps://tinyurl.com/pixthulu)" +
+                "zxing Barcode Scanning Library by\n" +
+                "Google", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
         credits.setFontScale(1f);
 
         table.add(back).pad(10).left();
