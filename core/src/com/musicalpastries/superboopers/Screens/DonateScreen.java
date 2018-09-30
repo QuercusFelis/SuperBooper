@@ -36,7 +36,6 @@ public class DonateScreen extends SuperScreen {
         table.add(credits).colspan(2).expand().fillX().pad(10,20,20,20).top();
 
         //listeners
-
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

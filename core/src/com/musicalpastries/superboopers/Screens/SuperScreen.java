@@ -128,6 +128,10 @@ public abstract class SuperScreen implements Screen {
         if(!(this instanceof MenuScreen)) table.add(back).pad(10).left();
     }
 
+    public void setLastScreen(SuperBoopers.eScreen lastScreen) {
+        this.lastScreen = lastScreen;
+    }
+
     @Override
     public void hide() {
 

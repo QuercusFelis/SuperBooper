@@ -38,7 +38,6 @@ public class InventoryScreen extends SuperScreen {
         table.add(items).expand().fill();
 
         //listeners
-
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

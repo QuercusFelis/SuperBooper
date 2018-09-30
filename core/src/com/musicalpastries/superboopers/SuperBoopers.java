@@ -84,38 +84,46 @@ public class SuperBoopers extends Game implements ApplicationListener {
 			case MENU:
 				if(menuScreen == null) menuScreen = new MenuScreen(this);
 				this.setScreen(menuScreen);
+				menuScreen.setLastScreen(lastScreen);
 				menuScreen.resume();
 				break;
 			case MAIN:
 				if(gameScreen == null){
 					gameScreen = new GameScreen(this, lastScreen);
 				}
+				gameScreen.setLastScreen(lastScreen);
 				gameScreen.resume();
 				this.setScreen(gameScreen);
 				break;
 			case INVENTORY:
 				if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this, lastScreen);
+				inventoryScreen.setLastScreen(lastScreen);
 				this.setScreen(inventoryScreen);
 				break;
 			case GOALS:
 				if(goalScreen == null) goalScreen = new GoalScreen(this, lastScreen);
-				this.setScreen(new GoalScreen(this, lastScreen));
+				goalScreen.setLastScreen(lastScreen);
+				this.setScreen(goalScreen);
 				break;
 			case STORE:
 				if(storeScreen == null) storeScreen = new StoreScreen(this, lastScreen);
-				this.setScreen(new StoreScreen(this, lastScreen));
+				storeScreen.setLastScreen(lastScreen);
+				this.setScreen(storeScreen);
 				break;
 			case COMMUNITY:
 				if(communityScreen == null) communityScreen = new CommunityScreen(this, lastScreen);
-				this.setScreen(new CommunityScreen(this, lastScreen));
+				communityScreen.setLastScreen(lastScreen);
+				this.setScreen(communityScreen);
 				break;
 			/*case GOOGLE:
 				//if(googleScreen == null) googleScreen = new GoogleScreen(this, lastScreen);
-				this.setScreen(new GoogleScreen(this));
+				googleScreen.setLastScreen(lastScreen);
+				this.setScreen(googleScreen);
 				break;*/
 			case SETTINGS:
 				if(settingScreen == null) settingScreen = new SettingScreen(this, lastScreen);
-				this.setScreen(new SettingScreen(this, lastScreen));
+				settingScreen.setLastScreen(lastScreen);
+				this.setScreen(settingScreen);
 				break;
 			//DonateScreen and CreditsScreen use very few resources, instance variable unnecessary
 			case DONATE:
@@ -124,7 +132,6 @@ public class SuperBoopers extends Game implements ApplicationListener {
 			case CREDITS:
 				this.setScreen(new CreditsScreen(this, lastScreen));
 				break;
-
 		}
 	}
 
