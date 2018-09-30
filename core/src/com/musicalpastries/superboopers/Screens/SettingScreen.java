@@ -16,8 +16,8 @@ public class SettingScreen extends SuperScreen {
 
     private Table tableInner;
 
-    public SettingScreen(SuperBoopers game) {
-        super(game);
+    public SettingScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
+        super(game, lastScreen);
 
         r= .2f;
         g= .2f;
@@ -48,6 +48,11 @@ public class SettingScreen extends SuperScreen {
         table.add(reset).colspan(2).fillX().pad(10).center().bottom();
 
         //listeners
+        back.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().changeScreen(lastScreen, SuperBoopers.eScreen.SETTINGS);}
+        });
         boop10.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

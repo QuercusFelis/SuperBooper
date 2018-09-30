@@ -66,7 +66,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<Booper>();
 
-		changeScreen(eScreen.MENU);
+		changeScreen(eScreen.MENU, eScreen.MENU);
 		System.out.println("SuperBoopers create");
 	}
 
@@ -79,8 +79,8 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		boopers.add(booper);
 	}
 
-	public void changeScreen(eScreen screen){
-		switch(screen){
+	public void changeScreen(eScreen newScreen, eScreen lastScreen){
+		switch(newScreen){
 			case MENU:
 				if(menuScreen == null) menuScreen = new MenuScreen(this);
 				this.setScreen(menuScreen);
@@ -88,41 +88,41 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				break;
 			case MAIN:
 				if(gameScreen == null){
-					gameScreen = new GameScreen(this);
+					gameScreen = new GameScreen(this, lastScreen);
 				}
 				gameScreen.resume();
 				this.setScreen(gameScreen);
 				break;
 			case INVENTORY:
-				if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this);
+				if(inventoryScreen == null) inventoryScreen = new InventoryScreen(this, lastScreen);
 				this.setScreen(inventoryScreen);
 				break;
 			case GOALS:
-				if(goalScreen == null) goalScreen = new GoalScreen(this);
-				this.setScreen(new GoalScreen(this));
+				if(goalScreen == null) goalScreen = new GoalScreen(this, lastScreen);
+				this.setScreen(new GoalScreen(this, lastScreen));
 				break;
 			case STORE:
-				if(storeScreen == null) storeScreen = new StoreScreen(this);
-				this.setScreen(new StoreScreen(this));
+				if(storeScreen == null) storeScreen = new StoreScreen(this, lastScreen);
+				this.setScreen(new StoreScreen(this, lastScreen));
 				break;
 			case COMMUNITY:
-				if(communityScreen == null) communityScreen = new CommunityScreen(this);
-				this.setScreen(new CommunityScreen(this));
+				if(communityScreen == null) communityScreen = new CommunityScreen(this, lastScreen);
+				this.setScreen(new CommunityScreen(this, lastScreen));
 				break;
 			/*case GOOGLE:
-				//if(googleScreen == null) googleScreen = new GoogleScreen(this);
+				//if(googleScreen == null) googleScreen = new GoogleScreen(this, lastScreen);
 				this.setScreen(new GoogleScreen(this));
 				break;*/
 			case SETTINGS:
-				if(settingScreen == null) settingScreen = new SettingScreen(this);
-				this.setScreen(new SettingScreen(this));
+				if(settingScreen == null) settingScreen = new SettingScreen(this, lastScreen);
+				this.setScreen(new SettingScreen(this, lastScreen));
 				break;
 			//DonateScreen and CreditsScreen use very few resources, instance variable unnecessary
 			case DONATE:
-				this.setScreen(new DonateScreen(this));
+				this.setScreen(new DonateScreen(this, lastScreen));
 				break;
 			case CREDITS:
-				this.setScreen(new CreditsScreen(this));
+				this.setScreen(new CreditsScreen(this, lastScreen));
 				break;
 
 		}

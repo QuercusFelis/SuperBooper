@@ -1,8 +1,10 @@
 package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -13,8 +15,8 @@ public class InventoryScreen extends SuperScreen {
 
     private Table items;
 
-    public InventoryScreen(SuperBoopers game) {
-        super(game);
+    public InventoryScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
+        super(game, lastScreen);
 
         r= .7f;
         g= .6f;
@@ -36,6 +38,12 @@ public class InventoryScreen extends SuperScreen {
         table.add(items).expand().fill();
 
         //listeners
+
+        back.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().changeScreen(lastScreen, SuperBoopers.eScreen.MENU);}
+        });
 
     }
 

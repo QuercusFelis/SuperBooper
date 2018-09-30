@@ -15,7 +15,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class MenuScreen extends SuperScreen {
 
     public MenuScreen(SuperBoopers game){
-        super(game, new OrthographicCamera());
+        super(game, SuperBoopers.eScreen.MAIN, new OrthographicCamera());
 
         r= 0;
         g= .5f;
@@ -77,59 +77,59 @@ public class MenuScreen extends SuperScreen {
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.MAIN);
+                getGame().changeScreen(SuperBoopers.eScreen.MAIN, SuperBoopers.eScreen.MENU);
             }
         });
         inventory.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.INVENTORY);
+                getGame().changeScreen(SuperBoopers.eScreen.INVENTORY, SuperBoopers.eScreen.MENU);
             }
         });
 //
         goals.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.GOALS);
+                getGame().changeScreen(SuperBoopers.eScreen.GOALS, SuperBoopers.eScreen.MENU);
             }
         });
         store.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.STORE);
+                getGame().changeScreen(SuperBoopers.eScreen.STORE, SuperBoopers.eScreen.MENU);
             }
         });
 //
         community.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.COMMUNITY);
+                getGame().changeScreen(SuperBoopers.eScreen.COMMUNITY, SuperBoopers.eScreen.MENU);
             }
         });
         google.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.GOOGLE);
+                getGame().changeScreen(SuperBoopers.eScreen.GOOGLE, SuperBoopers.eScreen.MENU);
             }
         });
 //
         settings.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.SETTINGS);
+                getGame().changeScreen(SuperBoopers.eScreen.SETTINGS, SuperBoopers.eScreen.MENU);
             }
         });
 //
         donate.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.DONATE);
+                getGame().changeScreen(SuperBoopers.eScreen.DONATE, SuperBoopers.eScreen.MENU);
             }
         });
         credits.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.CREDITS);
+                getGame().changeScreen(SuperBoopers.eScreen.CREDITS, SuperBoopers.eScreen.MENU);
             }
         });
     }

@@ -20,6 +20,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 public abstract class SuperScreen implements Screen {
     private SuperBoopers game;
+    protected SuperBoopers.eScreen lastScreen;
 
     private Stage stage;
     private OrthographicCamera gameCam;
@@ -34,17 +35,19 @@ public abstract class SuperScreen implements Screen {
     protected static Skin skin;
     protected Table table;
 
-    public SuperScreen(SuperBoopers game){
+    public SuperScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen){
         this.game = game;
+        this.lastScreen = lastScreen;
 
         //input processing for UI
         stage = new Stage(new ExtendViewport(SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT));
         setSkin();
     }
 
-    public SuperScreen(SuperBoopers game, OrthographicCamera gameCam){
+    public SuperScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen, OrthographicCamera gameCam){
         this.game = game;
         this.gameCam = gameCam;
+        this.lastScreen = lastScreen;
 
         //input processing for UI
         this.gameCam.setToOrtho(false, SuperBoopers.V_WIDTH, SuperBoopers.V_HEIGHT);
@@ -123,12 +126,6 @@ public abstract class SuperScreen implements Screen {
         back = new TextButton("<", skin);
 
         if(!(this instanceof MenuScreen)) table.add(back).pad(10).left();
-
-        back.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.MENU);}
-        });
     }
 
     @Override

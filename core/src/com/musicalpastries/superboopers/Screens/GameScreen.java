@@ -22,8 +22,8 @@ public class GameScreen extends SuperScreen {
     private Label xpLabel;
     private Label lvlLabel;
 
-    public GameScreen(SuperBoopers game){
-        super(game, new OrthographicCamera());
+    public GameScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen){
+        super(game, lastScreen, new OrthographicCamera());
         fScale = 1f;
 
         r= .3f;
@@ -70,6 +70,11 @@ public class GameScreen extends SuperScreen {
         table.row();
         table.add(scanButton).expand().fillX().bottom().colspan(3);
 
+        back.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().changeScreen(lastScreen, SuperBoopers.eScreen.MAIN);}
+        });
         scanButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -80,7 +85,7 @@ public class GameScreen extends SuperScreen {
         inventory.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getGame().changeScreen(SuperBoopers.eScreen.INVENTORY);
+                getGame().changeScreen(SuperBoopers.eScreen.INVENTORY, SuperBoopers.eScreen.MAIN);
             }
         });
     }

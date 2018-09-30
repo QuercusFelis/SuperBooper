@@ -1,7 +1,9 @@
 package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -10,8 +12,8 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 public class CommunityScreen extends SuperScreen {
 
-    public CommunityScreen(SuperBoopers game) {
-        super(game);
+    public CommunityScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
+        super(game, lastScreen);
 
         r= .7f;
         g= .0f;
@@ -30,6 +32,12 @@ public class CommunityScreen extends SuperScreen {
 
         table.row();
         //listeners
+
+        back.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().changeScreen(lastScreen, SuperBoopers.eScreen.COMMUNITY);}
+        });
     }
 
     @Override
