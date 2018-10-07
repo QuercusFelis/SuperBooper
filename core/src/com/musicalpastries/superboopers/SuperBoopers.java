@@ -5,6 +5,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Actors.Booper;
+import com.musicalpastries.superboopers.Actors.Boopermon;
 import com.musicalpastries.superboopers.Screens.CommunityScreen;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
@@ -64,7 +65,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		boopers = new ArrayList<Booper>();
+		boopers = new ArrayList<>();
 
 		changeScreen(eScreen.MENU, eScreen.MENU);
 		System.out.println("SuperBoopers create");
@@ -199,7 +200,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	public void addBooperFromScan() {
 		gameScreen.getLvlLabel().setText(lastScanned);
 		int id = Integer.parseInt(lastScanned.substring(2,3));
-		addBoopers(new Booper(gameScreen.getContext(), id));
+		addBoopers(new Boopermon(gameScreen.getContext(), id));
 		System.out.println(lastScanned);
 	}
 }

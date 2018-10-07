@@ -83,10 +83,6 @@ public abstract class SuperScreen implements Screen {
         stage.draw();
     }
 
-    public Stage getStage() {
-        return stage;
-    }
-
     public SuperBoopers getGame() {
         return game;
     }
