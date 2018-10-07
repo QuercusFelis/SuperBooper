@@ -15,16 +15,21 @@ public class Boopermon extends Booper {
     }
 
     @Override
+    protected void poked() {
+        game.testXP();
+    }
+
+    @Override
     public void selectBooper(eID eSpec){
         //TODO: make specific color profiles
         switch(eSpec){
             case DUCK:
                 species = "duck";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(Math.random()*1.5), (float)(Math.random()*1.5), (float)(Math.random()*1.5), 1));
                 break;
             case SLIME:
                 species = "slime";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), .9f));
                 break;
             case PILZ:
                 species = "pilz";
@@ -36,15 +41,16 @@ public class Boopermon extends Booper {
                 break;
             case BONSAI:
                 species = "bonsai";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                if(Math.ceil(Math.random()*2)%2==1){ setColor(new Color((float)(Math.random()/2), (float)(Math.random()+.15), (float)(Math.random()/2), 1)); }
+                else{ setColor(new Color((float)(Math.random()+.35), (float)(Math.random()/2), (float)(Math.random()+.25), 1)); }
                 break;
             case SPINPHONE:
                 species = "spinPhone";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color(1,1,1, 1));
                 break;
             case PINECONE:
                 species = "pinecone";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(Math.random()/2+.5), (float)(.5), (float)(.2), 1));
                 break;
             case BOX:
                 species = "box";

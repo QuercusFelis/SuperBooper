@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 
@@ -26,9 +27,9 @@ public class GameScreen extends SuperScreen {
         super(game, lastScreen, new OrthographicCamera());
         fScale = 1f;
 
-        r= .3f;
-        g= .7f;
-        b= .1f;
+        r= .9f;
+        g= .9f;
+        b= .9f;
 
         game.setXp(0);
         game.setLvl(1);
@@ -118,10 +119,9 @@ public class GameScreen extends SuperScreen {
     public void renderBatch() {
         getGame().batch.begin();
         getGame().batch.setProjectionMatrix(getGameCam().combined);
-        for (int i = 0; i < getGame().getBoopers().size(); i++) {
-            getGame().batch.setColor(getGame().getBoopers().get(i).getColor());
-            getGame().batch.draw(getGame().getBoopers().get(i).draw().getKeyFrame(dt, true), getGame().getBoopers().get(i).getX(), getGame().getBoopers().get(i).getY());
-            System.out.print(getGame().getBoopers().get(i).draw().getKeyFrame(dt, true).toString());
+        for (Booper booper:getGame().getBoopers()) {
+            getGame().batch.setColor(booper.getColor());
+            getGame().batch.draw(booper.draw().getKeyFrame(dt, true), booper.getX(), booper.getY());
         }
         getGame().batch.end();
     }

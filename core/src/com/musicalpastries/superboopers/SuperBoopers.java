@@ -66,9 +66,13 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	public void create () {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<>();
+		Booper.setAtlas();
+
+		if(gameScreen == null){
+			gameScreen = new GameScreen(this, eScreen.MENU);
+		}
 
 		changeScreen(eScreen.MENU, eScreen.MENU);
-		System.out.println("SuperBoopers create");
 	}
 
 	public ArrayList<Booper> getBoopers(){
@@ -89,9 +93,6 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				menuScreen.resume();
 				break;
 			case MAIN:
-				if(gameScreen == null){
-					gameScreen = new GameScreen(this, lastScreen);
-				}
 				gameScreen.setLastScreen(lastScreen);
 				gameScreen.resume();
 				this.setScreen(gameScreen);

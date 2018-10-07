@@ -32,10 +32,10 @@ public class InventoryScreen extends SuperScreen {
         Label title = new Label("Inventory", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         title.setFontScale(2.5f);
 
-        table.add(title).expandX().fillX();
+        table.add(title).expandX().fillX().left();
 
         table.row();
-        table.add(items).expand().fill();
+        table.add(items).expand().fill().colspan(2);
 
         //listeners
         back.addListener(new ChangeListener() {

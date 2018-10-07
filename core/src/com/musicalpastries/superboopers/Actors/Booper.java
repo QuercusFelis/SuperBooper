@@ -1,10 +1,14 @@
 package com.musicalpastries.superboopers.Actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.badlogic.gdx.utils.SerializationException;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
@@ -15,7 +19,10 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 public abstract class Booper extends Actor {
     //master sprite atlas
-    public static final TextureAtlas atlas = new TextureAtlas("sprites.txt");
+    public static TextureAtlas atlas;
+    protected static boolean atlasSet = false;
+
+    GameScreen game;
 
     //animated sprite variables
     protected String species;
@@ -46,10 +53,12 @@ public abstract class Booper extends Actor {
         addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.testXP();
+                poked();
             }
         });
     }
+
+    protected abstract void poked();
 
     abstract void selectBooper(eID eSpec);
 
@@ -58,6 +67,8 @@ public abstract class Booper extends Actor {
     }
 
     private void setupAnimation(int id){
+
+
         frameSize = 64;
         selectBooper(eID.values()[id]);
         region = atlas.findRegion(species);
@@ -75,15 +86,27 @@ public abstract class Booper extends Actor {
     private void setupLocation(GameScreen game){
         do{
             setX((float)(Math.random()*SuperBoopers.V_WIDTH));
-        }while(getX()+frameSize> SuperBoopers.V_WIDTH);
+        }while(getX()+frameSize > SuperBoopers.V_WIDTH);
 
         do{
             setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
-        }while(getY()+frameSize > SuperBoopers.V_HEIGHT - game.getTable().findActor("back").getHeight()||getY() < game.getTable().findActor("scan").getHeight());
+        }while(getY()+frameSize > 5*SuperBoopers.V_HEIGHT/6
+                ||getY() < SuperBoopers.V_HEIGHT/6);
     }
 
     public Animation<TextureRegion> draw(){
         return animation;
+    }
+
+    public static void setAtlas()throws GdxRuntimeException{
+        if(!atlasSet){
+            try{
+                atlas = new TextureAtlas(Gdx.files.internal("sprites.txt"));
+            } catch (GdxRuntimeException e){
+                System.err.println("Are you trying to run a desktop instance?");
+                atlas = new TextureAtlas(Gdx.files.external("AndroidStudioProjects\\SuperBooper\\android\\assets\\sprites.txt"));
+            }
+        }
     }
 
 }
