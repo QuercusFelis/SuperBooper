@@ -1,7 +1,7 @@
 package com.musicalpastries.superboopers.desktop;
 
-import com.badlogic.gdx.Gdx;
 import com.musicalpastries.superboopers.BScanner;
+import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
  * loads - 4/13/2018.
@@ -9,7 +9,10 @@ import com.musicalpastries.superboopers.BScanner;
 
 public class Scan implements BScanner {
     @Override
-    public void scan() {
-        Gdx.app.log("Scan", "A wild booper wishes it could appear!");
+    public void scan() { }
+
+    @Override
+    public void tell(String lastScanned) {
+        System.out.print(lastScanned);
     }
 }

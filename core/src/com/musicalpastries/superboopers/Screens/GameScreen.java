@@ -2,11 +2,14 @@ package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.SuperBoopers;
 
@@ -18,6 +21,8 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class GameScreen extends SuperScreen {
 
     private float fScale;
+
+    private SpriteBatch batch;
 
     private Table tableTop;
     private Label xpLabel;
@@ -89,6 +94,15 @@ public class GameScreen extends SuperScreen {
                 getGame().changeScreen(SuperBoopers.eScreen.INVENTORY, SuperBoopers.eScreen.MAIN);
             }
         });
+        //TODO: get input handling for boopers to work
+        for (final Booper booper:getGame().getBoopers()) {
+            booper.addListener(new ClickListener() {
+                public void clicked (InputEvent event, float x, float y) {
+                    booper.poked();
+                    System.err.println("poked");
+                }
+            });
+        }
     }
 
     public GameScreen getContext(){
@@ -117,18 +131,20 @@ public class GameScreen extends SuperScreen {
 
     @Override
     public void renderBatch() {
-        getGame().batch.begin();
-        getGame().batch.setProjectionMatrix(getGameCam().combined);
+        this.batch = getGame().getBatch();
+        batch.begin();
+        batch.setProjectionMatrix(getGameCam().combined);
         for (Booper booper:getGame().getBoopers()) {
-            getGame().batch.setColor(booper.getColor());
-            getGame().batch.draw(booper.draw().getKeyFrame(dt, true), booper.getX(), booper.getY());
+            batch.setColor(booper.getColor());
+            batch.draw(booper.draw().getKeyFrame(dt, true), booper.getX(), booper.getY());
+            booper.move(this);
         }
-        getGame().batch.end();
+        batch.end();
     }
 
     @Override
     public void dispose(){
-        getGame().batch.dispose();
+        getGame().getBatch().dispose();
     }
 
 }

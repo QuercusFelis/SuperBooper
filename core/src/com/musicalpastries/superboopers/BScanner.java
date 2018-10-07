@@ -6,4 +6,6 @@ package com.musicalpastries.superboopers;
 //TODO:
 public interface BScanner {
     public void scan();
+
+    public void tell(String lastScanned);
 }

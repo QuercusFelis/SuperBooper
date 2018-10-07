@@ -114,7 +114,7 @@ public abstract class SuperScreen implements Screen {
             stage.addActor(table);
         }
         table.setFillParent(true);
-        table.setDebug(true);
+        table.setDebug(false);
         table.top();
         System.out.println(table.toString());
 
@@ -136,6 +136,6 @@ public abstract class SuperScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        game.batch.dispose();
+        game.getBatch().dispose();
     }
 }

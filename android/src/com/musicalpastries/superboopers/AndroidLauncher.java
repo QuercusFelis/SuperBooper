@@ -10,6 +10,7 @@ import android.view.View;
 
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -85,11 +86,10 @@ public class AndroidLauncher extends AndroidApplication implements BScanner {
 					});
 		}
 
+		initialize(game = new SuperBoopers(this), config);
 		if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
 		}
-
-		initialize(game = new SuperBoopers(this), config);
 	}
 
 	@Override
@@ -119,8 +119,7 @@ public class AndroidLauncher extends AndroidApplication implements BScanner {
 			// Without this, after pressing volume buttons, the navigation bar will
 			// show up and won't hide
 			final View decorView = getWindow().getDecorView();
-			decorView
-					.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
+			decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
 					{
 						@Override
 						public void onSystemUiVisibilityChange(int visibility)
@@ -139,8 +138,7 @@ public class AndroidLauncher extends AndroidApplication implements BScanner {
 			// Without this, after pressing volume buttons, the navigation bar will
 			// show up and won't hide
 			final View decorView = getWindow().getDecorView();
-			decorView
-					.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
+			decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
 					{
 						@Override
 						public void onSystemUiVisibilityChange(int visibility)
@@ -174,5 +172,10 @@ public class AndroidLauncher extends AndroidApplication implements BScanner {
 	public void scan() {
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivityForResult(intent, REQUEST_CODE);
+	}
+
+	@Override
+	public void tell(String lastScanned) {
+		Toast.makeText(this, lastScanned, Toast.LENGTH_LONG);
 	}
 }

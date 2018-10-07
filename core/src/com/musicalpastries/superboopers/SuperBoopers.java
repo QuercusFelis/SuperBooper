@@ -17,6 +17,7 @@ import com.musicalpastries.superboopers.Screens.SettingScreen;
 import com.musicalpastries.superboopers.Screens.StoreScreen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -32,7 +33,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	public static final int V_WIDTH = 504;
 	public static final int V_HEIGHT = 896;
 
-	public SpriteBatch batch;
+	private SpriteBatch batch;
 	private ArrayList<Booper> boopers;
 	private Integer xp;
 	private Integer lvl;
@@ -169,6 +170,10 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		return gameScreen;
 	}
 
+	public SpriteBatch getBatch() {
+		return batch;
+	}
+
 	@Override
 	public void render(){
 		super.render();
@@ -198,10 +203,17 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		super.resize(width, height);
 	}
 
-	public void addBooperFromScan() {
-		gameScreen.getLvlLabel().setText(lastScanned);
-		int id = Integer.parseInt(lastScanned.substring(2,3));
-		addBoopers(new Boopermon(gameScreen.getContext(), id));
-		System.out.println(lastScanned);
+	public void addBooperFromScan() throws NumberFormatException{
+		try{
+			Random gen = new Random(Long.parseLong(lastScanned));
+			scanner.tell(lastScanned);
+			int id = (int)Math.round(gen.nextDouble()*10);
+			addBoopers(new Boopermon(gameScreen.getContext(), id));
+			System.out.println(lastScanned);
+		}catch (NumberFormatException e){
+			System.err.println(lastScanned);
+			scanner.tell(lastScanned);
+		}
+
 	}
 }

@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.badlogic.gdx.utils.SerializationException;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
@@ -30,7 +29,9 @@ public abstract class Booper extends Actor {
     private TextureRegion[] keyFrames;
     private Animation animation;
     private int numframes;
-    private int frameSize;
+    public static final int FRAME_SIZE = 64;
+
+    protected eID id;
 
     //used for subclass switch cases
     public enum eID {
@@ -50,52 +51,13 @@ public abstract class Booper extends Actor {
         setupAnimation(id);
         setupLocation(game);
 
-        addListener(new ChangeListener() {
+        addListener(new InputListener(){
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                poked();
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                super.touchUp(event, x, y, pointer, button);
+
             }
         });
-    }
-
-    protected abstract void poked();
-
-    abstract void selectBooper(eID eSpec);
-
-    public String getSpecies(){
-        return species;
-    }
-
-    private void setupAnimation(int id){
-
-
-        frameSize = 64;
-        selectBooper(eID.values()[id]);
-        region = atlas.findRegion(species);
-        this.numframes = region.getRegionWidth()/frameSize;
-        keyFrames = new TextureRegion[numframes];
-        int c=0;
-        for (int i = (int)(Math.random()*numframes); c < numframes; i++) {
-            if(i == numframes)i=0;
-            keyFrames[c] = new TextureRegion(region,frameSize*i,0, frameSize, frameSize);
-            c++;
-        }
-        animation = new Animation(1f/numframes, keyFrames);
-    }
-
-    private void setupLocation(GameScreen game){
-        do{
-            setX((float)(Math.random()*SuperBoopers.V_WIDTH));
-        }while(getX()+frameSize > SuperBoopers.V_WIDTH);
-
-        do{
-            setY((float)(Math.random()*SuperBoopers.V_HEIGHT));
-        }while(getY()+frameSize > 5*SuperBoopers.V_HEIGHT/6
-                ||getY() < SuperBoopers.V_HEIGHT/6);
-    }
-
-    public Animation<TextureRegion> draw(){
-        return animation;
     }
 
     public static void setAtlas()throws GdxRuntimeException{
@@ -109,4 +71,42 @@ public abstract class Booper extends Actor {
         }
     }
 
+    public abstract void poked();
+
+    abstract void selectBooper(eID eSpec);
+
+    public String getSpecies(){
+        return species;
+    }
+
+    private void setupAnimation(int id){
+        selectBooper(eID.values()[id]);
+        region = atlas.findRegion(species);
+        this.numframes = region.getRegionWidth()/ FRAME_SIZE;
+        keyFrames = new TextureRegion[numframes];
+        int c=0;
+        for (int i = (int)(Math.random()*numframes); c < numframes; i++) {
+            if(i == numframes)i=0;
+            keyFrames[c] = new TextureRegion(region, FRAME_SIZE *i,0, FRAME_SIZE, FRAME_SIZE);
+            c++;
+        }
+        animation = new Animation(1f/numframes, keyFrames);
+    }
+
+    private void setupLocation(GameScreen game){
+        do{
+            setX((int)(Math.random()*SuperBoopers.V_WIDTH));
+        }while(getX()+ FRAME_SIZE > SuperBoopers.V_WIDTH );
+
+        do{
+            setY((int)(Math.random()*SuperBoopers.V_HEIGHT));
+        }while(getY()+ FRAME_SIZE > 5*SuperBoopers.V_HEIGHT/6
+                ||getY() < SuperBoopers.V_HEIGHT/6);
+    }
+
+    public Animation<TextureRegion> draw(){
+        return animation;
+    }
+
+    public abstract void move(GameScreen screen);
 }
