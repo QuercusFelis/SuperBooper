@@ -19,7 +19,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public abstract class Booper extends Actor {
     //master sprite atlas
     public static TextureAtlas atlas;
-    protected static boolean atlasSet = false;
+    private static boolean atlasSet = false;
 
     GameScreen game;
 
@@ -91,6 +91,7 @@ public abstract class Booper extends Actor {
             c++;
         }
         animation = new Animation(1f/numframes, keyFrames);
+        setSize(FRAME_SIZE, FRAME_SIZE);
     }
 
     private void setupLocation(GameScreen game){

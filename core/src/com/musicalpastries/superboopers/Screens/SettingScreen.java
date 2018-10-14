@@ -29,8 +29,6 @@ public class SettingScreen extends SuperScreen {
     public void show() {
         super.show();
         tableInner = new Table();
-        tableInner.setDebug(true);
-        table.setDebug(true);
 
         //table contents
         Label title = new Label("Settings", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.musicalpastries.superboopers.Actors.Booper;
+import com.musicalpastries.superboopers.Actors.Boopermon;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 
@@ -25,7 +26,7 @@ public class GameScreen extends SuperScreen {
     private SpriteBatch batch;
 
     private Table tableTop;
-    private Label xpLabel;
+    private Label boops;
     private Label lvlLabel;
 
     public GameScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen){
@@ -45,6 +46,10 @@ public class GameScreen extends SuperScreen {
         super.show();
         tableTop = new Table();
 
+        for (Booper boop:getGame().getBoopers()) {
+            stage.addActor(boop);
+        }
+
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(
                 skin.getDrawable("scrollbar-horizontal"),
                 skin.getDrawable("scrollbar-horizontal"),
@@ -53,12 +58,12 @@ public class GameScreen extends SuperScreen {
         );
 
         //setting up objects in table
-        xpLabel = new Label("XP: " + String.format("%03d", getGame().getXp()),
-                new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
-        xpLabel.setFontScale(fScale);
+        boops = new Label("Boops: " + String.format("%03d", getGame().getXp()),
+                new Label.LabelStyle(skin.getFont("font"), Color.SKY));
+        boops.setFontScale(fScale);
 
         lvlLabel = new Label("Lvl: " + String.format("%01d", getGame().getLvl()),
-                new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+                new Label.LabelStyle(skin.getFont("font"), Color.CORAL));
         lvlLabel.setFontScale(fScale);
 
         TextButton inventory = new TextButton("inventory", style);
@@ -68,7 +73,7 @@ public class GameScreen extends SuperScreen {
         table.add(tableTop).expandX().fillX().padTop(10).top();
             //Inner Table Row 0
         tableTop.add(lvlLabel).expandX().top();
-        tableTop.add(xpLabel).expandX().top();
+        tableTop.add(boops).expandX().top();
             //Inner Table Row 1
         tableTop.row();
         tableTop.add(inventory).colspan(2).fill().padTop(10).top();
@@ -76,6 +81,7 @@ public class GameScreen extends SuperScreen {
         table.row();
         table.add(scanButton).expand().fillX().bottom().colspan(3);
 
+        //adding listeners for all the buttons
         back.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -94,12 +100,13 @@ public class GameScreen extends SuperScreen {
                 getGame().changeScreen(SuperBoopers.eScreen.INVENTORY, SuperBoopers.eScreen.MAIN);
             }
         });
-        //TODO: get input handling for boopers to work
-        for (final Booper booper:getGame().getBoopers()) {
-            booper.addListener(new ClickListener() {
+
+        //adding click listeners for all the boopers
+        for (final Actor actor:stage.getActors()) {
+            if(actor instanceof Boopermon)
+            actor.addListener(new ClickListener() {
                 public void clicked (InputEvent event, float x, float y) {
-                    booper.poked();
-                    System.err.println("poked");
+                    testXP();
                 }
             });
         }
@@ -120,13 +127,12 @@ public class GameScreen extends SuperScreen {
 
     public void testXP(){
         getGame().incrementXP();
-        xpLabel.setText("XP: " + String.format("%03d", getGame().getXp()));
+        boops.setText("Boops: " + String.format("%03d", getGame().getXp()));
     }
 
     @Override
-    public void update(){
+    public void update() {
         getGameCam().update();
-        table.setFillParent(true);
     }
 
     @Override

@@ -22,7 +22,7 @@ public abstract class SuperScreen implements Screen {
     private SuperBoopers game;
     protected SuperBoopers.eScreen lastScreen;
 
-    private Stage stage;
+    protected Stage stage;
     private OrthographicCamera gameCam;
     protected TextButton back;
 
@@ -59,12 +59,12 @@ public abstract class SuperScreen implements Screen {
 
     abstract void update();
 
-    public void setSkin() throws SerializationException{
+    private void setSkin() throws SerializationException{
         try{
              skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
         } catch (SerializationException e){
             System.err.println("Are you trying to run a desktop instance?");
-            skin = new Skin(Gdx.files.internal("C:\\Users\\loads\\AndroidStudioProjects\\SuperBooper\\desktop\\skin\\pixthulhu-ui.json"));
+            skin = new Skin(Gdx.files.external("AndroidStudioProjects\\SuperBooper\\android\\assets\\skin\\pixthulhu-ui.json"));
         }
     }
 
