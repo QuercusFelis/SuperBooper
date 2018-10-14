@@ -6,6 +6,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.Actors.Boopermon;
+import com.musicalpastries.superboopers.Actors.Items.Item;
 import com.musicalpastries.superboopers.Screens.CommunityScreen;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
@@ -68,6 +69,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<>();
 		Booper.setAtlas();
+		Item.setAtlas();
 
 		if(gameScreen == null){
 			gameScreen = new GameScreen(this, eScreen.MENU);

@@ -50,14 +50,6 @@ public abstract class Booper extends Actor {
     public Booper(GameScreen game, int id){
         setupAnimation(id);
         setupLocation(game);
-
-        addListener(new InputListener(){
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                super.touchUp(event, x, y, pointer, button);
-
-            }
-        });
     }
 
     public static void setAtlas()throws GdxRuntimeException{
