@@ -47,8 +47,8 @@ public abstract class Booper extends Actor {
         TENNIS
     }
 
-    public Booper(GameScreen game, int id){
-        setupAnimation(id);
+    public Booper(GameScreen game, int id, double[] rgb){
+        setupAnimation(id, rgb);
         setupLocation(game);
     }
 
@@ -63,16 +63,15 @@ public abstract class Booper extends Actor {
         }
     }
 
-    public abstract void poked();
-
-    abstract void selectBooper(eID eSpec);
+    abstract void selectBooper(eID eSpec, double[] rgb);
 
     public String getSpecies(){
         return species;
     }
 
-    private void setupAnimation(int id){
-        selectBooper(eID.values()[id]);
+    private void setupAnimation(int id, double[] rgb){
+        selectBooper(eID.values()[id],
+                rgb);
         region = atlas.findRegion(species);
         this.numframes = region.getRegionWidth()/ FRAME_SIZE;
         keyFrames = new TextureRegion[numframes];

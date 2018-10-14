@@ -156,8 +156,8 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		scanner.scan();
 	}
 
-	public void setLastScanned(String format){
-		lastScanned = format;
+	public void setLastScanned(String code){
+		lastScanned = code;
 	}
 
 	public Integer getXp() {
@@ -189,10 +189,6 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	@Override
 	public void resume(){
 		super.resume();
-		if(boopers.size() > 0){
-			System.out.println(boopers.get(0).getSpecies());
-			System.out.println(boopers.get(0).draw().getKeyFrames().length+"");
-		}
 	}
 
 	@Override
@@ -209,9 +205,10 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		try{
 			Random gen = new Random(Long.parseLong(lastScanned));
 			scanner.tell(lastScanned);
-			int id = (int)Math.round(gen.nextDouble()*10);
-			addBoopers(new Boopermon(gameScreen.getContext(), id));
-			System.out.println(lastScanned);
+			int id = (int)Math.floor(gen.nextDouble()*10);
+			double[] rgb = new double[3];
+			for (int i = 0; i < rgb.length; i++) rgb[i] = gen.nextDouble();
+			addBoopers(new Boopermon(gameScreen.getContext(), id, rgb));
 		}catch (NumberFormatException e){
 			System.err.println(lastScanned);
 			scanner.tell(lastScanned);

@@ -18,8 +18,8 @@ public class Boopermon extends Booper {
     private float deltaX;
     private float deltaY;
 
-    public Boopermon(GameScreen game, int id) {
-        super(game, id);
+    public Boopermon(GameScreen game, int id, double[] rgb) {
+        super(game, id, rgb);
         newDestination();
         wait = (int)(Math.random()*500);
         if(wait % 2 == 1){
@@ -28,33 +28,28 @@ public class Boopermon extends Booper {
     }
 
     @Override
-    public void poked() {
-        game.testXP();
-    }
-
-    @Override
-    public void selectBooper(eID eSpec){
+    public void selectBooper(eID eSpec, double[] rgb){
         switch(eSpec){
             case DUCK:
                 species = "duck";
-                setColor(new Color((float)(Math.random()*1.5), (float)(Math.random()*1.5), (float)(Math.random()*1.5), 1));
+                setColor(new Color((float)(rgb[0]*1.2), (float)(rgb[1]*1.2), (float)(rgb[2]*1.3), 1));
                 break;
             case SLIME:
                 species = "slime";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), .9f));
+                setColor(new Color((float)(rgb[0]+.3), (float)(rgb[1]+.3), (float)(rgb[2]+.3), .9f));
                 break;
             case PILZ:
                 species = "pilz";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(rgb[0]+.3), (float)(rgb[1]+.3), (float)(rgb[2]+.3), 1));
                 break;
             case SWITCH:
                 species = "switch";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(rgb[0]+.3), (float)(rgb[1]+.3), (float)(rgb[2]+.3), 1));
                 break;
             case BONSAI:
                 species = "bonsai";
-                if(Math.ceil(Math.random()*2)%2==1){ setColor(new Color((float)(Math.random()/2), (float)(Math.random()+.15), (float)(Math.random()/2), 1)); }
-                else{ setColor(new Color((float)(Math.random()+.35), (float)(Math.random()/2), (float)(Math.random()+.25), 1)); }
+                if(Math.ceil(Math.random()*2)%2==1){ setColor(new Color((float)(rgb[0]/2), (float)(rgb[1]+.15), (float)(rgb[2]/2), 1)); }
+                else{ setColor(new Color((float)(rgb[0]+.35), (float)(rgb[1]/2), (float)(rgb[2]+.25), 1)); }
                 break;
             case SPINPHONE:
                 species = "spinPhone";
@@ -62,19 +57,19 @@ public class Boopermon extends Booper {
                 break;
             case PINECONE:
                 species = "pinecone";
-                setColor(new Color((float)(Math.random()/2+.5), (float)(.5), (float)(.2), 1));
+                setColor(new Color((float)(rgb[0]/2+.5), (float)(.5), (float)(.2), 1));
                 break;
             case BOX:
                 species = "box";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(rgb[0]+.3), (float)(rgb[1]+.3), (float)(rgb[2]+.3), 1));
                 break;
             case STEAK:
                 species = "steak";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(rgb[0]+.3), (float)(rgb[1]+.3), (float)(rgb[2]+.3), 1));
                 break;
             case TENNIS:
                 species = "tennis";
-                setColor(new Color((float)(Math.random()+.3), (float)(Math.random()+.3), (float)(Math.random()+.3), 1));
+                setColor(new Color((float)(rgb[0]+.3), (float)(rgb[1]+.3), (float)(rgb[2]+.3), 1));
                 break;
         }
     }

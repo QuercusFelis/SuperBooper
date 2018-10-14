@@ -57,7 +57,8 @@ public class SettingScreen extends SuperScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 int c = 10;
                 while (c > 0) {
-                    getGame().addBoopers(new Boopermon(getGame().getGameScreen(), (int) (Math.random() * Booper.atlas.getRegions().size)));
+                    getGame().setLastScanned(""+(int)(Math.random()*100000));
+                    getGame().addBooperFromScan();
                     c--;
                 }
             }
