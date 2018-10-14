@@ -10,7 +10,7 @@ import com.musicalpastries.superboopers.Actors.Boopermon;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * Andrew Groeling - 12/27/2017.
+ * woocat - 12/27/2017.
  */
 
 public class SettingScreen extends SuperScreen {

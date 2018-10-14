@@ -4,7 +4,7 @@ import com.musicalpastries.superboopers.BScanner;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * loads - 4/13/2018.
+ * woodcat - 4/13/2018.
  */
 
 public class Scan implements BScanner {

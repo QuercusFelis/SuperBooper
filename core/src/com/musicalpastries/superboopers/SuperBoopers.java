@@ -21,7 +21,7 @@ import java.util.Random;
 
 
 /**
- * Andrew Groeling - 9/29/2017.
+ * woodcat - 9/29/2017.
  */
 
 public class SuperBoopers extends Game implements ApplicationListener {

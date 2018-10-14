@@ -16,7 +16,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
 
 
 /**
- * Andrew Groeling - 9/29/2017.
+ * woodcat - 9/29/2017.
  */
 
 public class GameScreen extends SuperScreen {

@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * Andrew Groeling - 12/23/2017.
+ * woodcat - 12/23/2017.
  */
 
 public class MenuScreen extends SuperScreen {

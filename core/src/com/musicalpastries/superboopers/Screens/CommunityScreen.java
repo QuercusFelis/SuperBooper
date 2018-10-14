@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * Andrew Groeling - 12/27/2017.
+ * woodcat - 12/27/2017.
  */
 
 public class CommunityScreen extends SuperScreen {

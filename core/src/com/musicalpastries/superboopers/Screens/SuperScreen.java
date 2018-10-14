@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * Andrew Groeling - 3/25/2018.
+ * woodcat - 3/25/2018.
  */
 
 public abstract class SuperScreen implements Screen {
