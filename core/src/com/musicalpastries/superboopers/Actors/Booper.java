@@ -65,10 +65,6 @@ public abstract class Booper extends Actor {
 
     abstract void selectBooper(eID eSpec, double[] rgb);
 
-    public String getSpecies(){
-        return species;
-    }
-
     private void setupAnimation(int id, double[] rgb){
         selectBooper(eID.values()[id],
                 rgb);
