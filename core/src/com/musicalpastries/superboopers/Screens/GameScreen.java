@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -104,9 +106,12 @@ public class GameScreen extends SuperScreen {
         //adding click listeners for all the boopers
         for (final Actor actor:stage.getActors()) {
             if(actor instanceof Boopermon)
-            actor.addListener(new ClickListener() {
-                public void clicked (InputEvent event, float x, float y) {
+            actor.addListener(new InputListener() {
+
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     testXP();
+                    return super.touchDown(event, x, y, pointer, button);
                 }
             });
         }
