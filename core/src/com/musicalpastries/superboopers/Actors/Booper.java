@@ -56,7 +56,7 @@ public abstract class Booper extends Actor {
                 atlas = new TextureAtlas(Gdx.files.internal("sprites.txt"));
             } catch (GdxRuntimeException e){
                 System.err.println("Are you trying to run a desktop instance?");
-                atlas = new TextureAtlas(Gdx.files.external("AndroidStudioProjects\\SuperBooper\\android\\assets\\sprites.txt"));
+                atlas = new TextureAtlas(Gdx.files.external("AndroidStudioProjects/SuperBooper/android/assets/sprites.txt"));
             }
         }
     }

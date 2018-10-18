@@ -44,7 +44,7 @@ public class MenuScreen extends SuperScreen {
         try {
             logoSpriteSheet = new TextureRegion(new Texture(Gdx.files.internal("skin/SUPERboopers.png")));
         }catch (GdxRuntimeException e){
-            logoSpriteSheet = new TextureRegion(new Texture(Gdx.files.external("AndroidStudioProjects\\SuperBooper\\android\\assets\\skin\\SUPERboopers.png")));
+            logoSpriteSheet = new TextureRegion(new Texture(Gdx.files.external("AndroidStudioProjects/SuperBooper/android/assets/skin/SUPERboopers.png")));
         }
         logoArray = new TextureRegion[15];
         for (int i = 0; i < logoArray.length; i++) {

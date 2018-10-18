@@ -62,7 +62,7 @@ public abstract class SuperScreen implements Screen {
              skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
         } catch (SerializationException e){
             System.err.println("Are you trying to run a desktop instance?");
-            skin = new Skin(Gdx.files.external("AndroidStudioProjects\\SuperBooper\\android\\assets\\skin\\pixthulhu-ui.json"));
+            skin = new Skin(Gdx.files.external("AndroidStudioProjects/SuperBooper/android/assets/skin/pixthulhu-ui.json"));
         }
     }
 
