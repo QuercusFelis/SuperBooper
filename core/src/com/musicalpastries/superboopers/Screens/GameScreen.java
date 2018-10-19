@@ -123,7 +123,7 @@ public class GameScreen extends SuperScreen {
     public void showInfoWindow(final Boopermon booper){
         booperInfo = new Dialog("Booper Info", skin);
 
-        ImageAnimated animated = new ImageAnimated(booper.draw());
+        //ImageAnimated animated = new ImageAnimated(booper.draw());
         booperInfo.getContentTable().add(new Image(booper.draw().getKeyFrames()[0])).padTop(10);
         booperInfo.getContentTable().add(booper.getName()).padTop(10);
         booperInfo.getContentTable().add("lvl: "+booper.getLvl()).padTop(10);
