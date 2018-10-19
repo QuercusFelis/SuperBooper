@@ -6,12 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.Actors.Boopermon;
+import com.musicalpastries.superboopers.Actors.ImageAnimated;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 
@@ -28,6 +31,7 @@ public class GameScreen extends SuperScreen {
     private Table tableTop;
     private Label boops;
     private Label lvlLabel;
+    private Dialog booperInfo;
 
     public GameScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen){
         super(game, lastScreen, new OrthographicCamera());
@@ -91,7 +95,7 @@ public class GameScreen extends SuperScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 getGame().scan();
-                testXP();
+                incrementBoops();
             }
         });
         inventory.addListener(new ChangeListener() {
@@ -108,11 +112,25 @@ public class GameScreen extends SuperScreen {
 
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    testXP();
+                    incrementBoops();
+                    showInfoWindow((Boopermon) actor);
                     return super.touchDown(event, x, y, pointer, button);
                 }
             });
         }
+    }
+
+    public void showInfoWindow(final Boopermon booper){
+        booperInfo = new Dialog("Booper Info", skin);
+
+        ImageAnimated animated = new ImageAnimated(booper.draw());
+        booperInfo.getContentTable().add(new Image(booper.draw().getKeyFrames()[0])).padTop(10);
+        booperInfo.getContentTable().add(booper.getName()).padTop(10);
+        booperInfo.getContentTable().add("lvl: "+booper.getLvl()).padTop(10);
+        booperInfo.getContentTable().row();
+        booperInfo.getContentTable().add(""+booper.getCreated()).colspan(2);
+        booperInfo.button("close");
+        booperInfo.show(stage);
     }
 
     public GameScreen getContext(){
@@ -128,7 +146,7 @@ public class GameScreen extends SuperScreen {
         return table;
     }
 
-    public void testXP(){
+    public void incrementBoops(){
         getGame().incrementXP();
         boops.setText("Boops: " + String.format("%03d", getGame().getXp()));
     }

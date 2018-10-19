@@ -18,6 +18,7 @@ import com.musicalpastries.superboopers.Screens.SettingScreen;
 import com.musicalpastries.superboopers.Screens.StoreScreen;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -208,7 +209,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 			int id = (int)Math.floor(gen.nextDouble()*10);
 			double[] rgb = new double[3];
 			for (int i = 0; i < rgb.length; i++) rgb[i] = gen.nextDouble();
-			addBoopers(new Boopermon(gameScreen.getContext(), id, rgb));
+			addBoopers(new Boopermon(gameScreen.getContext(), id, rgb, lastScanned));
 		}catch (NumberFormatException e){
 			System.err.println(lastScanned);
 			scanner.tell(lastScanned);

@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
+import java.util.Date;
+
 
 /**
  * woodcat - 10/19/2017.
@@ -20,6 +22,11 @@ public abstract class Booper extends Actor {
     private static boolean atlasSet = false;
 
     GameScreen game;
+
+
+    private String name;
+    private Date created;
+    private int lvl;
 
     //animated sprite variables
     protected String species;
@@ -48,6 +55,7 @@ public abstract class Booper extends Actor {
     public Booper(GameScreen game, int id, double[] rgb){
         setupAnimation(id, rgb);
         setupLocation(game);
+        lvl = 0;
     }
 
     public static void setAtlas()throws GdxRuntimeException{
@@ -59,6 +67,32 @@ public abstract class Booper extends Actor {
                 atlas = new TextureAtlas(Gdx.files.external("AndroidStudioProjects/SuperBooper/android/assets/sprites.txt"));
             }
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void incrementLvl() {
+        this.lvl++;
     }
 
     abstract void selectBooper(eID eSpec, double[] rgb);

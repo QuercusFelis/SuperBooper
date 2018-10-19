@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.musicalpastries.superboopers.Screens.GameScreen;
 import com.musicalpastries.superboopers.SuperBoopers;
 
+import java.util.Date;
+
 /**
  * woodcat - 10/6/2018.
  */
@@ -18,8 +20,10 @@ public class Boopermon extends Booper {
     private float deltaX;
     private float deltaY;
 
-    public Boopermon(GameScreen game, int id, double[] rgb) {
+    public Boopermon(GameScreen game, int id, double[] rgb, String lastScanned) {
         super(game, id, rgb);
+        setName(lastScanned);
+        setCreated(new Date(System.currentTimeMillis()));
         newDestination();
         wait = (int)(Math.random()*500);
         if(wait % 2 == 1){
