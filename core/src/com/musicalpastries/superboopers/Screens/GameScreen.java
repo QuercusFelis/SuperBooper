@@ -109,7 +109,6 @@ public class GameScreen extends SuperScreen {
         for (final Actor actor:stage.getActors()) {
             if(actor instanceof Boopermon)
             actor.addListener(new InputListener() {
-
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     incrementBoops();
