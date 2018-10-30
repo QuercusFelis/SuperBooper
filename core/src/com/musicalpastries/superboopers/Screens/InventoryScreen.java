@@ -47,16 +47,18 @@ public class InventoryScreen extends SuperScreen {
         //setting up scrollpane of items
         for (Booper b:getGame().getBoopers()) {
             final Image image = new Image(b.draw().getKeyFrame(0));
+            //configure listing
             Table listing = new Table(skin);
             items.add(listing).left().expandX().fill().padLeft(5).padRight(5).padBottom(2);
             listing.setDebug(false);
             listing.add(image);
             listing.add("temporary text").expandX().fill().padLeft(50);
             items.row();
+            //add listener for item in listing
             listing.addListener(new ActorGestureListener() {
                 @Override
                 public void tap(InputEvent event, float x, float y, int pointer, int button) {
-                    showInfoWindow(image); }});
+                    showInfoWindow(new Image(image.getDrawable())); }});
         }
         items.setDebug(false);
         //adding widgets to main scene table
@@ -78,10 +80,9 @@ public class InventoryScreen extends SuperScreen {
         itemInfo = new Dialog("Item Info", skin);
 
         itemInfo.getContentTable().add(image).padTop(10);
-        itemInfo.getContentTable().add("width: "+image.getImageWidth()).padTop(10).bottom().left();
+        itemInfo.getContentTable().add("Size: "+image.getWidth()).padTop(10).bottom().left();
         itemInfo.getContentTable().row();
         itemInfo.getContentTable().add();
-        itemInfo.getContentTable().add("height: "+image.getImageHeight()).padTop(10);
         itemInfo.button("close");
         itemInfo.show(stage);
     }
