@@ -1,14 +1,17 @@
 package com.musicalpastries.superboopers.Screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.SuperBoopers;
@@ -20,6 +23,7 @@ import com.musicalpastries.superboopers.SuperBoopers;
 public class InventoryScreen extends SuperScreen {
 
     private Table items;
+    private Dialog itemInfo;
 
     public InventoryScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
@@ -32,13 +36,13 @@ public class InventoryScreen extends SuperScreen {
     @Override
     public void show() {
         super.show();
-        table.setDebug(true);
+        table.setDebug(false);
         //instantiating scene widgets
         Label title = new Label("Inventory", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         title.setFontScale(2.5f);
 
         items = new Table();
-        VerticalGroup[] vGroups = new VerticalGroup[Gdx.graphics.getWidth()/64];
+        VerticalGroup[] vGroups = new VerticalGroup[SuperBoopers.V_WIDTH/64];
         for (int i = 0; i < vGroups.length; i++) {
             vGroups[i] = new VerticalGroup();
         }
@@ -46,11 +50,19 @@ public class InventoryScreen extends SuperScreen {
         //setting up scrollpane of items
         for (VerticalGroup g :vGroups) {
             for (Booper b:getGame().getBoopers()) {
-                g.addActor(new Image(b.draw().getKeyFrame(0)));
+                final Image image = new Image(b.draw().getKeyFrame(0));
+                g.addActor(image);
+                image.addListener(new ActorGestureListener() {
+                    @Override
+                    public void tap(InputEvent event, float x, float y, int pointer, int button) {
+                        showInfoWindow(image);
+                    }
+
+                });
             }
-            items.add(g).pad(2);
+            items.add(g).pad(2).top();
         }
-        items.setDebug(true);
+        items.setDebug(false);
         //adding widgets to main scene table
         table.add(title).expandX().fillX().left();
 
@@ -64,6 +76,18 @@ public class InventoryScreen extends SuperScreen {
                 getGame().changeScreen(lastScreen, SuperBoopers.eScreen.MENU);}
         });
 
+    }
+
+    public void showInfoWindow(Image image){
+        itemInfo = new Dialog("Item Info", skin);
+
+        itemInfo.getContentTable().add(image).padTop(10);
+        itemInfo.getContentTable().add("width: "+image.getImageWidth()).padTop(10).bottom().left();
+        itemInfo.getContentTable().row();
+        itemInfo.getContentTable().add();
+        itemInfo.getContentTable().add("height: "+image.getImageHeight()).padTop(10);
+        itemInfo.button("close");
+        itemInfo.show(stage);
     }
 
     @Override

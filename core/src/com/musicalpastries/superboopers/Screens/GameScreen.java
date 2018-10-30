@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.Actors.Booper;
 import com.musicalpastries.superboopers.Actors.Boopermon;
@@ -107,15 +108,27 @@ public class GameScreen extends SuperScreen {
 
         //adding click listeners for all the boopers
         for (final Actor actor:stage.getActors()) {
-            if(actor instanceof Boopermon)
-            actor.addListener(new InputListener() {
-                @Override
-                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    incrementBoops();
-                    showInfoWindow((Boopermon) actor);
-                    return super.touchDown(event, x, y, pointer, button);
-                }
-            });
+            if(actor instanceof Boopermon) {
+                actor.addListener(new ActorGestureListener() {
+                    @Override
+                    public void tap(InputEvent event, float x, float y, int pointer, int button) {
+                        incrementBoops();
+                        showInfoWindow((Boopermon) actor);
+                    }
+                });
+                actor.addListener(new InputListener(){
+                   @Override
+                   public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                       return true;
+                   }
+
+                    @Override
+                    public void touchDragged(InputEvent event, float x, float y, int pointer) {
+                        //TODO: handle dragging
+                        super.touchDragged(event, x, y, pointer);
+                    }
+                });
+            }
         }
     }
 
