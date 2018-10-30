@@ -42,25 +42,21 @@ public class InventoryScreen extends SuperScreen {
         title.setFontScale(2.5f);
 
         items = new Table();
-        VerticalGroup[] vGroups = new VerticalGroup[SuperBoopers.V_WIDTH/64];
-        for (int i = 0; i < vGroups.length; i++) {
-            vGroups[i] = new VerticalGroup();
-        }
         ScrollPane scrollPane = new ScrollPane(items, skin);
+        scrollPane.setFadeScrollBars(false);
         //setting up scrollpane of items
-        for (VerticalGroup g :vGroups) {
-            for (Booper b:getGame().getBoopers()) {
-                final Image image = new Image(b.draw().getKeyFrame(0));
-                g.addActor(image);
-                image.addListener(new ActorGestureListener() {
-                    @Override
-                    public void tap(InputEvent event, float x, float y, int pointer, int button) {
-                        showInfoWindow(image);
-                    }
-
-                });
-            }
-            items.add(g).pad(2).top();
+        for (Booper b:getGame().getBoopers()) {
+            final Image image = new Image(b.draw().getKeyFrame(0));
+            Table listing = new Table(skin);
+            items.add(listing).left().expandX().fill().padLeft(5).padRight(5).padBottom(2);
+            listing.setDebug(false);
+            listing.add(image);
+            listing.add("temporary text").expandX().fill().padLeft(50);
+            items.row();
+            listing.addListener(new ActorGestureListener() {
+                @Override
+                public void tap(InputEvent event, float x, float y, int pointer, int button) {
+                    showInfoWindow(image); }});
         }
         items.setDebug(false);
         //adding widgets to main scene table
