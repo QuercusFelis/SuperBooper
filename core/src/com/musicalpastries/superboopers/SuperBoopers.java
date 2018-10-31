@@ -4,8 +4,8 @@ package com.musicalpastries.superboopers;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.musicalpastries.superboopers.Actors.Booper;
-import com.musicalpastries.superboopers.Actors.Boopermon;
+import com.musicalpastries.superboopers.Actors.Boopers.Booper;
+import com.musicalpastries.superboopers.Actors.Boopers.Boopermon;
 import com.musicalpastries.superboopers.Actors.Items.Item;
 import com.musicalpastries.superboopers.Screens.CommunityScreen;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
@@ -18,7 +18,6 @@ import com.musicalpastries.superboopers.Screens.SettingScreen;
 import com.musicalpastries.superboopers.Screens.StoreScreen;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 
@@ -80,11 +79,10 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	}
 
 	public ArrayList<Booper> getBoopers(){
-		ArrayList<Booper> boopers = this.boopers;
 		return boopers;
 	}
 
-	public void addBoopers(Booper booper){
+	private void addBoopers(Booper booper){
 		boopers.add(booper);
 	}
 

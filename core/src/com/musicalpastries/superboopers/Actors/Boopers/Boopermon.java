@@ -1,4 +1,4 @@
-package com.musicalpastries.superboopers.Actors;
+package com.musicalpastries.superboopers.Actors.Boopers;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -26,9 +26,7 @@ public class Boopermon extends Booper {
         setCreated(new Date(System.currentTimeMillis()));
         newDestination();
         wait = (int)(Math.random()*500);
-        if(wait % 2 == 1){
-            arrived = false;
-        }else arrived = true;
+        arrived = wait % 2 != 1;
     }
 
     @Override
@@ -85,7 +83,7 @@ public class Boopermon extends Booper {
 
     private void newDestination() {
         arrived = false;
-        wait = (int)Math.random()*500+250;
+        wait = (int)(Math.random()*500)+250;
         do{
             destX = (int)(Math.random()*SuperBoopers.V_WIDTH)+1;
         }while(destX+FRAME_SIZE > SuperBoopers.V_WIDTH || destX < 0);

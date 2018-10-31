@@ -20,11 +20,11 @@ public abstract class SuperScreen implements Screen {
     private SuperBoopers game;
     protected SuperBoopers.eScreen lastScreen;
 
-    protected Stage stage;
+    Stage stage;
     private OrthographicCamera gameCam;
     protected TextButton back;
 
-    protected float dt;
+    float dt;
 
     protected float r;
     protected float g;
@@ -85,7 +85,7 @@ public abstract class SuperScreen implements Screen {
         return game;
     }
 
-    public OrthographicCamera getGameCam(){
+    OrthographicCamera getGameCam(){
         return gameCam;
     }
 
@@ -114,7 +114,6 @@ public abstract class SuperScreen implements Screen {
         table.setFillParent(true);
         table.setDebug(false);
         table.top();
-        System.out.println(table.toString());
 
         setSkin();
         back = new TextButton("<", skin);

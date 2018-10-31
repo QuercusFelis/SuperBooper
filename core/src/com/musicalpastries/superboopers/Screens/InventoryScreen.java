@@ -1,19 +1,17 @@
 package com.musicalpastries.superboopers.Screens;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.musicalpastries.superboopers.Actors.Booper;
+import com.musicalpastries.superboopers.Actors.Boopers.Booper;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
@@ -76,14 +74,27 @@ public class InventoryScreen extends SuperScreen {
 
     }
 
-    public void showInfoWindow(Image image){
+    private void showInfoWindow(Image image){
         itemInfo = new Dialog("Item Info", skin);
+        TextButton use = new TextButton("use", skin);
 
+        //dialogue box layout
         itemInfo.getContentTable().add(image).padTop(10);
         itemInfo.getContentTable().add("Size: "+image.getWidth()).padTop(10).bottom().left();
         itemInfo.getContentTable().row();
         itemInfo.getContentTable().add();
         itemInfo.button("close");
+        itemInfo.getButtonTable().add(use).padLeft(10);
+
+        //setup listeners for items in box
+        use.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+
+            }
+        });
+
+        //dialogue box built, ready to show
         itemInfo.show(stage);
     }
 

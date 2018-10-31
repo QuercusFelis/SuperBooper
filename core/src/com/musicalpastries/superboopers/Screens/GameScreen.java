@@ -13,9 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.musicalpastries.superboopers.Actors.Booper;
-import com.musicalpastries.superboopers.Actors.Boopermon;
-import com.musicalpastries.superboopers.Actors.ImageAnimated;
+import com.musicalpastries.superboopers.Actors.Boopers.Booper;
+import com.musicalpastries.superboopers.Actors.Boopers.Boopermon;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 
@@ -132,7 +131,7 @@ public class GameScreen extends SuperScreen {
         }
     }
 
-    public void showInfoWindow(final Boopermon booper){
+    private void showInfoWindow(final Boopermon booper){
         booperInfo = new Dialog("Booper Info", skin);
 
         //ImageAnimated animated = new ImageAnimated(booper.draw());
@@ -158,7 +157,7 @@ public class GameScreen extends SuperScreen {
         return table;
     }
 
-    public void incrementBoops(){
+    private void incrementBoops(){
         getGame().incrementXP();
         boops.setText("Boops: " + String.format("%03d", getGame().getXp()));
     }
