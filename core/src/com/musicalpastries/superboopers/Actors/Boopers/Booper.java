@@ -37,7 +37,7 @@ public abstract class Booper extends SuperBooperActor {
     }
 
     Booper(GameScreen game, int id, double[] rgb){
-        setupGraphics(id, rgb);
+        super(id, rgb);
         setupLocation(game);
         lvl = 0;
     }

@@ -4,24 +4,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.musicalpastries.superboopers.Actors.Boopers.Booper;
+import com.musicalpastries.superboopers.Actors.Items.Item;
+import com.musicalpastries.superboopers.Actors.Items.ListItem;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
  * woodcat - 12/27/2017.
  */
 
-public class InventoryScreen extends SuperScreen {
-
-    private Table items;
-    private Dialog itemInfo;
+public class InventoryScreen extends ListScreen {
 
     public InventoryScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
@@ -43,20 +40,20 @@ public class InventoryScreen extends SuperScreen {
         ScrollPane scrollPane = new ScrollPane(items, skin);
         scrollPane.setFadeScrollBars(false);
         //setting up scrollpane of items
-        for (Booper b:getGame().getBoopers()) {
-            final Image image = new Image(b.draw().getKeyFrame(0));
+        if(getGame().getItems() != null)
+        for (final Item i:getGame().getItems()) {
             //configure listing
             Table listing = new Table(skin);
             items.add(listing).left().expandX().fill().padLeft(5).padRight(5).padBottom(2);
             listing.setDebug(false);
-            listing.add(image);
-            listing.add("temporary text").expandX().fill().padLeft(50);
+            listing.add(i.getIcon());
+            listing.add(i.getName()).expandX().fill().padLeft(50);
             items.row();
             //add listener for item in listing
             listing.addListener(new ActorGestureListener() {
                 @Override
                 public void tap(InputEvent event, float x, float y, int pointer, int button) {
-                    showInfoWindow(new Image(image.getDrawable())); }});
+                    showInfoWindow(i); }});
         }
         items.setDebug(false);
         //adding widgets to main scene table
@@ -74,25 +71,20 @@ public class InventoryScreen extends SuperScreen {
 
     }
 
-    private void showInfoWindow(Image image){
-        itemInfo = new Dialog("Item Info", skin);
-        TextButton use = new TextButton("use", skin);
+    private void showInfoWindow(ListItem listItem){
+        itemInfo = new Dialog(listItem.getType(), skin);
+        TextButton interact = new TextButton(listItem.getInteractText(), skin);
 
         //dialogue box layout
-        itemInfo.getContentTable().add(image).padTop(10);
-        itemInfo.getContentTable().add("Size: "+image.getWidth()).padTop(10).bottom().left();
+        itemInfo.getContentTable().add(listItem.getIcon()).padTop(10);
+        itemInfo.getContentTable().add(listItem.getName()).padTop(10).bottom().left();
         itemInfo.getContentTable().row();
-        itemInfo.getContentTable().add();
+        //itemInfo.getContentTable().add(ListItem.getDescription());
         itemInfo.button("close");
-        itemInfo.getButtonTable().add(use).padLeft(10);
+        itemInfo.getButtonTable().add(interact).padLeft(10);
 
         //setup listeners for items in box
-        use.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-
-            }
-        });
+        //interact.addListener(listItem.getChangeListener());
 
         //dialogue box built, ready to show
         itemInfo.show(stage);

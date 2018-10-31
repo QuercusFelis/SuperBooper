@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Actors.Boopers.Booper;
 import com.musicalpastries.superboopers.Actors.Boopers.Boopermon;
 import com.musicalpastries.superboopers.Actors.Items.Item;
+import com.musicalpastries.superboopers.Actors.Items.ListItem;
 import com.musicalpastries.superboopers.Screens.CommunityScreen;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
@@ -46,6 +47,15 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	private StoreScreen storeScreen;
 	private CommunityScreen communityScreen;
 	private SettingScreen settingScreen;
+	private ArrayList<Item> items;
+
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+
+	public void addRandItem() {
+		items.add(new Item((int)(Math.random()*10), "test item", "temporary text", "test"));
+	}
 
 	public enum eScreen{
 		MENU,
@@ -69,7 +79,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<>();
 		Booper.setAtlas();
-		Item.setAtlas();
+		ListItem.setAtlas();
 
 		if(gameScreen == null){
 			gameScreen = new GameScreen(this, eScreen.MENU);

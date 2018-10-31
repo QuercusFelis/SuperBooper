@@ -32,6 +32,7 @@ public class SettingScreen extends SuperScreen {
         Label title = new Label("Settings", new Label.LabelStyle(skin.getFont("font"), com.badlogic.gdx.graphics.Color.WHITE));
         title.setFontScale(3f);
         TextButton boop10 = new TextButton("+10 Boopers", skin);
+        TextButton item20 = new TextButton("+20 Items", skin);
         TextButton reset = new TextButton("Reset", skin);
 
         //populating table
@@ -39,7 +40,9 @@ public class SettingScreen extends SuperScreen {
 
         table.row();
         table.add(tableInner).colspan(2).expand().fill();
-        tableInner.add(boop10).colspan(2).expand().fillX().pad(10).center().top();
+        tableInner.add(boop10).colspan(2).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
+        tableInner.row();
+        tableInner.add(item20).colspan(2).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
 
         table.row();
         table.add(reset).colspan(2).fillX().pad(10).center().bottom();
@@ -61,10 +64,21 @@ public class SettingScreen extends SuperScreen {
                 }
             }
         });
+        boop10.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                int c = 20;
+                while (c > 0) {
+                    getGame().addRandItem();
+                    c--;
+                }
+            }
+        });
         reset.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 getGame().getBoopers().clear();
+                getGame().getItems().clear();
             }
         });
     }

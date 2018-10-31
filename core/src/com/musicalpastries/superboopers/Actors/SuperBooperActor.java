@@ -17,6 +17,12 @@ public abstract class SuperBooperActor extends Actor {
     private Animation animation;
     private int numframes;
 
+    public SuperBooperActor(){}
+
+    public SuperBooperActor(int id, double[] rgb) {
+        setupGraphics(id, rgb);
+    }
+
     public Animation<TextureRegion> draw(){
         return animation;
     }
