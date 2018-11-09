@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.musicalpastries.superboopers.SuperBoopers;
 
 /**
- * woocat - 12/27/2017.
+ * woodcat - 12/27/2017.
  */
 
 public class SettingScreen extends SuperScreen {
@@ -64,7 +64,7 @@ public class SettingScreen extends SuperScreen {
                 }
             }
         });
-        boop10.addListener(new ChangeListener() {
+        item20.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 int c = 20;

@@ -69,4 +69,7 @@ public abstract class ListItem extends SuperBooperActor {
     public Image getIcon() {
         return icon;
     }
+
+    public Image getIconCopy() { return new Image(icon.getDrawable());
+    }
 }

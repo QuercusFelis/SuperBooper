@@ -76,7 +76,7 @@ public class InventoryScreen extends ListScreen {
         TextButton interact = new TextButton(listItem.getInteractText(), skin);
 
         //dialogue box layout
-        itemInfo.getContentTable().add(listItem.getIcon()).padTop(10);
+        itemInfo.getContentTable().add(listItem.getIconCopy()).padTop(10);
         itemInfo.getContentTable().add(listItem.getName()).padTop(10).bottom().left();
         itemInfo.getContentTable().row();
         //itemInfo.getContentTable().add(ListItem.getDescription());

@@ -78,6 +78,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	public void create () {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<>();
+		items = new ArrayList<>();
 		Booper.setAtlas();
 		ListItem.setAtlas();
 
