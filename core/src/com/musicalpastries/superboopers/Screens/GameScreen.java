@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -133,6 +134,7 @@ public class GameScreen extends SuperScreen {
 
     private void showInfoWindow(final Boopermon booper){
         booperInfo = new Dialog("Booper Info", skin);
+        TextButton trainButton = new TextButton("train", skin);
 
         //ImageAnimated animated = new ImageAnimated(booper.draw());
         booperInfo.getContentTable().add(new Image(booper.draw().getKeyFrames()[0])).padTop(10);
@@ -141,6 +143,8 @@ public class GameScreen extends SuperScreen {
         booperInfo.getContentTable().row();
         booperInfo.getContentTable().add(""+booper.getCreated()).colspan(2);
         booperInfo.button("close");
+        booperInfo.getButtonTable().add(trainButton).padLeft(10).expandX().fillX();
+
         booperInfo.show(stage);
     }
 
@@ -160,6 +164,10 @@ public class GameScreen extends SuperScreen {
     private void incrementBoops(){
         getGame().incrementXP();
         boops.setText("Boops: " + String.format("%03d", getGame().getXp()));
+    }
+
+    public void showNewBooper(Boopermon b){
+        showInfoWindow(b);
     }
 
     @Override

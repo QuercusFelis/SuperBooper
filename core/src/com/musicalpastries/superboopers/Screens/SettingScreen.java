@@ -39,10 +39,10 @@ public class SettingScreen extends SuperScreen {
         table.add(title).expandX().fillX().left();
 
         table.row();
-        table.add(tableInner).colspan(2).expand().fill();
-        tableInner.add(boop10).colspan(2).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
+        table.add(tableInner).colspan(2).expand().fillX().top();
+        tableInner.add(boop10).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
         tableInner.row();
-        tableInner.add(item20).colspan(2).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
+        tableInner.add(item20).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
 
         table.row();
         table.add(reset).colspan(2).fillX().pad(10).center().bottom();
