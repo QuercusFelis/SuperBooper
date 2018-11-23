@@ -212,20 +212,27 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		super.resize(width, height);
 	}
 
-	public void addBooperFromScan() throws NumberFormatException{
+	public Boopermon addBooper() throws NumberFormatException{
 		try{
 			Random gen = new Random(Long.parseLong(lastScanned));
-			scanner.tell(lastScanned);
 			int id = (int)Math.floor(gen.nextDouble()*10);
 			double[] rgb = new double[3];
 			for (int i = 0; i < rgb.length; i++) rgb[i] = gen.nextDouble();
 			Boopermon b = new Boopermon(gameScreen.getContext(), id, rgb, lastScanned);
 			addBoopers(b);
-			gameScreen.showNewBooper(b);
+			scanner.tell(lastScanned);
+			return b;
 		}catch (NumberFormatException e){
 			System.err.println(lastScanned);
 			scanner.tell(lastScanned);
 		}
+		return null;
+	}
 
+	public void addBooperFromScan() throws NumberFormatException{
+		Boopermon b = addBooper();
+		if(b != null){
+			gameScreen.showNewBooper(b);
+		}
 	}
 }

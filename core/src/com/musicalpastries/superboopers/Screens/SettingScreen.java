@@ -59,7 +59,7 @@ public class SettingScreen extends SuperScreen {
                 int c = 10;
                 while (c > 0) {
                     getGame().setLastScanned(""+(int)(Math.random()*100000));
-                    getGame().addBooperFromScan();
+                    getGame().addBooper();
                     c--;
                 }
             }
