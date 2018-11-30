@@ -116,7 +116,7 @@ public class GameScreen extends SuperScreen {
                         showInfoWindow((Boopermon) actor);
                     }
                 });
-                actor.addListener(new InputListener(){
+                /*actor.addListener(new InputListener(){
                    @Override
                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                        return true;
@@ -127,7 +127,7 @@ public class GameScreen extends SuperScreen {
                         //TODO: handle dragging
                         super.touchDragged(event, x, y, pointer);
                     }
-                });
+                });*/
             }
         }
     }

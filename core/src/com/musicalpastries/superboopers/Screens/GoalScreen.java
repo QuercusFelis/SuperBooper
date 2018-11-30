@@ -10,10 +10,12 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * woodcat - 12/27/2017.
  */
 
-public class GoalScreen extends SuperScreen {
+public class GoalScreen extends ListScreen {
 
     public GoalScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
+        title = new Label("Goals", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+
         r= .7f;
         g= .6f;
         b= .3f;
@@ -22,15 +24,7 @@ public class GoalScreen extends SuperScreen {
     @Override
     public void show() {
         super.show();
-
-        //buttons
-        Label title = new Label("Goals", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         title.setFontScale(4f);
-
-        table.add(title).expandX().fillX();
-
-        table.row();
-        //listeners
 
         back.addListener(new ChangeListener() {
             @Override

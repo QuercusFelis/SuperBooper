@@ -10,10 +10,11 @@ import com.musicalpastries.superboopers.SuperBoopers;
  * woodcat - 12/27/2017.
  */
 
-public class StoreScreen extends SuperScreen {
+public class StoreScreen extends ListScreen {
 
     public StoreScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
+        title = new Label("Store", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
 
         r= .3f;
         g= .9f;
@@ -23,15 +24,7 @@ public class StoreScreen extends SuperScreen {
     @Override
     public void show() {
         super.show();
-
-        //buttons
-        Label title = new Label("Store", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
         title.setFontScale(4f);
-
-        table.add(title).expandX().fillX();
-
-        table.row();
-        //listeners
 
         back.addListener(new ChangeListener() {
             @Override

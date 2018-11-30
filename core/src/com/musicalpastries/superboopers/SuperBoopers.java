@@ -117,12 +117,12 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				this.setScreen(inventoryScreen);
 				break;
 			case GOALS:
-				if(goalScreen == null) goalScreen = new GoalScreen(this, lastScreen);
+				goalScreen = new GoalScreen(this, lastScreen);
 				goalScreen.setLastScreen(lastScreen);
 				this.setScreen(goalScreen);
 				break;
 			case STORE:
-				if(storeScreen == null) storeScreen = new StoreScreen(this, lastScreen);
+				storeScreen = new StoreScreen(this, lastScreen);
 				storeScreen.setLastScreen(lastScreen);
 				this.setScreen(storeScreen);
 				break;
