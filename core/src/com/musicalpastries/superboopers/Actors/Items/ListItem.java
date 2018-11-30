@@ -1,7 +1,10 @@
 package com.musicalpastries.superboopers.Actors.Items;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.musicalpastries.superboopers.Actors.SuperBooperActor;
 
 
@@ -13,27 +16,38 @@ public abstract class ListItem extends SuperBooperActor {
     public static TextureAtlas atlas;
     private static boolean atlasSet = false;
 
-    private int quantity;
+    private int num;
     private String description;
     private String name;
     private String interactText;
     private String type;
     private Image icon;
 
-    public ListItem(int quantity, String name, String description, String interactText, String type) {
-        this.quantity = quantity;
+    public ListItem(int num, String name, String description, String interactText, String type) {
+        super(0, new double[0]);
+        this.num = num;
         this.description = description;
         this.name = name;
         this.interactText = interactText;
         this.type = type;
+
     }
 
-    public void incrementQuantity(){
-        quantity++;
+    @Override
+    protected void setupGraphics(int id, double[] rgb) {
+        try{
+            setIcon(new Image(new Texture(Gdx.files.internal("back.png"))));
+        } catch (GdxRuntimeException e){
+            setIcon(new Image(new Texture(Gdx.files.external("AndroidStudioProjects/SuperBooper/android/assets/back.png"))));
+        }
     }
 
-    public void decrimentQuantity(){
-        quantity--;
+    public void incrementNum(){
+        num++;
+    }
+
+    public void decrimentNum(){
+        num--;
     }
 
     public static void setAtlas() {
@@ -44,8 +58,8 @@ public abstract class ListItem extends SuperBooperActor {
         this.icon = icon;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getNum() {
+        return num;
     }
 
     public String getDescription() {

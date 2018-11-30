@@ -14,6 +14,8 @@ import com.musicalpastries.superboopers.Actors.Items.Item;
 import com.musicalpastries.superboopers.Actors.Items.ListItem;
 import com.musicalpastries.superboopers.SuperBoopers;
 
+import java.util.ArrayList;
+
 /**
  * Created by loads on 10/31/2018.
  */
@@ -23,6 +25,7 @@ public abstract class ListScreen extends SuperScreen {
     protected Table items;
     protected Dialog itemInfo;
     protected Label title;
+    protected ArrayList<ListItem> list;
 
     public ListScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
@@ -31,7 +34,7 @@ public abstract class ListScreen extends SuperScreen {
     @Override
     public void show() {
         super.show();
-        table.setDebug(false);
+        table.setDebug(true);
 
 
         //instantiating scene widgets
@@ -40,13 +43,14 @@ public abstract class ListScreen extends SuperScreen {
         scrollPane.setFadeScrollBars(false);
         //setting up scrollpane of items
         if(getGame().getItems() != null)
-            for (final Item i:getGame().getItems()) {
+            for (final ListItem i:list) {
                 //configure listing
                 Table listing = new Table(skin);
                 items.add(listing).left().expandX().fill().padLeft(5).padRight(5).padBottom(2);
                 listing.setDebug(false);
                 listing.add(i.getIcon());
                 listing.add(i.getName()).expandX().fill().padLeft(50);
+                listing.add(i.getNum()+"").right().padLeft(10);
                 items.row();
                 //add listener for item in listing
                 listing.addListener(new ActorGestureListener() {
@@ -54,12 +58,12 @@ public abstract class ListScreen extends SuperScreen {
                     public void tap(InputEvent event, float x, float y, int pointer, int button) {
                         showInfoWindow(i); }});
             }
-        items.setDebug(false);
+        items.setDebug(true);
         //adding widgets to main scene table
         table.add(title).expandX().fillX().left();
 
         table.row();
-        table.add(scrollPane).expand().fill().colspan(2);
+        table.add(scrollPane).expandX().fill().colspan(2).top();
     }
 
     private void showInfoWindow(ListItem listItem){

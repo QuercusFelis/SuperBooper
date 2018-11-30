@@ -33,6 +33,8 @@ public class SettingScreen extends SuperScreen {
         title.setFontScale(3f);
         TextButton boop10 = new TextButton("+10 Boopers", skin);
         TextButton item20 = new TextButton("+20 Items", skin);
+        TextButton goal5 = new TextButton("+5 Goals", skin);
+        TextButton listing10 = new TextButton("+10 Listings", skin);
         TextButton reset = new TextButton("Reset", skin);
 
         //populating table
@@ -43,6 +45,10 @@ public class SettingScreen extends SuperScreen {
         tableInner.add(boop10).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
         tableInner.row();
         tableInner.add(item20).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
+        tableInner.row();
+        tableInner.add(listing10).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
+        tableInner.row();
+        tableInner.add(goal5).expandX().fillX().padLeft(10).padRight(10).padTop(10).top();
 
         table.row();
         table.add(reset).colspan(2).fillX().pad(10).center().bottom();
@@ -72,6 +78,18 @@ public class SettingScreen extends SuperScreen {
                     getGame().addRandItem();
                     c--;
                 }
+            }
+        });
+        listing10.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().addRandListings();
+            }
+        });
+        goal5.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getGame().addRandGoals();
             }
         });
         reset.addListener(new ChangeListener() {

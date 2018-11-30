@@ -23,6 +23,7 @@ public class InventoryScreen extends ListScreen {
     public InventoryScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
         title = new Label("Inventory", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        list = getGame().getItems();
 
         r= .7f;
         g= .6f;

@@ -6,8 +6,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.musicalpastries.superboopers.Actors.Boopers.Booper;
 import com.musicalpastries.superboopers.Actors.Boopers.Boopermon;
+import com.musicalpastries.superboopers.Actors.Items.Goal;
 import com.musicalpastries.superboopers.Actors.Items.Item;
 import com.musicalpastries.superboopers.Actors.Items.ListItem;
+import com.musicalpastries.superboopers.Actors.Items.Listing;
 import com.musicalpastries.superboopers.Screens.CommunityScreen;
 import com.musicalpastries.superboopers.Screens.CreditsScreen;
 import com.musicalpastries.superboopers.Screens.DonateScreen;
@@ -36,7 +38,7 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	public static final int V_HEIGHT = 896;
 
 	private SpriteBatch batch;
-	private ArrayList<Booper> boopers;
+
 	private Integer xp;
 	private Integer lvl;
 
@@ -47,14 +49,38 @@ public class SuperBoopers extends Game implements ApplicationListener {
 	private StoreScreen storeScreen;
 	private CommunityScreen communityScreen;
 	private SettingScreen settingScreen;
-	private ArrayList<Item> items;
 
-	public ArrayList<Item> getItems() {
+	private ArrayList<ListItem> items;
+	private ArrayList<Booper> boopers;
+	private ArrayList<ListItem> goals;
+	private ArrayList<ListItem> listings;
+
+	public ArrayList<ListItem> getItems() {
 		return items;
 	}
 
+	public ArrayList<ListItem> getGoals() {
+		return goals;
+	}
+
+	public ArrayList<ListItem> getListings() {
+		return listings;
+	}
+
 	public void addRandItem() {
-		items.add(new Item((int)(Math.random()*10), "test item", "temporary text", "test"));
+		items.add(new Item((int)(Math.random()*10+1), "test item", "temporary text", "test"));
+	}
+
+	public void addRandListings() {
+		for (int i = 0; i < 10; i++) {
+			listings.add(new Listing((int)(Math.random()*100+1), "test listing", "temporary text", "test"));
+		}
+	}
+
+	public void addRandGoals() {
+		for (int i = 0; i < 5; i++) {
+			goals.add(new Goal((int)(Math.random()*5+1), "test goal", "temporary text", "test"));
+		}
 	}
 
 	public enum eScreen{
@@ -79,6 +105,8 @@ public class SuperBoopers extends Game implements ApplicationListener {
 		batch = new SpriteBatch();
 		boopers = new ArrayList<>();
 		items = new ArrayList<>();
+		listings = new ArrayList<>();
+		goals = new ArrayList<>();
 		Booper.setAtlas();
 		ListItem.setAtlas();
 
@@ -111,7 +139,6 @@ public class SuperBoopers extends Game implements ApplicationListener {
 				this.setScreen(gameScreen);
 				break;
 			case INVENTORY:
-				//if(inventoryScreen == null)
 				inventoryScreen = new InventoryScreen(this, lastScreen);
 				inventoryScreen.setLastScreen(lastScreen);
 				this.setScreen(inventoryScreen);

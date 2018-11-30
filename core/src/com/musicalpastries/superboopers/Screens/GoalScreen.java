@@ -15,6 +15,7 @@ public class GoalScreen extends ListScreen {
     public GoalScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
         title = new Label("Goals", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        list = getGame().getGoals();
 
         r= .7f;
         g= .6f;

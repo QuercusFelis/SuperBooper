@@ -15,6 +15,7 @@ public class StoreScreen extends ListScreen {
     public StoreScreen(SuperBoopers game, SuperBoopers.eScreen lastScreen) {
         super(game, lastScreen);
         title = new Label("Store", new Label.LabelStyle(skin.getFont("font"), Color.WHITE));
+        list = getGame().getListings();
 
         r= .3f;
         g= .9f;
